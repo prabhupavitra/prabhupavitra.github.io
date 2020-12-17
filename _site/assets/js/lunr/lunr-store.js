@@ -6,7 +6,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Movie Recommender system in R",
-        "excerpt":"Movie Recommender System in R Movie Recommender System in R Pavitra Prabhu 2020-12-15 Introduction MovieLens Dataset Loss Functions Mean Absolute Error Root Mean Squared Error Project Checklist Methods and Analysis Data Ingestion Create Helper Functions Exploratory Data Analysis Rating Movies Users Date Genres Release Year of the Movie Data Preparation...","categories": [],
+        "excerpt":"&lt;!DOCTYPE html&gt; Movie Recommender System in R Movie Recommender System in R Introduction MovieLens Dataset Loss Functions Mean Absolute Error Root Mean Squared Error Project Checklist Methods and Analysis Data Ingestion Create Helper Functions Exploratory Data Analysis Rating Movies Users Date Genres Release Year of the Movie Data Preparation Model...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/movierecommender/",
         "teaser": null

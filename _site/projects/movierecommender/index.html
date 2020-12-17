@@ -1,3 +1,4 @@
+<p>&lt;!DOCTYPE html&gt;</p>
 
 <html>
 
@@ -7,7 +8,8 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<img src="/img/Teaser/movierec.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+
+
 
 <title>Movie Recommender System in R</title>
 
@@ -1679,8 +1681,6 @@ summary {
 
 
 <h1 class="title toc-ignore">Movie Recommender System in R</h1>
-<h4 class="author">Pavitra Prabhu</h4>
-<h4 class="date">2020-12-15</h4>
 
 </div>
 
@@ -2994,12 +2994,12 @@ mae_matrix_fact &lt;- MAE(test_set$rating, preds_matrix_fact)</code></pre>
 </tr>
 <tr class="odd">
 <td align="left">Matrix Factorization (recosystem package)</td>
-<td align="right">0.7904760</td>
-<td align="right">0.6058516</td>
+<td align="right">0.7905278</td>
+<td align="right">0.6059103</td>
 </tr>
 </tbody>
 </table>
-<p>The results show that the matrix factorization is a powerful approach for implementing recommender systems. The RMSE achieved using this approach corresponds to the lowest RMSE on the test set compared to all other models discussed so far. The RMSE achieved with this approach is 0.79048 and MAE is 0.60585 on the test set.</p>
+<p>The results show that the matrix factorization is a powerful approach for implementing recommender systems. The RMSE achieved using this approach corresponds to the lowest RMSE on the test set compared to all other models discussed so far. The RMSE achieved with this approach is 0.79053 and MAE is 0.60591 on the test set.</p>
 </div>
 <div id="final-validation" class="section level2">
 <h2>Final Validation</h2>
@@ -3046,12 +3046,12 @@ mae_validation &lt;- MAE(validation$rating, preds_validation)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">Matrix Factorization</td>
-<td align="right">0.78453</td>
-<td align="right">0.601766</td>
+<td align="right">0.7845124</td>
+<td align="right">0.6015874</td>
 </tr>
 </tbody>
 </table>
-<p>The matrix factorization achieves similar results on the validation set as well. The final RMSE on the validation set is 0.78453 and MAE is 0.60177.</p>
+<p>The matrix factorization achieves similar results on the validation set as well. The final RMSE on the validation set is 0.78451 and MAE is 0.60159.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -3060,6 +3060,8 @@ mae_validation &lt;- MAE(validation$rating, preds_validation)</code></pre>
 <p>In this project, we examined various strategies to model recommender systems. We discussed linear model, regularization of the relevant features and finally matrix factorization using stochastic gradient descent. The collaborative filtering strategy performs the best among all the models considered, and offers advantages of serendipity to users, and the latent factors are automatically learned without any manual intervention.<br />
 Yet, there are quite a few drawbacks of this strategy. One of the typical drawbacks of collaborative filtering system is the cold start problem, that is, dealing with new users and new items with no ratings at all. However, to address this issue, we can develop hybrid models with collaborative filtering for existing users with content based approach on the new users entering the system.</p>
 <p>Another disadvantage with collaborative filtering systems is that, it considers only positive user signals based on the options presented. For instance, if a user is presented with option A, B and C and the user selects A, its quite essential to note that the user rejected B and C. Estimating recommendations based only the selection of A, can affect the quality of recommendations made to the user. Therefore, there is immense scope for improvement in the models discussed in this project. However, building a collaborative filtering system for a more advanced recommendation solution requires heavy engineering resources and is not feasible with a commodity computer.</p>
+<div style="page-break-after: always;"></div>
+<p>{::options parse_block_html=“true” /}</p>
 
 </div>
 <div id="appendix-a.-environment-details" class="section level1">
@@ -3094,63 +3096,63 @@ Yet, there are quite a few drawbacks of this strategy. One of the typical drawba
 <tbody>
 <tr class="odd">
 <td align="left">One-hot Encoding (edx dataset)</td>
-<td align="right">1.1588167</td>
+<td align="right">1.1408000</td>
 </tr>
 <tr class="even">
 <td align="left">Train/Test data split</td>
-<td align="right">0.0602167</td>
+<td align="right">0.0557833</td>
 </tr>
 <tr class="odd">
 <td align="left">One-hot Encoding (Train and Test data)</td>
-<td align="right">1.1226000</td>
+<td align="right">1.1010167</td>
 </tr>
 <tr class="even">
 <td align="left">Average rating</td>
-<td align="right">0.0006833</td>
+<td align="right">0.0007833</td>
 </tr>
 <tr class="odd">
 <td align="left">Including Movie Effects</td>
-<td align="right">0.0138333</td>
+<td align="right">0.0169167</td>
 </tr>
 <tr class="even">
 <td align="left">Including User Effects</td>
-<td align="right">0.0496333</td>
+<td align="right">0.0584667</td>
 </tr>
 <tr class="odd">
 <td align="left">Including Day Effects</td>
-<td align="right">0.0774167</td>
+<td align="right">0.0864500</td>
 </tr>
 <tr class="even">
 <td align="left">Including Release Year Effects</td>
-<td align="right">0.1160667</td>
+<td align="right">0.1128333</td>
 </tr>
 <tr class="odd">
 <td align="left">Including Genre Effects</td>
-<td align="right">0.8328667</td>
+<td align="right">0.8125833</td>
 </tr>
 <tr class="even">
 <td align="left">Hyperparameter Tuning for Regularization (Movie + User)</td>
-<td align="right">2.8612500</td>
+<td align="right">2.5340167</td>
 </tr>
 <tr class="odd">
 <td align="left">Regularization with Optimal lambda</td>
-<td align="right">0.0597000</td>
+<td align="right">0.0572667</td>
 </tr>
 <tr class="even">
 <td align="left">Including Genre effects (Regularized Model)</td>
-<td align="right">0.7385000</td>
+<td align="right">0.7227500</td>
 </tr>
 <tr class="odd">
 <td align="left">Matrix Factorization with SGD (Train-Test)</td>
-<td align="right">6.6749500</td>
+<td align="right">7.4312000</td>
 </tr>
 <tr class="even">
 <td align="left">Matrix Factorization with SGD (Validation)</td>
-<td align="right">1.9955000</td>
+<td align="right">1.8292000</td>
 </tr>
 <tr class="odd">
 <td align="left">Total Elapsed Time</td>
-<td align="right">21.4128000</td>
+<td align="right">21.4321167</td>
 </tr>
 </tbody>
 </table>
