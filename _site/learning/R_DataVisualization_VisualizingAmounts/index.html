@@ -1,0 +1,1180 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Visualizing Amounts - Finance - The Realm of Data Science</title>
+<meta name="description" content="Visualizing Amounts in R - Finance ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="Visualizing Amounts - Finance">
+<meta property="og:url" content="http://localhost:4000/learning/R_DataVisualization_VisualizingAmounts/">
+
+
+  <meta property="og:description" content="Visualizing Amounts in R - Finance ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-10T22:12:28-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/learning/R_DataVisualization_VisualizingAmounts/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Visualizing Amounts - Finance">
+    <meta itemprop="description" content="Visualizing Amounts in R - Finance">
+    <meta itemprop="datePublished" content="2020-08-10T22:12:28-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Visualizing Amounts - Finance
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h3 id="--visualizing-amounts-in-finance-"><center>  Visualizing Amounts in Finance </center></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Most commonly used visualizations to compare amounts include:
+
+1. Bar Charts
+2. Diverging Bar Charts    
+3. Stacked Bar Charts
+4. Grouped Bar Charts (also called Clustered Bar Charts)
+5. Animated Bar Charts
+6. Dot Plots (also called Cleveland Dot Charts)
+7. Bubble Charts
+8. Heatmaps
+
+Others include :
+9.  Waterfall Charts
+10. Polar Area Charts (also called Coxcomb Charts)
+11. Dumbbell Charts
+
+
+Most importantly, we will be using quandl api and quantmod api to import financial data in this notebook.
+We can install quandl &amp; quantmod packages and register an account on quandl.com
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="create-a-free-quandl-account-and-set-your-api-key-here">Create a free Quandl account and set your API key here</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>For more information, refer to :
+https://www.quandl.com/tools/r
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Run the script below with your secret key obtained after registering on quandl</span><span class="w">
+</span><span class="c1"># quandl_sk = "&lt;quandl secret key&gt;"</span><span class="w">
+
+</span><span class="c1"># Alternative way to Load Data Tokens </span><span class="w">
+</span><span class="n">source</span><span class="p">(</span><span class="s2">"../R/Setup/apitokens.r"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Data manipulation libraries used in this notebook</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes rownames_to_column function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes filter function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes spread function</span><span class="w">
+
+</span><span class="c1"># Visualization libraries used in this notebook</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes ggplot function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggforce</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes geom_sina &amp; geom_parallel_sets</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggridges</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes geom_</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes axis_canvas for generating A Canvas Onto Which One Can Draw Axis-Like Objects</span><span class="w">
+
+</span><span class="c1"># Data API libraries</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Quandl</span><span class="p">)</span><span class="w"> </span><span class="c1"># To import data from Quandl API</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">quantmod</span><span class="p">)</span><span class="w"> </span><span class="c1"># To import data using yahoo,google api</span><span class="w">
+
+</span><span class="c1"># Animation Packages</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gganimate</span><span class="p">)</span><span class="w"> </span><span class="c1"># to add animation to static plot </span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gifski</span><span class="p">)</span><span class="w"> </span><span class="c1"># Converts images to GIF animations</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">png</span><span class="p">)</span><span class="w"> </span><span class="c1"># Provides an easy and simple way to read, write and display bitmap images stored in the PNG format.</span><span class="w">
+
+</span><span class="c1"># Datetime Parsing functions</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes datetime parsing functions</span><span class="w">
+
+</span><span class="c1"># Data visualization addon library for Themes and colors available in my github repository</span><span class="w">
+</span><span class="c1"># https://github.com/prabhupavitra/dviz.addon</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dviz.addon</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Resizing plot width and height from default 7</span><span class="w">
+</span><span class="c1"># https://www.rdocumentation.org/packages/repr/versions/0.7/topics/repr-options</span><span class="w">
+</span><span class="n">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="o">=</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h3 id="importing-data-using-quandl-and-quantmod-api">Importing Data (Using Quandl and quantmod API)</h3>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This notebook uses Quandl and quantmod API to import Financial Data directly to R.
+Datasets used in this notebook include:
+
+1. Historical Prices of Precious Metals 
+    (Gold, Silver, Platinum and Palladium)
+2. Historical Prices of Non-Ferrous Base Metals 
+    (Aluminum; Copper; Lead; Nickel; Tin and Zinc)
+3. Consumer Price Index for All Urban Consumers (CPI-U)
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="precious-metals-prices--london-fixing-us-dollars-per-troy-ounce">Precious Metals Prices : London Fixing (U.S. Dollars per Troy Ounce)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Using Quandl API : Import prices of Precious Metals ( Gold, Silver, Platinum, Palladium )</span><span class="w">
+
+</span><span class="c1"># Gold Price: London Fixing</span><span class="w">
+</span><span class="n">gold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LBMA/GOLD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Silver Price: London Fixing</span><span class="w">
+</span><span class="n">silver</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LBMA/SILVER"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Platinum Fixing</span><span class="w">
+</span><span class="n">platinum</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LPPM/PLAT"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Palladium</span><span class="w">
+</span><span class="n">palladium</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LPPM/PALL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="base-metals-prices--spot-prices-us-dollars-per-metric-ton">Base Metals Prices : Spot Prices (U.S. Dollars per metric ton)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Other Base Metals (Aluminum; Cobalt; Copper; Iron Ore; Lead; Molybdenum; Nickel; Tin; Uranium and Zinc)</span><span class="w">
+
+</span><span class="c1"># Aluminum; 99.5% minimum purity; LME spot price; CIF UK ports; US$ per metric ton</span><span class="w">
+</span><span class="n">aluminium</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PALUM_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Copper; grade A cathode; LME spot price; CIF European ports; US$ per metric ton</span><span class="w">
+</span><span class="n">copper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PCOPP_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Lead; 99.97% pure; LME spot price; CIF European Ports; US$ per metric ton</span><span class="w">
+</span><span class="n">lead</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PLEAD_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Nickel; melting grade; LME spot price; CIF European ports; US$ per metric ton</span><span class="w">
+</span><span class="n">nickel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PNICK_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Tin; standard grade; LME spot price; US$ per metric ton</span><span class="w">
+</span><span class="n">tin</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PTIN_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Zinc; high grade 98% pure; US$ per metric ton</span><span class="w">
+</span><span class="n">zinc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PZINC_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="cpi-data--cpi-for-us-city-average">CPI Data : CPI for U.S. City Average</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Units:
+Index 1982-1984=100,
+Seasonally Adjusted
+
+Frequency:
+Monthly
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Consumer Price Index for All Urban Consumers: All Items in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_allitems</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIAUCSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_foodbev</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIFABSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_excfoodnbev</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPILFESL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">  
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Recreation in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_recreation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIRECSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Housing in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_housing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIHOSNS"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Education and Communication in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_eduncomm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIEDUSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Apparel in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_apparel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIAPPSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Energy in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_energy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIENGSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Other Goods and Services in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_othergns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIOGSSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Transportation in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_trnsprt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPITRNSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Services in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_otherserv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CUSR0000SAS"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Commodities in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_commod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CUSR0000SAC"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Medical Care in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_medcare</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIMEDSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<blockquote>
+  <h3 id="data-manipulation">Data Manipulation</h3>
+  <h5 id="precious-metals-prices--london-fixing-us-dollars-per-troy-ounce-1">Precious Metals Prices : London Fixing (U.S. Dollars per Troy Ounce)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Merging the datasets of all 4 precious metals (Measured per Troy Ounce)</span><span class="w">
+</span><span class="n">precious_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">gold</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD (AM)"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD (AM)"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Gold"</span><span class="p">),</span><span class="w">
+</span><span class="n">silver</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Silver"</span><span class="p">),</span><span class="w">
+</span><span class="n">platinum</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Platinum"</span><span class="p">),</span><span class="w">
+</span><span class="n">palladium</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Palladium"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">USD</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">USD</th><th scope="col">Commodity</th><th scope="col">Year</th></tr></thead>
+<tbody>
+	<tr><td>2020-08-28</td><td>1955.85   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-08-27</td><td>1938.80   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-08-26</td><td>1918.50   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-08-25</td><td>1925.45   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-08-24</td><td>1947.55   </td><td>Gold      </td><td>2020      </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="base-metals-prices--spot-prices-us-dollars-per-metric-ton-1">Base Metals Prices : Spot Prices (U.S. Dollars per metric ton)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">base_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">aluminium</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Aluminium"</span><span class="p">),</span><span class="w">
+      </span><span class="n">copper</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Copper"</span><span class="p">),</span><span class="w">
+      </span><span class="n">lead</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Lead"</span><span class="p">),</span><span class="w">
+      </span><span class="n">nickel</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Nickel"</span><span class="p">),</span><span class="w">
+      </span><span class="n">tin</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Tin"</span><span class="p">),</span><span class="w">
+      </span><span class="n">zinc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Zinc"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">base_metals</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">Value</th><th scope="col">Commodity</th><th scope="col">Year</th></tr></thead>
+<tbody>
+	<tr><td>2020-07-31</td><td>1643.812  </td><td>Aluminium </td><td>2020      </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="cpi-data--cpi-for-us-city-average-1">CPI Data : CPI for U.S. City Average</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">monthly_allitems</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"CPI"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_excfoodnbev</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Core CPI"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_apparel</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Apparel"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_commod</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Commodities"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_eduncomm</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Education &amp; Communication"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_energy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Energy"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_foodbev</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Food &amp; Beverages"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_housing</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Housing"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_medcare</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Medical Care"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_othergns</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Other Goods &amp; Services"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_otherserv</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Other Services"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_recreation</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Recreation"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_trnsprt</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Transportation"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="w"> </span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">),</span><span class="n">Month</span><span class="o">=</span><span class="n">month</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">cpi_monthly_sa</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">Value</th><th scope="col">Category</th><th scope="col">Year</th><th scope="col">Month</th></tr></thead>
+<tbody>
+	<tr><td>2020-07-01</td><td>258.723   </td><td>CPI       </td><td>2020      </td><td>7         </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="some-basic-math-calculations-with-cpi">Some basic Math Calculations with CPI</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Percent Change (1982-Present)</span><span class="w">
+</span><span class="n">cpi_pctchng</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_monthly_sa</span><span class="p">,</span><span class="c1">#Month==1,</span><span class="w">
+                                     </span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="w">
+                                     </span><span class="o">!</span><span class="p">(</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Energy'</span><span class="p">,</span><span class="s1">'Transport'</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">mutate</span><span class="p">(</span><span class="n">PercentChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Value</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">filter</span><span class="p">(</span><span class="n">PercentChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Over-the-year percent change </span><span class="w">
+</span><span class="n">cpi_otypct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">filter</span><span class="p">(</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="n">Month</span><span class="o">==</span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">OverYrPercentChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Value</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">OverYrPercentChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+
+</span><span class="c1"># Annual Average, Annual Average CHange and Purchasing Power</span><span class="w">
+</span><span class="n">cpi_annualavg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="n">Year</span><span class="o">&lt;</span><span class="m">2020</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AnnualAvg</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w">
+       </span><span class="n">PurchasingPower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AnnualAvg</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h3 id="visualizing-amounts">Visualizing Amounts</h3>
+</blockquote>
+
+<blockquote>
+  <h5 id="bar-chart">Bar Chart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A simple way to visualize the quantitative data of a categorical variable is the bar chart. The height of
+the bar is proportional to the quantity we want to visualize. They can be used for displaying data that are 
+classified as nominal data/ordinal data.
+
+They are one of the most commonly used types of plots because they are simple to create and very easy to 
+interpret. They are also a flexible chart type and there are several variations of the standard bar chart.
+
+Different types of bar charts:
+- Horizontal bar charts
+- Grouped or Component charts
+- Stacked bar charts
+- Diverging bar charts
+- Animated bar charts
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Resizing the plot </span><span class="w">
+</span><span class="n">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="o">=</span><span class="m">6</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Subset of Consumer Price Index for All Urban Consumers for the year 2018</span><span class="w">
+</span><span class="n">df_barplot_categories</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w">
+                                </span><span class="n">Year</span><span class="o">==</span><span class="m">2018</span><span class="p">,</span><span class="w">
+                                </span><span class="o">!</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'CPI'</span><span class="p">,</span><span class="s1">'Core CPI'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                         </span><span class="n">mutate</span><span class="p">(</span><span class="n">plotorder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">df_barplot_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w">
+                         </span><span class="n">Year</span><span class="o">==</span><span class="m">2018</span><span class="p">,</span><span class="w">
+                         </span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'CPI'</span><span class="p">,</span><span class="s1">'Core CPI'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                  </span><span class="n">mutate</span><span class="p">(</span><span class="n">plotorder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+                
+</span><span class="c1"># Plotting the bar plot</span><span class="w">
+</span><span class="n">barplot_cpi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+ </span><span class="n">ggplot</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_barplot_categories</span><span class="p">,</span><span class="w"> 
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+          </span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">width</span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> 
+          </span><span class="n">fill</span><span class="o">=</span><span class="s2">"steelblue"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_barplot_all</span><span class="p">,</span><span class="w">
+            </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">plotorder</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+            </span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">width</span><span class="o">=</span><span class="m">0.125</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">fill</span><span class="o">=</span><span class="s2">"steelblue"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_barplot_categories</span><span class="p">,</span><span class="w"> 
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+               </span><span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">+</span><span class="w"> </span><span class="m">0.25</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)),</span><span class="w">
+           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="m">2</span><span class="p">))),</span><span class="w">
+           </span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_barplot_all</span><span class="p">,</span><span class="w">
+           </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">plotorder</span><span class="p">),</span><span class="w">
+               </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">+</span><span class="w"> </span><span class="m">0.25</span><span class="w"> </span><span class="o">*</span><span class="nf">sign</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)),</span><span class="w">
+           </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="m">2</span><span class="p">))),</span><span class="w">
+           </span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">theme_pprabhu_grid</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+ </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Consumer Price Index for All Urban Consumers"</span><span class="p">,</span><span class="w">
+      </span><span class="n">subtitle</span><span class="o">=</span><span class="s2">"(Year 2018)"</span><span class="p">,</span><span class="w">
+      </span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="n">y</span><span class="o">=</span><span class="s2">"Compounded Annual Rate of Change"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+ </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+       </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">),</span><span class="w">
+       </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+       </span><span class="n">strip.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">())</span><span class="w">  </span><span class="o">+</span><span class="w">
+ </span><span class="n">facet_wrap</span><span class="p">(</span><span class="n">.</span><span class="o">~</span><span class="n">plotorder</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="n">scales</span><span class="o">=</span><span class="s2">"free_y"</span><span class="p">,</span><span class="n">shrink</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">  
+ 
+
+</span><span class="n">barplot_cpi</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_21_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="diverging-bar-chart">Diverging Bar Chart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A diverging bar chart is a bar chart with a diverging aspect; i.e. It makes comparison of amounts from a 
+divergent line easy to visualize. This divergent line can represent zero, but it can also be used to simply 
+separate the two distinguishing members of the dataset based on the amount.
+
+In the plot depicted below, the divergent line is zero; Its quite easier to visualize which Categories saw a 
+positive rate of inflation vs negative.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Diverging bar plot </span><span class="w">
+</span><span class="n">cpi_annual</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cpi_annualavg</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">Year</span><span class="o">==</span><span class="m">2019</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Plotting the diverging bar plot</span><span class="w">
+</span><span class="n">barplot_cpiannual</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annual</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnualAvgChange</span><span class="o">&gt;</span><span class="m">0</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">)</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">reorder</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+                </span><span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">+</span><span class="w"> </span><span class="m">0.28</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)),</span><span class="w">
+            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="m">2</span><span class="p">))),</span><span class="w">
+            </span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="n">y</span><span class="o">=</span><span class="s2">"Average Annual Inflation"</span><span class="p">,</span><span class="w">
+       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="s2">"CPI Annual Average Change"</span><span class="p">,</span><span class="w">
+       </span><span class="n">subtitle</span><span class="o">=</span><span class="s2">"(Year 2019)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu_grid</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">14</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">guides</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+ 
+</span><span class="n">barplot_cpiannual</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_23_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="stacked-bar-chart">Stacked Bar Chart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The stacked bar chart extends the standard bar chart from visualizing quantity of one categorical variable 
+to two. Each bar in a standard bar chart is divided into a number of sub-bars stacked end to end, each 
+one corresponding to a level of the second categorical variable. The main objective of a standard bar chart 
+is to compare numeric values between levels of a categorical variable. It also visualizes relative 
+decomposition of each of the categories.
+
+The stacked bar chart below depicts historical annual prices of precious metals. The two categorical 
+variables: Commodity and Year. The primary categorical variable is the Commodity. It also depicts the 
+relative decomposition of each of the commodities. For example, we can compare prices of 2018 vs 2019 in 
+the stacked bar chart and infer that although the prices of gold, platinum and silver were steady, the 
+palladium prices have risen considerably.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Annual Metal prices (Includes Gold, Silver, Platinum and Palladium)</span><span class="w">
+</span><span class="n">metals_stacked</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">filter</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">USD</span><span class="p">),</span><span class="n">Year</span><span class="o">&lt;</span><span class="m">2020</span><span class="p">,</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">2000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Commodity</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">USD</span><span class="p">),</span><span class="m">2</span><span class="p">))</span><span class="w">   
+
+</span><span class="c1"># Plot the stacked barplot using geom_bar()</span><span class="w">
+</span><span class="n">metals_stackedplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">metals_stacked</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">factor</span><span class="p">(</span><span class="n">Year</span><span class="p">),</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="o">=</span><span class="n">Commodity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">,</span><span class="w">
+                </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+                </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Average Annual Prices in USD"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Metals Prices History(2001-2019)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+            </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_pprabhu</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sseq"</span><span class="p">,</span><span class="n">discrete</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> 
+
+</span><span class="n">metals_stackedplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_25_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="grouped-bar-chart">Grouped Bar Chart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The grouped bar chart, also known as clustered bar graph, multi-set bar chart, or grouped column chart is a 
+variation of bar chart used when we need to visualize distribution of data points or making comparisons 
+across different categories of data.
+
+They are used when you want to do within-group and between-group comparisons in one single plot. For 
+example, in the plot below, we can check the price comparisons of base metals within each year as well as 
+over a period of time.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Grouped Bar plot using geom_bar()</span><span class="w">
+</span><span class="n">metals_grouped</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">filter</span><span class="p">(</span><span class="n">base_metals</span><span class="p">,</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">Value</span><span class="p">),</span><span class="n">Year</span><span class="o">&lt;</span><span class="m">2020</span><span class="p">,</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">2000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Commodity</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">Value</span><span class="p">),</span><span class="m">2</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">metals_groupedplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">metals_grouped</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">factor</span><span class="p">(</span><span class="n">Year</span><span class="p">),</span><span class="w">
+                                </span><span class="n">y</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">,</span><span class="w">
+                                </span><span class="n">fill</span><span class="o">=</span><span class="n">Commodity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">position</span><span class="o">=</span><span class="n">position_dodge</span><span class="p">(),</span><span class="w">
+                </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="w">
+                </span><span class="n">color</span><span class="o">=</span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Average Annual Prices in USD"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Price History of Base Metals (2001-2019)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_pprabhu</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"qual"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">))</span><span class="w">
+
+</span><span class="n">metals_groupedplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_27_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="animated-bar-chart">Animated Bar Chart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Animated bar charts are mostly used for visualization of trends over time. They provide a holistic data 
+story/insight in a concise and easy to understand chart, which makes them more popular in social media.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating a Animated Bar Chart using ggplot and geom_tile</span><span class="w">
+</span><span class="n">cpi_input_format</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">cpi_annualavg</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">)</span><span class="o">%&gt;%</span><span class="w">      
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rank</span><span class="p">(</span><span class="o">-</span><span class="n">AnnualAvgChange</span><span class="p">),</span><span class="w">
+       </span><span class="n">Value_rel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnualAvgChange</span><span class="o">/</span><span class="n">AnnualAvgChange</span><span class="p">[</span><span class="n">rank</span><span class="o">==</span><span class="m">1</span><span class="p">],</span><span class="w">
+       </span><span class="n">Value_lbl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">filter</span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Creates images for every year</span><span class="w">
+</span><span class="n">anim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_input_format</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Category</span><span class="p">))</span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnualAvgChange</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="w">
+                </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="w">
+                </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnnualAvgChange</span><span class="o">&gt;</span><span class="m">0</span><span class="p">,</span><span class="w">
+                </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="nf">sign</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)</span><span class="m">-4</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">Category</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">)),</span><span class="w"> 
+            </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+            </span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">+</span><span class="w"> </span><span class="m">0.45</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">sign</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)),</span><span class="w">
+            </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="m">2</span><span class="p">))),</span><span class="w">
+            </span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="w">
+            </span><span class="n">size</span><span class="o">=</span><span class="m">7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_flip</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">,</span><span class="w"> 
+             </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_reverse</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+        </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">margin</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.line</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.text.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.title.x</span><span class="o">=</span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">axis.title.y</span><span class="o">=</span><span class="n">element_blank</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">transition_states</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="w"> </span><span class="n">transition_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">state_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ease_aes</span><span class="p">(</span><span class="s1">'cubic-in-out'</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="c1"># For a smoother look</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'CPI Annual Average by Category: {closest_state}'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Stores the gif_image object in the working directory</span><span class="w">
+</span><span class="n">animate</span><span class="p">(</span><span class="n">anim</span><span class="p">,</span><span class="w"> </span><span class="n">nframes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">350</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">fps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w">
+              </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1200</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> 
+              </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gifski_renderer</span><span class="p">(</span><span class="s2">"gganim.gif"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># This line inserts the image inline</span><span class="w">
+</span><span class="n">IRdisplay</span><span class="o">::</span><span class="n">display_png</span><span class="p">(</span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gganim.gif"</span><span class="p">)</span><span class="w">    
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_29_1.png" alt="png" /></p>
+
+<blockquote>
+  <h4 id="dot-plots">Dot Plots</h4>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dot plots are one of the simplest way to visualize single numerical variable with a modest number of 
+observations. They are a great alternative to the bar chart and the power of these plots becomes evident 
+on refining and they can easily communicate important aspects of your data to viewers. 
+
+In the example below, we have considered depicting Gold fixing price. Although this is a simple and basic 
+case of dot plot, they are capable of depicting lot more information. In the latter example, we use dot plot 
+to visualize the rate of inflation from 2018 to 2019 and highlight the categories which underwent more than 
+20% rise in inflation rate.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dotplot_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="n">Commodity</span><span class="o">==</span><span class="s2">"Gold"</span><span class="p">,</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">USD</span><span class="p">),</span><span class="w">
+                       </span><span class="n">Year</span><span class="o">&lt;</span><span class="m">2020</span><span class="p">,</span><span class="w">
+                       </span><span class="n">Year</span><span class="o">&gt;</span><span class="m">2000</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                </span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                </span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">USD</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Dot plot using geom_point()</span><span class="w">
+</span><span class="n">gold_dotplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dotplot_data</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">Year</span><span class="p">),</span><span class="n">y</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"U.S. Dollars per Troy Ounce"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Dot plot of Gold Fixing Price 10:30 A.M.(London time) in London Bullion Market"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu_hgrid</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w">       
+
+</span><span class="n">gold_dotplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_31_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="dot-plot">Dot Plot</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating a data frame that identifies inflation changes over 20%</span><span class="w">
+</span><span class="n">cpi_diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="n">Year</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'2018'</span><span class="p">,</span><span class="s1">'2019'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+            </span><span class="n">select</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">spread</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">rename</span><span class="p">(</span><span class="n">Year_2019</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">Year_2018</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">mutate</span><span class="p">(</span><span class="n">Diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Year_2019</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Year_2018</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+            </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">Diff</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+            </span><span class="n">filter</span><span class="p">(</span><span class="n">Diff</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">.2</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Creating a data frame for labels</span><span class="w">
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="n">Year</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'2018'</span><span class="p">,</span><span class="s1">'2019'</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+             </span><span class="n">select</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Category</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">spread</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">rename</span><span class="p">(</span><span class="n">Year_2019</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">Year_2018</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">mutate</span><span class="p">(</span><span class="n">left_label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">Year_2018</span><span class="p">,</span><span class="n">Year_2019</span><span class="p">),</span><span class="w">
+                    </span><span class="n">right_label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">Year_2018</span><span class="p">,</span><span class="n">Year_2019</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">mutate</span><span class="p">(</span><span class="n">left_Year</span><span class="o">=</span><span class="n">if_else</span><span class="p">(</span><span class="n">left_label</span><span class="o">==</span><span class="n">Year_2018</span><span class="p">,</span><span class="s2">"2018"</span><span class="p">,</span><span class="s2">"2019"</span><span class="p">),</span><span class="w">
+                    </span><span class="n">right_Year</span><span class="o">=</span><span class="n">if_else</span><span class="p">(</span><span class="n">right_label</span><span class="o">==</span><span class="n">Year_2018</span><span class="p">,</span><span class="s2">"2018"</span><span class="p">,</span><span class="s2">"2019"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">left_labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">labels_df</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"left_label"</span><span class="p">,</span><span class="s2">"left_Year"</span><span class="p">)</span><span class="w">
+</span><span class="n">right_labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">labels_df</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"right_label"</span><span class="p">,</span><span class="s2">"right_Year"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Creating the main data frame for dot plot</span><span class="w">
+</span><span class="n">df_cpi</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">labels_df</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"Year_2018"</span><span class="p">,</span><span class="s2">"Year_2019"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+         </span><span class="n">gather</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="o">-</span><span class="n">Category</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Filtering main data frame to including Categories where the inflation changes exceeds 20%.</span><span class="w">
+</span><span class="n">highlight</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">df_cpi</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">cpi_diff</span><span class="o">$</span><span class="n">Category</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Plots dot plot showing changes in CPI from 2018-2019 in all major categories</span><span class="w">
+</span><span class="n">cpi_dualdotplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">df_cpi</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_cpi</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">df_cpi</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Category</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Year</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_line</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlight</span><span class="p">,</span><span class="w">
+                  </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlight</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="w">
+                      </span><span class="n">y</span><span class="o">=</span><span class="n">highlight</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+                      </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlight</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">highlight</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="w">
+                       </span><span class="n">y</span><span class="o">=</span><span class="n">highlight</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+                       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Year</span><span class="p">),</span><span class="w"> 
+                   </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">left_labels</span><span class="p">,</span><span class="w">
+                  </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="n">left_labels</span><span class="o">$</span><span class="n">left_label</span><span class="p">,</span><span class="w">
+                      </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="n">left_labels</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+                      </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">left_labels</span><span class="o">$</span><span class="n">left_label</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span><span class="w">
+                  </span><span class="n">color</span><span class="o">=</span><span class="n">left_labels</span><span class="o">$</span><span class="n">left_Year</span><span class="p">,</span><span class="w">
+                  </span><span class="n">alpha</span><span class="o">=</span><span class="w"> </span><span class="n">if_else</span><span class="p">(</span><span class="n">right_labels</span><span class="o">$</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">highlight</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.3</span><span class="p">),</span><span class="w">
+                  </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> 
+                  </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_text</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">right_labels</span><span class="p">,</span><span class="w">
+                  </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="w"> </span><span class="n">right_labels</span><span class="o">$</span><span class="n">right_label</span><span class="p">,</span><span class="w">
+                      </span><span class="n">y</span><span class="o">=</span><span class="w"> </span><span class="n">right_labels</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+                      </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">right_labels</span><span class="o">$</span><span class="n">right_label</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span><span class="w">
+                  </span><span class="n">color</span><span class="o">=</span><span class="n">right_labels</span><span class="o">$</span><span class="n">right_Year</span><span class="p">,</span><span class="w">
+                  </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+                  </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">if_else</span><span class="p">(</span><span class="n">right_labels</span><span class="o">$</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">highlight</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.3</span><span class="p">),</span><span class="w">
+                  </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">theme_pprabhu_grid</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">scale_colour_manual</span><span class="p">(</span><span class="w">
+          </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"red"</span><span class="p">,</span><span class="s2">"green"</span><span class="p">),</span><span class="w">
+          </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Year_2018"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Year_2019"</span><span class="p">),</span><span class="w">
+          </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"2018"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2019"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Inflation Changes in major Categories"</span><span class="p">,</span><span class="w"> 
+             </span><span class="n">subtitle</span><span class="o">=</span><span class="s2">"(2018-2019)"</span><span class="p">,</span><span class="w">
+             </span><span class="n">x</span><span class="o">=</span><span class="s2">"Change in Inflation Annual Average"</span><span class="p">,</span><span class="w">
+             </span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span><span class="w">
+              </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"right"</span><span class="p">,</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">),</span><span class="w">
+              </span><span class="n">legend.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">margin</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span><span class="w">
+              </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">),</span><span class="w">
+              </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+              </span><span class="n">plot.subtitle</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">xlim</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span><span class="m">7.5</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cpi_dualdotplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_33_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="bubblechart">Bubblechart</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A bubble chart uses areas of circle to represent the quantity of a numeric variable. It is a preferred when 
+we want to represent relationship between two or more numeric variables.
+
+In the following example, we represent the prices of base metals for the year 2019.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bubble_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">base_metals</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+             </span><span class="n">filter</span><span class="p">(</span><span class="n">base_metals</span><span class="o">$</span><span class="n">Year</span><span class="o">==</span><span class="m">2019</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+             </span><span class="n">group_by</span><span class="p">(</span><span class="n">Commodity</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+             </span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualPrice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">mean</span><span class="p">(</span><span class="n">Value</span><span class="p">),</span><span class="m">2</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">basemetals_bubbleplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">bubble_df</span><span class="p">,</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">,</span><span class="w">
+                     </span><span class="n">y</span><span class="o">=</span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+                     </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+                     </span><span class="n">size</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_size</span><span class="p">(</span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">24</span><span class="p">),</span><span class="w"> 
+               </span><span class="n">name</span><span class="o">=</span><span class="s2">"Annual Price"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">AnnualPrice</span><span class="m">+1500</span><span class="p">,</span><span class="w">
+                  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+                  </span><span class="n">label</span><span class="o">=</span><span class="n">paste</span><span class="p">(</span><span class="s2">"\n"</span><span class="p">,</span><span class="n">Commodity</span><span class="p">,</span><span class="s2">"\n"</span><span class="p">,</span><span class="s2">"("</span><span class="p">,</span><span class="n">AnnualPrice</span><span class="p">,</span><span class="s2">")"</span><span class="p">)),</span><span class="w">
+                  </span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Price comparison of base metals"</span><span class="p">,</span><span class="w"> 
+             </span><span class="n">subtitle</span><span class="o">=</span><span class="s2">"(Year 2019)"</span><span class="p">,</span><span class="w">
+             </span><span class="n">x</span><span class="o">=</span><span class="s2">"U.S. Dollars per metric ton"</span><span class="p">,</span><span class="w">
+             </span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">xlim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">21000</span><span class="p">)</span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_pprabhu_vgrid</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">guides</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.ticks.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">))</span><span class="w">
+
+</span><span class="n">basemetals_bubbleplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_35_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="heatmap">Heatmap</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A heatmap depicts values for a main variable of interest across two axis variables as a grid and uses color 
+coding to represent the quantity of values.
+
+In the below example, we generate a heatmap to depict historic monthly change in rate of inflation for major 
+categories.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plots the heatmap on the CPI monthly Percent Change data</span><span class="w">
+</span><span class="n">heatmap_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1995</span><span class="p">),</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Year</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">Category</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="o">=</span><span class="n">scale</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">0.35</span><span class="p">,</span><span class="w">
+                 </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scale</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Annual Average Change"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"CPI Inflation Heatmap (Annual Average)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_y_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">scale_fill_pprabhu</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sseq"</span><span class="p">,</span><span class="w">
+                          </span><span class="n">discrete</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                          </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">vjust</span><span class="o">=</span><span class="m">-0.5</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">),</span><span class="w">
+             </span><span class="n">legend.position</span><span class="o">=</span><span class="s2">"bottom"</span><span class="p">,</span><span class="w"> 
+             </span><span class="n">legend.direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"horizontal"</span><span class="p">)</span><span class="w">
+
+
+</span><span class="n">heatmap_plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingAmounts_files/R_DataVisualization_VisualizingAmounts_37_0.png" alt="png" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-08-10T22:12:28-05:00">August 10, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Visualizing+Amounts+-+Finance%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingAmounts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingAmounts%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingAmounts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/learning/R_DataVisualization_VisualizingDistributions/" class="pagination--pager" title="Visualizing Distributions - Finance
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to my blog!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is just a little blog I’m starting. I’ll aim to get something up once a week or so, something interesting and technical.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

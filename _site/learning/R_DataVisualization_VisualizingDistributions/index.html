@@ -1,0 +1,1533 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Visualizing Distributions - Finance - The Realm of Data Science</title>
+<meta name="description" content="Visualizing Distributions in R - Finance ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="Visualizing Distributions - Finance">
+<meta property="og:url" content="http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/">
+
+
+  <meta property="og:description" content="Visualizing Distributions in R - Finance ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-08-10T22:12:28-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Visualizing Distributions - Finance">
+    <meta itemprop="description" content="Visualizing Distributions in R - Finance">
+    <meta itemprop="datePublished" content="2020-08-10T22:12:28-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Visualizing Distributions - Finance
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h3 id="--visualizing-distributions-in-finance-"><center>  Visualizing Distributions in Finance </center></h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Analyzing and visualizing distributions is widely used in Data Science projects since we are interested 
+in understanding the behaviour of a numeric variable. In other words, we would want to know the central 
+tendency of a variable as well as the outliers. We would also be interested in knowing if the variable 
+is symmetrically distributed or skewed, if the distribution is unimodal/bimodal/multimodal, if it contains 
+suspicious/impossible values and so on.
+
+Most commonly used plots used for visualizing distributions include:
+
+1. Histogram
+2. Density Plot
+3. Empirical cumulative distribution function
+4. Boxplot
+5. Violin Plot
+6. Strip Chart
+7. Sina Plot
+8. Ridgeline Plot
+9. Quantile–quantile plot
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="data-source">Data Source</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Since we will be using quandl api and quantmod api to import financial data in this 
+notebook kindly install quandl &amp; quantmod packages before proceeding. Also, register an account on 
+quandl.com and use the secret key.
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="creating-a-free-quandl-account-and-using-your-api-key">Creating a free Quandl account and using your API key</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>For more information, refer to :
+https://www.quandl.com/tools/r
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Run the script below with your secret key obtained after registering on quandl</span><span class="w">
+</span><span class="c1"># quandl_sk = "&lt;quandl secret key&gt;"</span><span class="w">
+
+</span><span class="c1"># Alternative way to Load Data Tokens </span><span class="w">
+</span><span class="n">source</span><span class="p">(</span><span class="s2">"../Jupyter Notebooks - R/Setup/apitokens.r"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Data manipulation libraries used in this notebook</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes rownames_to_column function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes filter function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes spread function</span><span class="w">
+
+</span><span class="c1"># Visualization libraries used in this notebook</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes ggplot function</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggforce</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes geom_sina &amp; geom_parallel_sets</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggridges</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes geom_</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span><span class="w"> </span><span class="c1"># Includes axis_canvas for generating A Canvas Onto Which One Can Draw Axis-Like Objects</span><span class="w">
+
+</span><span class="c1"># Data API libraries</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">Quandl</span><span class="p">)</span><span class="w"> </span><span class="c1"># To import data from Quandl API</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">quantmod</span><span class="p">)</span><span class="w"> </span><span class="c1"># To import data using yahoo,google api</span><span class="w">
+
+</span><span class="c1"># Animation Packages</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gganimate</span><span class="p">)</span><span class="w"> </span><span class="c1"># to add animation to static plot </span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gifski</span><span class="p">)</span><span class="w"> </span><span class="c1"># Converts images to GIF animations</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">png</span><span class="p">)</span><span class="w"> </span><span class="c1"># Provides an easy and simple way to read, write and display bitmap images stored in the PNG format.</span><span class="w">
+
+</span><span class="c1"># Datetime Parsing functions</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span><span class="w"> </span><span class="c1"># includes datetime parsing functions</span><span class="w">
+
+</span><span class="c1"># Data visualization addon library for Themes and colors available in my github repository</span><span class="w">
+</span><span class="c1"># https://github.com/prabhupavitra/dviz.addon</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dviz.addon</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+********************************************************
+Note: As of version 1.0.0, cowplot does not change the
+  default ggplot2 theme anymore. To recover the previous
+  behavior, execute:
+  theme_set(theme_cowplot())
+********************************************************
+
+Loading required package: xts
+Loading required package: zoo
+
+Attaching package: ‘zoo’
+
+The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+Registered S3 method overwritten by 'xts':
+  method     from
+  as.zoo.xts zoo 
+
+Attaching package: ‘xts’
+
+The following objects are masked from ‘package:dplyr’:
+
+    first, last
+
+Loading required package: TTR
+Registered S3 method overwritten by 'quantmod':
+  method            from
+  as.zoo.data.frame zoo 
+Version 0.4-0 included new data defaults. See ?getSymbols.
+
+Attaching package: ‘lubridate’
+
+The following object is masked from ‘package:cowplot’:
+
+    stamp
+
+The following object is masked from ‘package:base’:
+
+    date
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Resizing plot width and height from default 7</span><span class="w">
+</span><span class="c1"># https://www.rdocumentation.org/packages/repr/versions/0.7/topics/repr-options</span><span class="w">
+</span><span class="n">options</span><span class="p">(</span><span class="n">repr.plot.width</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">repr.plot.height</span><span class="o">=</span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h3 id="importing-data-using-quandl-and-quantmod-api">Importing Data (Using Quandl and quantmod API)</h3>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This notebook uses Quandl and quantmod API to import Financial Data directly to R.
+Datasets used in this notebook include:
+
+1. Historical Prices of Precious Metals 
+(Gold, Silver, Platinum and Palladium)
+2. Historical Prices of Base Metals 
+(Aluminum; Cobalt; Copper; Iron Ore; Lead; Molybdenum; Nickel; Tin; Uranium and Zinc)
+3. Consumer Price Index for All Urban Consumers (CPI-U)
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="precious-metals-prices--london-fixing-us-dollars-per-troy-ounce">Precious Metals Prices : London Fixing (U.S. Dollars per Troy Ounce)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Using Quandl API : Import prices of Precious Metals ( Gold, Silver, Platinum, Palladium )</span><span class="w">
+
+</span><span class="c1"># Gold Price: London Fixing</span><span class="w">
+</span><span class="n">gold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LBMA/GOLD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Silver Price: London Fixing</span><span class="w">
+</span><span class="n">silver</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LBMA/SILVER"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Platinum Fixing</span><span class="w">
+</span><span class="n">platinum</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LPPM/PLAT"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Palladium</span><span class="w">
+</span><span class="n">palladium</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"LPPM/PALL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="base-metals-prices--spot-prices-us-dollars-per-metric-ton">Base Metals Prices : Spot Prices (U.S. Dollars per metric ton)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Other Base Metals (Aluminum; Cobalt; Copper; Iron Ore; Lead; Molybdenum; Nickel; Tin; Uranium and Zinc)</span><span class="w">
+
+</span><span class="c1"># Aluminum; 99.5% minimum purity; LME spot price; CIF UK ports; US$ per metric ton</span><span class="w">
+</span><span class="n">aluminium</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PALUM_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Copper; grade A cathode; LME spot price; CIF European ports; US$ per metric ton</span><span class="w">
+</span><span class="n">copper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PCOPP_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># China import Iron Ore Fines 62% FE spot (CFR Tianjin port); US dollars per metric ton</span><span class="w">
+</span><span class="n">ironore</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PIORECR_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Lead; 99.97% pure; LME spot price; CIF European Ports; US$ per metric ton</span><span class="w">
+</span><span class="n">lead</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PLEAD_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Nickel; melting grade; LME spot price; CIF European ports; US$ per metric ton</span><span class="w">
+</span><span class="n">nickel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PNICK_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Tin; standard grade; LME spot price; US$ per metric ton</span><span class="w">
+</span><span class="n">tin</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PTIN_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Zinc; high grade 98% pure; US$ per metric ton</span><span class="w">
+</span><span class="n">zinc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PZINC_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Not in metric ton</span><span class="w">
+
+</span><span class="c1"># Cobalt; U.S. cathodes; spot</span><span class="w">
+</span><span class="n">cobalt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PCOBA_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Uranium; NUEXCO; Restricted Price; Nuexco exchange spot; US$ per pound</span><span class="w">
+</span><span class="n">uranium</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PURAN_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Molybdenum; 57 to 63% purity contained in roasted molybdenum concentrate; LME spot price; USD/ton</span><span class="w">
+</span><span class="n">molybdenum</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"ODA/PLMMODY_USD"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="cpi-data--cpi-for-us-city-average">CPI Data : CPI for U.S. City Average</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Units:
+Index 1982-1984=100,
+Seasonally Adjusted
+
+Frequency:
+Monthly
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Consumer Price Index for All Urban Consumers: All Items in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_allitems</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIAUCSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Food and Beverages in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_foodbev</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIFABSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: All Items Less Food and Energy in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_excfoodnbev</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPILFESL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w">  
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Recreation in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_recreation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIRECNS"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Housing in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_housing</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIHOSNS"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Education and Communication in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_eduncomm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIEDUSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Apparel in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_apparel</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIAPPSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Energy in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_energy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIENGSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Other Goods and Services in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_othergns</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIOGSSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Transportation in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_trnsprt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPITRNSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Services in U.S. City Average </span><span class="w">
+</span><span class="n">monthly_otherserv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CUSR0000SAS"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Commodities in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_commod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CUSR0000SAC"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Consumer Price Index for All Urban Consumers: Medical Care in U.S. City Average</span><span class="w">
+</span><span class="n">monthly_medcare</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">Quandl</span><span class="p">(</span><span class="s2">"FRED/CPIMEDSL"</span><span class="p">,</span><span class="w"> </span><span class="n">api_key</span><span class="o">=</span><span class="n">quandl_sk</span><span class="p">)</span><span class="w"> 
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="cpi-data--cpi-special-indices">CPI Data : CPI Special Indices</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Units:
+Index 1982-1984=100,
+Not Seasonally Adjusted
+
+Frequency:
+Semi-annual
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="bitcoin-data-from-yahoo--using-quantmod-package">Bitcoin Data from Yahoo : Using Quantmod Package</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cryptodata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">new.env</span><span class="p">()</span><span class="w"> </span><span class="c1">#Make a new environment for quantmod to store data in</span><span class="w">
+ 
+</span><span class="n">beginDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2014-04-01"</span><span class="p">)</span><span class="w"> </span><span class="c1">#Specify period of time we are interested in</span><span class="w">
+</span><span class="n">endDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2019-12-01"</span><span class="p">)</span><span class="w">
+ 
+</span><span class="n">ticker</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="s2">"IBM"</span><span class="p">)</span><span class="w"> </span><span class="c1">#Define the tickers we are interested in</span><span class="w">
+ 
+</span><span class="c1">#Download the stock historical data (for all tickers mentioned previously)</span><span class="w">
+</span><span class="n">getSymbols</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cryptodata</span><span class="p">,</span><span class="w"> </span><span class="n">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"yahoo"</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">beginDate</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">endDate</span><span class="p">,</span><span class="n">auto.assign</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">btcusd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w"> </span><span class="n">envir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cryptodata</span><span class="p">))</span><span class="w">
+</span><span class="n">ibmstock</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="s2">"IBM"</span><span class="p">,</span><span class="w"> </span><span class="n">envir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cryptodata</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>‘getSymbols’ currently uses auto.assign=TRUE by default, but will
+use auto.assign=FALSE in 0.5-0. You will still be able to use
+‘loadSymbols’ to automatically load data. getOption("getSymbols.env")
+and getOption("getSymbols.auto.assign") will still be checked for
+alternate defaults.
+
+This message is shown once per session and may be disabled by setting 
+options("getSymbols.warning4.0"=FALSE). See ?getSymbols for details.
+</code></pre></div></div>
+
+<p>&lt;ol class=list-inline&gt;
+	&lt;li&gt;‘BTC-USD’&lt;/li&gt;
+	&lt;li&gt;‘IBM’&lt;/li&gt;
+&lt;/ol&gt;</p>
+
+<blockquote>
+  <h3 id="data-manipulation">Data Manipulation</h3>
+  <h5 id="precious-metals-prices--london-fixing-us-dollars-per-troy-ounce-1">Precious Metals Prices : London Fixing (U.S. Dollars per Troy Ounce)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Merging the datasets of all 4 precious metals (Measured per Troy Ounce)</span><span class="w">
+</span><span class="n">precious_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">gold</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD (AM)"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD (AM)"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Gold"</span><span class="p">),</span><span class="w">
+</span><span class="n">silver</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Silver"</span><span class="p">),</span><span class="w">
+</span><span class="n">platinum</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Platinum"</span><span class="p">),</span><span class="w">
+</span><span class="n">palladium</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">,</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="n">USD</span><span class="o">=</span><span class="s2">"USD AM"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Palladium"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">USD</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">USD</th><th scope="col">Commodity</th><th scope="col">Year</th></tr></thead>
+<tbody>
+	<tr><td>2020-07-01</td><td>1787.40   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-06-30</td><td>1770.70   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-06-29</td><td>1768.80   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-06-26</td><td>1762.10   </td><td>Gold      </td><td>2020      </td></tr>
+	<tr><td>2020-06-25</td><td>1758.55   </td><td>Gold      </td><td>2020      </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="base-metals-prices--spot-prices-us-dollars-per-metric-ton-1">Base Metals Prices : Spot Prices (U.S. Dollars per metric ton)</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">base_metals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">aluminium</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Aluminium"</span><span class="p">),</span><span class="w">
+      </span><span class="n">copper</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Copper"</span><span class="p">),</span><span class="w">
+      </span><span class="n">ironore</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Iron Ore"</span><span class="p">),</span><span class="w">
+      </span><span class="n">lead</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Lead"</span><span class="p">),</span><span class="w">
+      </span><span class="n">nickel</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Nickel"</span><span class="p">),</span><span class="w">
+      </span><span class="n">tin</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Tin"</span><span class="p">),</span><span class="w">
+      </span><span class="n">zinc</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Commodity</span><span class="o">=</span><span class="s2">"Zinc"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">base_metals</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">Value</th><th scope="col">Commodity</th><th scope="col">Year</th></tr></thead>
+<tbody>
+	<tr><td>2020-05-31</td><td>1466.372  </td><td>Aluminium </td><td>2020      </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="cpi-data--cpi-for-us-city-average-1">CPI Data : CPI for U.S. City Average</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">monthly_allitems</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"CPI"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_excfoodnbev</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Core CPI"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_apparel</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Apparel"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_commod</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Commodities"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_eduncomm</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Education &amp; Communication"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_energy</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Energy"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_foodbev</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Food &amp; Beverages"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_housing</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Housing"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_medcare</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Medical Care"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_othergns</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Other Goods &amp; Services"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_otherserv</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Other Services"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_recreation</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Recreation"</span><span class="p">),</span><span class="w">
+      </span><span class="n">monthly_trnsprt</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Category</span><span class="o">=</span><span class="s2">"Transportation"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="w"> </span><span class="p">(</span><span class="n">Year</span><span class="w"> </span><span class="o">=</span><span class="n">year</span><span class="p">(</span><span class="n">Date</span><span class="p">),</span><span class="n">Month</span><span class="o">=</span><span class="n">month</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">cpi_monthly_sa</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">Value</th><th scope="col">Category</th><th scope="col">Year</th><th scope="col">Month</th></tr></thead>
+<tbody>
+	<tr><td>2020-05-01</td><td>255.768   </td><td>CPI       </td><td>2020      </td><td>5         </td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="some-basic-math-calculations-with-cpi">Some basic Math Calculations with CPI</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Percent Change (1982-Present)</span><span class="w">
+</span><span class="n">cpi_pctchng</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_monthly_sa</span><span class="p">,</span><span class="c1">#Month==1,</span><span class="w">
+                                     </span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="w">
+                                     </span><span class="o">!</span><span class="p">(</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Energy'</span><span class="p">,</span><span class="s1">'Transport'</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">mutate</span><span class="p">(</span><span class="n">PercentChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Value</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+               </span><span class="n">filter</span><span class="p">(</span><span class="n">PercentChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w"> 
+
+</span><span class="c1"># Over-the-year percent change </span><span class="w">
+</span><span class="n">cpi_otypct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> 
+</span><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">filter</span><span class="p">(</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="n">Month</span><span class="o">==</span><span class="m">12</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">OverYrPercentChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Value</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">OverYrPercentChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+
+</span><span class="c1"># Annual Average, Annual Average CHange and Purchasing Power</span><span class="w">
+</span><span class="n">cpi_annualavg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">cpi_monthly_sa</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">1982</span><span class="p">,</span><span class="n">Year</span><span class="o">&lt;</span><span class="m">2020</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">arrange</span><span class="p">(</span><span class="n">Date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Year</span><span class="p">,</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">summarise</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">Value</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">group_by</span><span class="p">(</span><span class="n">Category</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AnnualAvg</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="n">PurchasingPower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AnnualAvg</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">AnnualAvg</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">filter</span><span class="p">(</span><span class="n">AnnualAvgChange</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<blockquote>
+  <h5 id="calculating-return-on-bitcoin-data-from-yahoo">Calculating Return on Bitcoin Data from Yahoo</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">btcusd_return</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">btcusd</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">rename</span><span class="p">(</span><span class="s2">"Adjusted_Close"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.Adjusted"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"Trading_Volume"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.Volume"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"High"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.High"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"Open"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.Open"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"Low"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.Low"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"Close"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BTC.USD.Close"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+</span><span class="n">rownames_to_column</span><span class="p">(</span><span class="s2">"Date"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+</span><span class="n">mutate</span><span class="p">(</span><span class="n">Return</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Adjusted_Close</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Adjusted_Close</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="w">
+       </span><span class="n">Trading_Volume_millions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Trading_Volume</span><span class="o">/</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">6</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">Return</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Date</th><th scope="col">Open</th><th scope="col">High</th><th scope="col">Low</th><th scope="col">Close</th><th scope="col">Trading_Volume</th><th scope="col">Adjusted_Close</th><th scope="col">Return</th><th scope="col">Trading_Volume_millions</th></tr></thead>
+<tbody>
+	<tr><td>2014-09-18</td><td>456.86    </td><td>456.86    </td><td>413.104   </td><td>424.44    </td><td>34483200  </td><td>424.44    </td><td>-7.192558 </td><td>34.4832   </td></tr>
+</tbody>
+</table>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">btcusd_monthlyret</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">btcusd_return</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                     </span><span class="n">mutate</span><span class="p">(</span><span class="n">Month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.yearmon</span><span class="p">(</span><span class="n">Date</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                     </span><span class="n">arrange</span><span class="p">(</span><span class="n">Month</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                     </span><span class="n">group_by</span><span class="p">(</span><span class="n">Month</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                     </span><span class="n">summarise</span><span class="p">(</span><span class="n">MonthlyReturn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">Return</span><span class="p">))</span><span class="w"> 
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">btcusd_monthlyret</span><span class="p">,</span><span class="m">5</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">Month</th><th scope="col">MonthlyReturn</th></tr></thead>
+<tbody>
+	<tr><td>Sep 2014  </td><td>-1.1880465</td></tr>
+	<tr><td>Oct 2014  </td><td>-0.3808112</td></tr>
+	<tr><td>Nov 2014  </td><td> 0.4413762</td></tr>
+	<tr><td>Dec 2014  </td><td>-0.5086929</td></tr>
+	<tr><td>Jan 2015  </td><td>-0.9666813</td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h5 id="calculating-return-on-ibm-stock-from-yahoo">Calculating Return on IBM Stock from Yahoo</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ibmstock_return</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ibmstock</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+                   </span><span class="n">rename</span><span class="p">(</span><span class="s2">"Adjusted_Close"</span><span class="o">=</span><span class="s2">"IBM.Adjusted"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">mutate</span><span class="p">(</span><span class="n">Return</span><span class="o">=</span><span class="p">(</span><span class="n">Adjusted_Close</span><span class="o">/</span><span class="n">lag</span><span class="p">(</span><span class="n">Adjusted_Close</span><span class="p">)</span><span class="m">-1</span><span class="p">)</span><span class="o">*</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+                   </span><span class="n">filter</span><span class="p">(</span><span class="n">Return</span><span class="o">!=</span><span class="s2">"NA"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">head</span><span class="p">(</span><span class="n">ibmstock_return</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+<thead><tr><th scope="col">IBM.Open</th><th scope="col">IBM.High</th><th scope="col">IBM.Low</th><th scope="col">IBM.Close</th><th scope="col">IBM.Volume</th><th scope="col">Adjusted_Close</th><th scope="col">Return</th></tr></thead>
+<tbody>
+	<tr><td>194.24    </td><td>194.5     </td><td>192.49    </td><td>193.55    </td><td>4924100   </td><td>149.5165  </td><td>-0.4884525</td></tr>
+</tbody>
+</table>
+
+<blockquote>
+  <h3 id="visualizing-distributions">Visualizing distributions</h3>
+</blockquote>
+
+<blockquote>
+  <h4 id="single-distribution">Single Distribution</h4>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Histogram using geom_histogram() of Annual average change of monthly CPI</span><span class="w">
+</span><span class="n">cpi_histplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">breaks</span><span class="o">=</span><span class="n">seq</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.2</span><span class="p">),</span><span class="w">
+                 </span><span class="n">col</span><span class="o">=</span><span class="s2">"darkblue"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">fill</span><span class="o">=</span><span class="s2">"steelblue"</span><span class="p">)</span><span class="w">  </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Annual Average Change of monthly CPI"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Weight in the CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Histogram of Annual Average Change of monthly CPI(1982-2019)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">    
+
+</span><span class="n">cpi_histplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_28_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Kernel density estimaction using geom_density()</span><span class="w">
+</span><span class="n">cpi_kerneldensity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Annual Average Change of monthly CPI"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Weight in the CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of Annual Average Change of monthly CPI(1982-2019)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">  
+
+</span><span class="n">cpi_kerneldensity</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_29_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Empirical cumulative distribution function in ascending order for December Over-the-year percent change in CPI</span><span class="w">
+</span><span class="c1"># ecdf using stat_ecdf() ; geom = "step" can be used for a step ecdf</span><span class="w">
+</span><span class="n">cpi_ecdf_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_otypct</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_otypct</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="m">81</span><span class="o">*</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"point"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.5</span><span class="p">,</span><span class="w"> </span><span class="m">82</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"ECDF of Over-the-Year Percent Change in CPI (Ascending)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_ecdf_plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_30_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Empirical cumulative distribution function in descending order</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_otypct</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_otypct</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w">  
+                         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">82-81</span><span class="o">*</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.5</span><span class="p">,</span><span class="w"> </span><span class="m">82</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"ECDF of Over-the-Year Percent Change in CPI (Descending)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_31_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalized ecdf </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_otypct</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_otypct</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w">  
+                         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of Over-the-Year Percent Change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_32_0.png" alt="png" /></p>
+
+<blockquote>
+  <h3 id="visualizing-multiple-distributions">Visualizing Multiple Distributions</h3>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Density plots work well for multiple distributions as they are somewhat distinct and contiguous 
+For instance, we can visualize the distribution of vehicle models over the yearsbased on the type of 
+drivetrain.
+
+    1. Kernel Density 
+    2. Empirical cumulative distribution functions
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="kernel-density-estimation-for-multiple-distributions">Kernel density estimation for multiple distributions</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plots the Kernel density estimation for multiple distributions distinct and contiguous</span><span class="w">
+</span><span class="n">cpi_annualavg_kde</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
+                                                          </span><span class="s1">'Transportation'</span><span class="p">,</span><span class="w">
+                                                          </span><span class="s1">'Recreation'</span><span class="p">,</span><span class="w">
+                                                          </span><span class="s1">'Food &amp; Beverages'</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_annualavg_kdeplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annualavg_kde</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_annualavg_kde</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="w">
+           </span><span class="n">color</span><span class="o">=</span><span class="n">cpi_annualavg_kde</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="o">=</span><span class="n">cpi_annualavg_kde</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="o">/</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">  
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-20</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Annual Average Change of monthly Consumer Price Index"</span><span class="p">,</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.75</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Weight in the CPI"</span><span class="p">,</span><span class="w"> </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of CPI Components"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">,</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w"> 
+
+</span><span class="n">cpi_annualavg_kdeplot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_35_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="empirical-cumulative-distribution-for-multiple-distributions-">Empirical cumulative distribution for multiple distributions `</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Examples : VAR
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Empirical cumulative distribution function in ascending order </span><span class="w">
+</span><span class="c1"># For December Over-the-year percent change in CPI (Categories : Housing, Food, Recreation and Transportation)</span><span class="w">
+</span><span class="n">cpi_fstc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_otypct</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Transportation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Recreation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Food &amp; Beverages'</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_multecdf_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_fstc</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="m">81</span><span class="o">*</span><span class="n">..y..</span><span class="p">,</span><span class="w">
+                     </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.5</span><span class="p">,</span><span class="w"> </span><span class="m">82</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"ECDF of Over-the-Year Percent Change in CPI (Ascending)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_multecdf_plot</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_37_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalized ecdf for Multiple distributions</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_fstc</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w">  
+                       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="n">..y..</span><span class="p">,</span><span class="w">
+                       </span><span class="n">color</span><span class="o">=</span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of Over-the-Year Percent Change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_38_0.png" alt="png" /></p>
+
+<blockquote>
+  <h3 id="visualizing-highly-skewed-distributions">Visualizing Highly Skewed Distributions</h3>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Density plot of a Highly skewed distribution : Trading Volume of IBM Stock</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume_millions</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"IBM Stock Trading Volume"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of Trading Volume of IBM Stock"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">  
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_40_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalized ECDF of a Highly skewed distribution : Trading Volume of Bitcoin</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5e+07</span><span class="p">,</span><span class="w"> </span><span class="m">2.5e+09</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Trading Volume of Bitcoin (in millions)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.01</span><span class="p">,</span><span class="w"> </span><span class="m">1.01</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cumulative Frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 777 rows containing non-finite values (stat_ecdf).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_41_1.png" alt="png" /></p>
+
+<blockquote>
+  <h4 id="using-log-transformation">Using Log Transformation</h4>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The log transformation, a widely used method to address skewed data, is one of the most popular 
+transformations used to reduce right skewness.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Density plot of logarithm of a Highly skewed distribution : Trading Volume of Bitcoin</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="w">
+    </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"log"</span><span class="p">[</span><span class="s2">"10"</span><span class="p">],</span><span class="w"> </span><span class="s2">"(Trading Volume)"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"density"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of Logarithm of Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">  
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_43_0.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ECDF of logarithm of a right skewed distribution : Trading Volume of IBM Stock </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="w">
+    </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"log"</span><span class="p">[</span><span class="s2">"10"</span><span class="p">],</span><span class="w"> </span><span class="s2">"(Trading Volume)"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cumulative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of logarithm of Trading Volume of IBM Stock"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_44_0.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="to-test-whether-a-distribution-follows-power-law-using-descending-log-log-ecdf-plot">To test whether a distribution follows Power Law (Using descending log-log ecdf plot)</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>To see that this distribution is not a power law, we plot two quantities against each other with logarithmic 
+axes and they show do not show a linear relationship. This indicates that the two quantities do not have a 
+power law distribution. On the contrary, if the descending ecdf with logarithmic axes shows perfect 
+linerarity, we would conclude that the variables follow power law distribution.
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Descending ecdf with logarithmic x and y axes ; </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">-</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e2</span><span class="p">,</span><span class="w"> </span><span class="m">1e3</span><span class="p">,</span><span class="w"> </span><span class="m">1e4</span><span class="p">,</span><span class="w"> </span><span class="m">1e5</span><span class="p">,</span><span class="w"> </span><span class="m">1e6</span><span class="p">,</span><span class="w"> </span><span class="m">1e7</span><span class="p">),</span><span class="w">
+                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">4</span><span class="p">),</span><span class="w">
+                           </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">5</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">6</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">7</span><span class="p">)),</span><span class="w">
+                </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Trading Volume"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-3</span><span class="p">,</span><span class="w"> </span><span class="m">1e-2</span><span class="p">,</span><span class="w"> </span><span class="m">1e-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"relative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Power Law does not Hold"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Descending ECDF with log axes depicting Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># When Power law holds, the plot will look like like a straight line</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Transformation introduced infinite values in continuous y-axis”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_46_1.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"poweRlaw"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The Moby Dick data set contains the frequency of unique words in the novel Moby Dick by Herman Melville.</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"moby"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="o">=</span><span class="s2">"poweRlaw"</span><span class="p">)</span><span class="w">
+</span><span class="n">moby_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">moby</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Density plot of a Highly skewed distribution : Trading Volume of IBM Stock</span><span class="w">
+</span><span class="n">moby_kde</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">moby_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">moby</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Word Count"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density of word frequencies"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">  
+
+</span><span class="c1"># Descending ecdf with logarithmic x and y axes ; When Power law holds, the plot will look like like a straight line</span><span class="w">
+</span><span class="n">moby_powerlaw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">moby_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">moby</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">-</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e0</span><span class="p">,</span><span class="w"> </span><span class="m">1e1</span><span class="p">,</span><span class="w"> </span><span class="m">1e2</span><span class="p">,</span><span class="w"> </span><span class="m">1e3</span><span class="p">,</span><span class="w"> </span><span class="m">1e4</span><span class="p">),</span><span class="w">
+                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w">
+                           </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">4</span><span class="p">)),</span><span class="w">
+                </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Word Count"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-3</span><span class="p">,</span><span class="w"> </span><span class="m">1e-2</span><span class="p">,</span><span class="w"> </span><span class="m">1e-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"relative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Power Law holds"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"darkgreen"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Descending ECDF with log axes"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">plot_grid</span><span class="p">(</span><span class="n">moby_kde</span><span class="p">,</span><span class="w"> </span><span class="n">moby_powerlaw</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AUTO"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 55 rows containing non-finite values (stat_density).”Warning message:
+“Transformation introduced infinite values in continuous y-axis”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_47_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="quantilequantile-plots">Quantile–quantile plots</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.list</span><span class="p">(</span><span class="n">MASS</span><span class="o">::</span><span class="n">fitdistr</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="s2">"normal"</span><span class="p">)</span><span class="o">$</span><span class="n">estimate</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Coordinates for the axis line segments </span><span class="w">
+</span><span class="n">df_segment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">-19</span><span class="p">),</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="m">-19</span><span class="p">),</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="w"> </span><span class="m">-19</span><span class="p">),</span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">19</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Q-Q plot using stat_qq() and geom_abline()</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_abline</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">intercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey70"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_qq</span><span class="p">(</span><span class="n">dparams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_segment</span><span class="p">(</span><span class="w">
+    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_segment</span><span class="p">,</span><span class="w">
+    </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xend</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yend</span><span class="p">),</span><span class="w">
+    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="o">*</span><span class="p">(</span><span class="m">5</span><span class="o">:</span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">19</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">*</span><span class="p">(</span><span class="m">5</span><span class="o">:</span><span class="m">10</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"observed"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_fixed</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Q-Q plot of Annual Average Change in monthly CPI "</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_49_0.png" alt="png" /></p>
+
+<blockquote>
+  <h4 id="multiple-distributions-in-one-plot">Multiple Distributions in one plot</h4>
+</blockquote>
+
+<blockquote>
+  <h4 id="boxplot">Boxplot</h4>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># month-to-month Percent Change in CPI-U for Food, Housing, Transport &amp; Recreation</span><span class="w">
+</span><span class="n">cpi_pct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_pctchng</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Transportation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Recreation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Food &amp; Beverages'</span><span class="p">))</span><span class="w">
+
+
+</span><span class="c1"># Boxplot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_boxplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">outlier.colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">outlier.shape</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                    </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Box plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Monthly Percent Change"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">    
+
+</span><span class="n">cpi_boxplot</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 3 rows containing non-finite values (stat_boxplot).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_52_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="violin-plots">Violin Plots</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Violin plot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_violinplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_violin</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Violin plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">    
+
+</span><span class="n">cpi_violinplot</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 3 rows containing non-finite values (stat_ydensity).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_54_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="strip-chart">Strip Chart</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Strip chart of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="c1"># Using geom_point()</span><span class="w">
+</span><span class="n">cpi_stripchart</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Strip chart of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">cpi_stripchart</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 3 rows containing missing values (geom_point).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_56_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="jitter-plots">Jitter Plots</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Jitter plot(Strip chart with jitters) of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_jitter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_jitter</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.15</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">320</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Jitter plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">cpi_jitter</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 3 rows containing missing values (geom_point).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_58_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="sina-plot">Sina plot</h5>
+</blockquote>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="c1"># Sina plot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_sina</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-2.5</span><span class="p">,</span><span class="m">2.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_violin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggforce</span><span class="o">::</span><span class="n">geom_sina</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Sina plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">  
+
+</span><span class="n">cpi_sina</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 19 rows containing non-finite values (stat_ydensity).”Warning message:
+“Removed 19 rows containing non-finite values (stat_sina).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_60_1.png" alt="png" /></p>
+
+<blockquote>
+  <h5 id="ridgeline-plots">Ridgeline Plots</h5>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Examples :
+Advantages :
+Disadvantages :
+Variations Available : "binline"
+
+# Trend comparison using Ridgeline plots
+# Task is to find a dataset with polarized data
+</code></pre></div></div>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ridgeline plots to view price distribution of precious metals (1968-Present)</span><span class="w">
+</span><span class="n">preciousmetals_ridgeline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">precious_metals</span><span class="o">$</span><span class="n">USD</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">precious_metals</span><span class="o">$</span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">precious_metals</span><span class="o">$</span><span class="n">Commodity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_density_ridges</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="m">40</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">xlim</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span><span class="m">2250</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Prices"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Ridgeline plot of USD per troy ounce of Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+      </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">preciousmetals_ridgeline</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Warning message:
+“Removed 46 rows containing non-finite values (stat_density_ridges).”
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_62_1.png" alt="png" /></p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Prices of various base metals (2014-Present)</span><span class="w">
+</span><span class="n">basemetals_ridges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">base_metals</span><span class="p">,</span><span class="n">Year</span><span class="o">&gt;</span><span class="m">2014</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Ridgeline plots to view price distribution of various base metals (2014-Present)</span><span class="w">
+</span><span class="n">basemetals_ridgeline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">basemetals_ridges</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">basemetals_ridges</span><span class="o">$</span><span class="n">Value</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">basemetals_ridges</span><span class="o">$</span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basemetals_ridges</span><span class="o">$</span><span class="n">Commodity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_density_ridges</span><span class="p">(</span><span class="n">stat</span><span class="o">=</span><span class="s2">"binline"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">scale</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w">
+                    </span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"Base Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">xlim</span><span class="p">(</span><span class="m">-5000</span><span class="p">,</span><span class="m">25000</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Prices"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Base metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_x_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_y_discrete</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"qual"</span><span class="p">)(</span><span class="m">7</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"qual"</span><span class="p">)(</span><span class="m">7</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Ridgeline plot of prices per metric ton of base metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+      </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">basemetals_ridgeline</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Scale for 'x' is already present. Adding another scale for 'x', which will
+replace the existing scale.
+`stat_binline()` using `bins = 30`. Pick better value with `binwidth`.
+</code></pre></div></div>
+
+<p><img src="R_DataVisualization_VisualizingDistributions_files/R_DataVisualization_VisualizingDistributions_63_1.png" alt="png" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-08-10T22:12:28-05:00">August 10, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Visualizing+Distributions+-+Finance%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingDistributions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingDistributions%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FR_DataVisualization_VisualizingDistributions%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/learning/R_DataVisualization_VisualizingAmounts/" class="pagination--pager" title="Visualizing Amounts - Finance
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/blog/welcome-to-jekyll/" rel="permalink">Welcome to my blog!
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">This is just a little blog I’m starting. I’ll aim to get something up once a week or so, something interesting and technical.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
