@@ -284,12 +284,11 @@ defaults:
       path: ""
       type: learning
     values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: # true
-      share: true
-      related: true
+       author_profile: true
+       read_time: true
+       comments: # true
+       share: true
+       related: true
 
   # Collections
 collections:
