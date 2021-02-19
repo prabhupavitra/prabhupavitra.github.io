@@ -1,0 +1,843 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Movie Recommender system using Pyspark - The Realm of Data Science</title>
+<meta name="description" content="Movie recommendation system using PySpark with grouplens 10M dataset ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="Movie Recommender system using Pyspark">
+<meta property="og:url" content="http://localhost:4000/projects/Movie%20Recommender%20using%20Pyspark/">
+
+
+  <meta property="og:description" content="Movie recommendation system using PySpark with grouplens 10M dataset ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-10T21:12:28-06:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/projects/Movie%20Recommender%20using%20Pyspark/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Movie Recommender system using Pyspark</h1>
+    
+    <p><img src="/img/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+<span style="font-family:Georgia; font-size:14px;">
+A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend relies on the kind of input (implicit vs explicit feedback),</span></p>
+
+<p><img src="/img/Project/p2/classification.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+
+<blockquote>
+  <p>Popularity based recommendation systems
+<span style="font-family:Georgia; font-size:14px;">  <br />
+The popularity-based recommendation system utilizes the data available on top movie review websites to recommend the most popular movies to users based on their star ratings, thus increasing content consumption. Although this kind of recommendation system is simple to implement and scalable, it does not provide personalization to the user.  Additionally, since the data that this kind of system relies upon is purely based on the ratings provided on the rating websites, it might not reflect user preferences or account regional dialect of every user.</span></p>
+</blockquote>
+
+<blockquote>
+  <p>Association Rule Mining
+<span style="font-family:Georgia; font-size:14px;"> <br />
+Association rule mining (also called as Market Basket Analysis), at a basic level, is a rule-based method that analyzes for patterns of co-occurrences, in a database(also called Basket Data). It identifies frequent if-then associations called association rules which consists of an antecedent (if) and a consequent (then). An example of an association rule based on basket data is that 90% of people who watch Star Wars and The Empire Strikes Back! in a given week , also watch A New Hope later that week. This method is greatly useful when user choices are not easily accessible. For example, companies that do not have an online presence uses association rule mining to study purchase patterns and placing the frequently bought items in the same aisle. Although the analysis is easy to understand and interpret, the method can get computationally expensive for large datasets.</span></p>
+</blockquote>
+
+<p><span style="font-family:Georgia; font-size:14px;"> <br />
+As user preferences became easily accessible, recommender systems have been developed to embed user choice and behavior patterns into the algorithms. The other two approaches, content-based filtering and collaborative filtering employs the usage of customer preferences in their algorithms. </span></p>
+
+<p><img src="/img/Project/p2/associationrule.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+
+<blockquote>
+  <p>Content-based filtering 
+<span style="font-family:Georgia; font-size:14px;"> <br />
+A content-based filtering technique analyzes the past choices of a user and constructs profiles based on the user actions alone to build a preference profile, instead of pairing users with the products that similar users liked. </span></p>
+</blockquote>
+
+<blockquote>
+  <p>Collaborative filtering
+<span style="font-family:Georgia; font-size:14px;"> <br />
+Collaborative filtering systems on the other hand, analyzes interactions or similarity between users and items. Its distinct because it looks at the behavior of multiple customers cross-referencing their purchase histories with each other. Good personalized recommendations enhances the user experience, thereby improving customer satisfaction and loyalty. This technique is generally more accurate than content filtering. This is because this technique analyzes user preferences and uses these for providing personalized recommendations to other similar users. </span></p>
+</blockquote>
+
+<p><img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+
+<blockquote>
+  <p>Hybrid approach 
+<span style="font-family:Georgia; font-size:14px;"> <br />
+The hybrid approach of recomender systems use a combination of content-based and collaborative filtering. </span></p>
+</blockquote>
+
+<h5 id="implementation-of-collaborative-filtering">Implementation of Collaborative filtering</h5>
+<p><span style="font-family:Georgia; font-size:14px;"> <br />
+Collaborative filtering can be further divided into memory-based and model-based collaborative filtering. The memory-based approach uses user rating data to compute similarity between users or items. Memory-based systems are not always as fast and scalable as we would like them to be, especially in the context of actual systems that make real-time recommendations on the basis of large datasets.   </span>
+<span style="font-family:Georgia; font-size:14px;"><br />
+Although there are a number of algorithms that can be used to build the model in model-based approach, one of the most popular ones is the Matrix Factorization technique. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two matrices in a joint latent factor space of dimensionality f. Before we can get into further details of matrix factorization we will describe some key elements of this technique: The rating matrix, latent factors and the latent vectors. A rating matrix is a matrix of u(users) by i(items) of explicit user ratings over items. This is generally sparse because, not all users could have watched all movies. An entry in this sparse matrix corresponds to the rating, given by user u, of an item i. The latent vector of factors are inferred features from movie rating patterns of users, and are estimated by minimizing the loss function. Examples for latent factors in the context of movies, can be genre, depth of a character, amount of action, age group of the target audience or can even be completely uninterpretable. These inferred features are often called latent vectors and the k attributes are often called the latent factors. Furthermore, the expressive power of the model can be tuned by modifying the number of latent factors. </span>
+<img src="/img/Project/p2/mf1.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+
+<p><span style="font-family:Georgia; font-size:14px;"><br />
+In this notebook, we will talk about building our movie recommender system with one of the sophisticated algorithms which is more efficient and appropriate for recommender systems : Matrix Factorization. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two low-rank matrices.</span>
+<img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating spark session 
+</span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<span class="kn">from</span> <span class="nn">pyspark.conf</span> <span class="kn">import</span> <span class="n">SparkConf</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">f</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="p">.</span><span class="n">builder</span><span class="p">.</span><span class="n">appName</span><span class="p">(</span><span class="s">"movierecommender"</span><span class="p">)</span> \
+<span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">SparkConf</span><span class="p">([(</span><span class="s">'spark.executor.memory'</span><span class="p">,</span> <span class="s">'16g'</span><span class="p">),</span> 
+                        <span class="p">(</span><span class="s">'spark.app.name'</span><span class="p">,</span> <span class="s">'Spark Updated Conf'</span><span class="p">),</span> 
+                        <span class="p">(</span><span class="s">'spark.executor.cores'</span><span class="p">,</span> <span class="s">'6'</span><span class="p">),</span> 
+                        <span class="p">(</span><span class="s">'spark.cores.max'</span><span class="p">,</span> <span class="s">'6'</span><span class="p">),</span> 
+                        <span class="p">(</span><span class="s">'spark.driver.memory'</span><span class="p">,</span><span class="s">'16g'</span><span class="p">)]))</span> \
+<span class="p">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:14px;"><br />
+Data Source: </span> <br />
+<span style="font-family:Georgia; font-size:14px;"><br />
+The data used in this analysis is from the MovieLens 10M set, containing 10000054 ratings and 95580 tags applied to 10681 movies by 71567 users of the online movie recommender service MovieLens. The data is made available by GroupLens, a research group in the Department of Computer Science and Engineering at the University of Minnesota.    </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Loading data
+</span><span class="n">movies</span> <span class="o">=</span> <span class="n">spark</span><span class="p">.</span><span class="n">read</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"csv"</span><span class="p">).</span><span class="n">option</span><span class="p">(</span><span class="s">"header"</span><span class="p">,</span> <span class="s">"false"</span><span class="p">).</span><span class="n">load</span><span class="p">(</span><span class="s">"../Data/movierecommender/movies.dat"</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+<span class="n">ratings</span> <span class="o">=</span> <span class="n">spark</span><span class="p">.</span><span class="n">read</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"csv"</span><span class="p">).</span><span class="n">option</span><span class="p">(</span><span class="s">"header"</span><span class="p">,</span> <span class="s">"false"</span><span class="p">).</span><span class="n">load</span><span class="p">(</span><span class="s">"../Data/movierecommender/ratings.dat"</span><span class="p">,</span><span class="n">inferSchema</span><span class="o">=</span><span class="s">"true"</span><span class="p">)</span>
+
+<span class="n">movies</span> <span class="o">=</span><span class="p">(</span><span class="n">movies</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">cast</span><span class="p">(</span><span class="s">"double"</span><span class="p">))</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"title"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"genres"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+ <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"title"</span><span class="p">,</span><span class="s">"genres"</span><span class="p">)</span>
+<span class="p">)</span><span class="c1">#.show(truncate=False)
+</span>
+<span class="n">ratings</span> <span class="o">=</span> <span class="p">(</span><span class="n">ratings</span>
+<span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"userId"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="n">cast</span><span class="p">(</span><span class="s">"double"</span><span class="p">))</span>
+<span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">cast</span><span class="p">(</span><span class="s">"double"</span><span class="p">))</span>
+<span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"rating"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">cast</span><span class="p">(</span><span class="s">"double"</span><span class="p">))</span>
+<span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"timestamp"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">from_unixtime</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"_c0"</span><span class="p">,</span><span class="s">"::"</span><span class="p">).</span><span class="n">getItem</span><span class="p">(</span><span class="mi">3</span><span class="p">))))</span>
+<span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"userId"</span><span class="p">,</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"rating"</span><span class="p">,</span><span class="s">"timestamp"</span><span class="p">)</span>
+ <span class="p">)</span><span class="c1">#.show(truncate=False)
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Preprocessing data for exploratory data analysis
+</span><span class="n">movielens</span> <span class="o">=</span> <span class="n">ratings</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">movies</span><span class="p">,[</span><span class="s">"movieId"</span><span class="p">],</span><span class="s">"left"</span><span class="p">)</span>
+<span class="n">movielens</span><span class="p">.</span><span class="n">summary</span><span class="p">().</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------+-----------------+------------------+------------------+--------------------+------------------+
+|summary|          movieId|            userId|            rating|               title|            genres|
++-------+-----------------+------------------+------------------+--------------------+------------------+
+|  count|         10000054|          10000054|          10000054|            10000054|           7650044|
+|   mean|4120.291476526027| 35869.85940925919| 3.512421932921562|  22.166750376695127|              null|
+| stddev|8938.402117920627|20585.337354677813|1.0604184716263587|   32.00949399851806|              null|
+|    min|              1.0|               1.0|               0.5|"Great Performanc...|(no genres listed)|
+|    25%|            648.0|           18115.0|               3.0|                20.0|              null|
+|    50%|           1834.0|           35728.0|               4.0|                20.0|              null|
+|    75%|           3627.0|           53598.0|               4.0|                20.0|              null|
+|    max|          65133.0|           71567.0|               5.0|            Âge d'or|           Western|
++-------+-----------------+------------------+------------------+--------------------+------------------+
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Final Schema for dataset
+</span><span class="n">movielens</span><span class="p">.</span><span class="n">printSchema</span><span class="p">()</span>
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root
+ |-- movieId: double (nullable = true)
+ |-- userId: double (nullable = true)
+ |-- rating: double (nullable = true)
+ |-- timestamp: timestamp (nullable = true)
+ |-- title: string (nullable = true)
+ |-- genres: string (nullable = true)
+</code></pre></div></div>
+
+<h3 id="train-validation-split">Train-Validation Split</h3>
+<p><span style="font-family:Georgia; font-size:14px;"><br />
+We then create a 80/20 train-validation split of the movielens dataset for model evaluation purposes. The model is created and trained on the train set and tested on the validation set. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train set test set split
+</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span><span class="n">temp</span><span class="p">)</span> <span class="o">=</span> <span class="n">movielens</span><span class="p">.</span><span class="n">randomSplit</span><span class="p">([</span><span class="mf">8.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Make sure userId and movieId in validation set are also in train set (to avoid Cold Start Problem)
+</span><span class="n">validation_set</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp</span>
+    <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_set</span><span class="p">,[</span><span class="s">"userId"</span><span class="p">],</span><span class="s">"left_semi"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_set</span><span class="p">,[</span><span class="s">"movieId"</span><span class="p">],</span><span class="s">"left_semi"</span><span class="p">))</span>
+
+<span class="n">removed</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp</span>
+ <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">validation_set</span><span class="p">,[</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">],</span><span class="s">"left_anti"</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">train_set</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">removed</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<p><span style="font-family:Georgia; font-size:14px;"><br />
+Data ingestion is followed by data exploration where we intend to gain some insights about the dataset we just loaded. We study each attribute and its characteristics like name, type, percentage of missing values, outliers, type of distribution and many others. The subsequent tasks include studying correlations between the attributes and identifying the promising transformations if needed. Data visualization is quite an important tool for accomplishing these tasks. We document all these intuitions thus obtained by summarizing and visualizing the dataset, aiding the understanding of the project.</span>
+<span style="font-family:Georgia; font-size:14px;"><br />
+With an initial glance of the movielens dataset, we observe that movie information is available in movieId and title columns; user information is available in userId column, timestamp is measured in seconds with “1970-01-01 UTC” as origin; rating column is our target variable; Each movie rating has been categorized into one or more genres which is available in genres column.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Visualization Libraries
+</span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">statsmodels.distributions.empirical_distribution</span> <span class="kn">import</span> <span class="n">ECDF</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>  
+<span class="n">plt</span><span class="p">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">"figure.figsize"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="rating">Rating</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Distribution of user ratings
+</span><span class="n">ratings_hist</span><span class="o">=</span><span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">)).</span><span class="n">count</span><span class="p">()</span>
+ <span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">).</span><span class="n">desc</span><span class="p">())</span>        
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">ratings_hist</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">bar</span><span class="p">(</span><span class="s">"rating"</span><span class="p">,</span><span class="s">"count"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Distribution of user ratings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Rating"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Number of user ratings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">().</span><span class="n">remove</span><span class="p">()</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="movieid--title">MovieId &amp; Title</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Density Distribution and normalized ECDF of ratings grouped by movie
+</span><span class="n">movies_ratings</span> <span class="o">=</span><span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">)).</span><span class="n">count</span><span class="p">()</span>    
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">movies_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Density"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Distribution of ratings by movie"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ECDF</span><span class="p">(</span><span class="n">movies_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">]).</span><span class="n">x</span><span class="p">,</span><span class="n">ECDF</span><span class="p">(</span><span class="n">movies_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">]).</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of Ratings per movie"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Cumulative Frequency"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="userid">UserId</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Density Distribution and normalized ECDF of ratings grouped by user
+</span><span class="n">user_ratings</span> <span class="o">=</span><span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"userId"</span><span class="p">)).</span><span class="n">count</span><span class="p">()</span>    
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">user_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">""</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Density"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Distribution of ratings by user"</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ECDF</span><span class="p">(</span><span class="n">user_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">]).</span><span class="n">x</span><span class="p">,</span><span class="n">ECDF</span><span class="p">(</span><span class="n">user_ratings</span><span class="p">[</span><span class="s">"count"</span><span class="p">]).</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of Ratings per user"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Cumulative Frequency"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="genres">Genres</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Average rating of movies based on genre
+</span><span class="n">avg_genre_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">,</span><span class="s">"genres"</span><span class="p">,</span><span class="s">"rating"</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"genres_array"</span><span class="p">,</span> <span class="n">f</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"genres"</span><span class="p">,</span> <span class="s">"\|"</span><span class="p">))</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"genre"</span><span class="p">,</span> <span class="n">f</span><span class="p">.</span><span class="n">explode</span><span class="p">(</span><span class="s">"genres_array"</span><span class="p">))</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s">"genre"</span><span class="p">).</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">)).</span><span class="n">alias</span><span class="p">(</span><span class="s">"genre_rating"</span><span class="p">),</span>
+                       <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_movies"</span><span class="p">),</span>
+                       <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_ratings"</span><span class="p">))</span>
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+
+<span class="n">avg_genre_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">barh</span><span class="p">(</span><span class="s">"genre"</span><span class="p">,</span><span class="s">"genre_rating"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing average rating for each genre"</span><span class="p">)</span>
+<span class="n">avg_genre_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">barh</span><span class="p">(</span><span class="s">"genre"</span><span class="p">,</span><span class="s">"num_ratings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of ratings for each genre"</span><span class="p">)</span>
+<span class="n">avg_genre_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">barh</span><span class="p">(</span><span class="s">"genre"</span><span class="p">,</span><span class="s">"num_movies"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies in each genre"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="timestamp">Timestamp</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analyzing day of the month - Timestamp of rating
+</span><span class="n">day_month_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s">"timestamp"</span><span class="p">,</span><span class="s">"date"</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">dayofmonth</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"date"</span><span class="p">)))</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s">"day"</span><span class="p">).</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">)).</span><span class="n">alias</span><span class="p">(</span><span class="s">"avg_rating"</span><span class="p">),</span>
+                     <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_movies"</span><span class="p">),</span>
+                     <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_ratings"</span><span class="p">))</span>
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">day_month_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"avg_rating"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing average rating rated each day"</span><span class="p">)</span>
+<span class="n">day_month_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"num_ratings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of ratings rated each day"</span><span class="p">)</span>
+<span class="n">day_month_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"num_movies"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies rated each day"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analyzing day of the week - Timestamp of rating
+</span><span class="n">day_week_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s">"timestamp"</span><span class="p">,</span><span class="s">"date"</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">dayofweek</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"date"</span><span class="p">)))</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s">"day"</span><span class="p">).</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">)).</span><span class="n">alias</span><span class="p">(</span><span class="s">"avg_rating"</span><span class="p">),</span>
+                     <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_movies"</span><span class="p">),</span>
+                     <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_ratings"</span><span class="p">))</span>
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">day_week_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"avg_rating"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing average rating rated each day"</span><span class="p">)</span>
+<span class="n">day_week_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"num_ratings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of ratings rated each day"</span><span class="p">)</span>
+<span class="n">day_week_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"num_movies"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies rated each day"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="release-year">Release Year</h4>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">release_year_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span>
+ <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"title"</span><span class="p">,</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">,</span><span class="s">"rating"</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"releaseyear"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="s">'title'</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+ <span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"releaseyear"</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1900</span><span class="p">)</span>
+ <span class="p">.</span><span class="n">groupBy</span><span class="p">(</span><span class="s">"releaseyear"</span><span class="p">).</span><span class="n">agg</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rating"</span><span class="p">)).</span><span class="n">alias</span><span class="p">(</span><span class="s">"avg_rating"</span><span class="p">),</span>
+                             <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_movies"</span><span class="p">),</span>
+                             <span class="n">f</span><span class="p">.</span><span class="n">countDistinct</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"userId"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"num_ratings"</span><span class="p">))</span>
+<span class="p">).</span><span class="n">toPandas</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">13</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">releaseyear</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int64'</span><span class="p">),</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">avg_rating</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing average rating vs Release Year"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">releaseyear</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int64'</span><span class="p">),</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">num_ratings</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of ratings vs Release Year"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">xticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">releaseyear</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int64'</span><span class="p">),</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">num_movies</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies vs Release Year"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h3 id="building-a-recommender-system-using-als">Building a recommender system using ALS</h3>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyspark.ml.recommendation</span> <span class="kn">import</span> <span class="n">ALS</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml.evaluation</span> <span class="kn">import</span> <span class="n">RegressionEvaluator</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Basic Model parameters
+</span><span class="n">als</span> <span class="o">=</span> <span class="n">ALS</span><span class="p">(</span>
+        <span class="n">userCol</span> <span class="o">=</span> <span class="s">"userId"</span><span class="p">,</span>
+        <span class="n">itemCol</span> <span class="o">=</span> <span class="s">"movieId"</span><span class="p">,</span>
+        <span class="n">ratingCol</span> <span class="o">=</span> <span class="s">"rating"</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluator
+</span><span class="n">evaluator</span> <span class="o">=</span> <span class="n">RegressionEvaluator</span><span class="p">(</span>
+    <span class="n">metricName</span> <span class="o">=</span> <span class="s">"rmse"</span><span class="p">,</span>
+    <span class="n">labelCol</span> <span class="o">=</span> <span class="s">"rating"</span><span class="p">,</span> 
+    <span class="n">predictionCol</span> <span class="o">=</span> <span class="s">"prediction"</span>
+<span class="p">)</span>
+<span class="c1"># Fit and Transform
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">als</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">validation_set</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rmse</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">.</span><span class="n">na</span><span class="p">.</span><span class="n">drop</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.8145315605180299
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">pyspark.ml.tuning</span> <span class="kn">import</span> <span class="n">CrossValidator</span><span class="p">,</span> <span class="n">ParamGridBuilder</span>
+
+<span class="c1"># Creating Hyperparameter grid for tuning the model 
+</span><span class="n">parameter_grid</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ParamGridBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">als</span><span class="p">.</span><span class="n">rank</span> <span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+    <span class="p">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">als</span><span class="p">.</span><span class="n">maxIter</span><span class="p">,[</span><span class="mi">20</span><span class="p">])</span>
+    <span class="p">.</span><span class="n">addGrid</span><span class="p">(</span><span class="n">als</span><span class="p">.</span><span class="n">regParam</span><span class="p">,[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">])</span>
+    <span class="p">.</span><span class="n">build</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># Cross validation on the hyperparameter grid
+</span><span class="n">crossvalidator</span> <span class="o">=</span> <span class="n">CrossValidator</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="o">=</span><span class="n">als</span><span class="p">,</span>
+    <span class="n">estimatorParamMaps</span><span class="o">=</span><span class="n">parameter_grid</span><span class="p">,</span>
+    <span class="n">evaluator</span><span class="o">=</span><span class="n">evaluator</span><span class="p">,</span>
+    <span class="n">numFolds</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Model fitting and predictions
+</span><span class="n">crossval_model</span> <span class="o">=</span> <span class="n">crossvalidator</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_set</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">crossval_model</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">validation_set</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rmse</span> <span class="o">=</span> <span class="n">evaluator</span><span class="p">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">rmse</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.8704685337508209
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">opt_model</span> <span class="o">=</span> <span class="n">crossval_model</span><span class="p">.</span><span class="n">bestModel</span>
+<span class="n">opt_model</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ALS_486e13132101
+</code></pre></div></div>
+
+<h4 id="recommendations-for-all-users">Recommendations for All users</h4>
+<p><span style="font-family:Georgia; font-size:14px;"><br />
+In this section, we generate recommendations based on the requirements. </span>
+<span style="font-family:Georgia; font-size:14px;"><br />
+Recommendations can be generated for all users, a list of users, or a single user.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Recommending top 10 movies for all users
+</span><span class="n">recommend_all_users</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">recommendForAllUsers</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">cache</span><span class="p">()</span>
+<span class="n">recommend_all_users</span><span class="p">.</span><span class="n">show</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|userId|recommendations                                                                                                                                                                                      |
++------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|148   |[[25975, 5.4700174], [32657, 5.346849], [65001, 5.2740993], [33264, 5.2295647], [64275, 5.110407], [42783, 5.102586], [53883, 5.102167], [4454, 5.0949736], [26048, 5.0001564], [58898, 4.9635277]]  |
+|463   |[[32657, 4.847002], [65001, 4.7771854], [25975, 4.4827065], [1198, 4.405077], [318, 4.396311], [260, 4.368013], [858, 4.3357124], [1196, 4.307836], [527, 4.2753315], [33264, 4.2257524]]            |
+|471   |[[61037, 5.360802], [6691, 5.2161136], [7113, 5.199141], [5910, 5.0650325], [65133, 5.0478106], [31692, 4.9775057], [61253, 4.962686], [63772, 4.9039984], [31053, 4.885498], [5280, 4.8721533]]     |
+|496   |[[6256, 5.5736775], [32444, 5.3224363], [3233, 4.932787], [58898, 4.8912807], [6026, 4.873434], [8794, 4.8674264], [65001, 4.8434134], [53883, 4.817717], [61037, 4.8133693], [25975, 4.7717247]]    |
+|833   |[[32657, 5.202602], [65001, 5.166078], [25975, 4.893692], [33264, 4.7185593], [42783, 4.7057843], [858, 4.680309], [318, 4.6259556], [64275, 4.593347], [53883, 4.585396], [4454, 4.5681868]]        |
+|1088  |[[32657, 4.3691797], [65001, 4.305023], [42783, 4.289133], [25975, 4.268764], [33264, 4.265427], [64275, 4.225163], [26048, 4.099648], [53883, 4.0805454], [4454, 4.0606704], [63310, 4.0098634]]    |
+|1238  |[[65001, 5.064704], [32657, 4.921974], [6691, 4.790737], [33264, 4.5722423], [25975, 4.5702443], [4454, 4.544714], [63310, 4.5401587], [318, 4.530655], [527, 4.5174904], [42783, 4.472168]]         |
+|1342  |[[32657, 4.9682355], [65001, 4.9285536], [25975, 4.9068804], [53883, 4.8117256], [42783, 4.786216], [33264, 4.5924845], [53355, 4.589077], [858, 4.5875235], [64275, 4.583851], [4454, 4.542359]]    |
+|1580  |[[42783, 4.8741136], [32657, 4.7512918], [65001, 4.530798], [64280, 4.507534], [60983, 4.4713836], [53883, 4.4679813], [4171, 4.459224], [61742, 4.446425], [64275, 4.4205337], [33264, 4.4109383]]  |
+|1591  |[[31692, 6.0121784], [61037, 5.9581733], [65133, 5.8372254], [6511, 5.820645], [32444, 5.7605586], [65001, 5.5315375], [7113, 5.492081], [31053, 5.424225], [6691, 5.3908563], [64990, 5.3305492]]   |
+|1645  |[[65001, 5.2055397], [32657, 4.87617], [63310, 4.833739], [6691, 4.7939863], [4454, 4.742594], [25975, 4.647519], [63772, 4.635081], [42783, 4.6163015], [7144, 4.611266], [33264, 4.5727134]]       |
+|1829  |[[8519, 5.554109], [6511, 5.51192], [31692, 5.260827], [61037, 5.166402], [61253, 5.0205665], [6256, 4.998061], [65133, 4.9973607], [7113, 4.9345074], [1852, 4.9337997], [6914, 4.8441997]]         |
+|1959  |[[65001, 4.5332794], [61037, 4.3907313], [63310, 4.244684], [7144, 4.218011], [32657, 4.165986], [65133, 4.104204], [63772, 4.099427], [27841, 4.0865903], [8794, 4.066941], [25975, 4.006586]]      |
+|2122  |[[42783, 4.0203156], [53883, 3.8283653], [65001, 3.8283324], [25975, 3.8157954], [4454, 3.8106773], [32657, 3.805549], [64275, 3.722776], [33264, 3.7216868], [61742, 3.7030056], [53355, 3.6560252]]|
+|2142  |[[58898, 4.3103175], [25975, 4.248044], [53883, 4.1045313], [5194, 4.0838985], [61037, 4.010985], [65001, 4.0035443], [7113, 3.9833894], [33451, 3.9700255], [6098, 3.9644954], [51209, 3.9581857]]  |
+|2366  |[[65001, 5.6398244], [61037, 5.5232506], [8659, 5.323239], [63310, 5.320412], [7113, 5.3039894], [7144, 5.2929325], [65133, 5.26829], [27841, 5.2605104], [63772, 5.2384663], [4454, 5.235513]]      |
+|2659  |[[2319, 5.230588], [6691, 5.179285], [61037, 5.174231], [61253, 5.0963936], [7113, 4.9791565], [620, 4.958443], [65133, 4.9479938], [7144, 4.9030876], [25975, 4.901422], [8037, 4.8883734]]         |
+|2866  |[[60983, 5.1214347], [53883, 4.9311247], [58898, 4.8760796], [4454, 4.6970935], [25975, 4.6436796], [42783, 4.6420755], [6026, 4.541827], [64275, 4.4280224], [62336, 4.400916], [33264, 4.387739]]  |
+|3175  |[[6691, 5.454208], [65001, 5.36091], [32657, 5.0101976], [4454, 4.999255], [25975, 4.993573], [63310, 4.9743776], [7113, 4.9255896], [33264, 4.879459], [7140, 4.846695], [32444, 4.8386354]]        |
+|3749  |[[32657, 5.083437], [65001, 4.990966], [42783, 4.933362], [32444, 4.8663697], [33264, 4.6988335], [25975, 4.6623864], [64275, 4.6188536], [26048, 4.613469], [858, 4.6009183], [53883, 4.5495605]]   |
++------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+only showing top 20 rows
+</code></pre></div></div>
+
+<h4 id="detailed-recommendation-for-the-selected-user">Detailed recommendation for the selected user</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Checking movie title from the previous generated recommendations
+</span><span class="n">USER_ID</span> <span class="o">=</span> <span class="mi">1238</span>
+<span class="p">(</span>
+    <span class="n">recommend_all_users</span>
+    <span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="sa">f</span><span class="s">"userId == </span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"rec"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">explode</span><span class="p">(</span><span class="s">"recommendations"</span><span class="p">))</span>
+    <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"userId"</span><span class="p">,</span>
+            <span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rec"</span><span class="p">).</span><span class="n">movieId</span><span class="p">.</span><span class="n">alias</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">),</span>
+            <span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"rec"</span><span class="p">).</span><span class="n">rating</span><span class="p">.</span><span class="n">alias</span><span class="p">(</span><span class="s">"rating"</span><span class="p">),</span>
+           <span class="p">)</span>
+    <span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">movies</span><span class="p">,</span><span class="s">"movieId"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s">"rating"</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"title"</span><span class="p">)</span>
+<span class="p">).</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------+-------------------------------------+
+|movieId|title                                |
++-------+-------------------------------------+
+|65001  |Constantine's Sword (2007)           |
+|32657  |Man Who Planted Trees                |
+|6691   |Dust (2001)                          |
+|33264  |Satan's Tango (Sátántangó) (1994)    |
+|25975  |Life of Oharu                        |
+|4454   |More (1998)                          |
+|63310  |War Lord                             |
+|318    |Shawshank Redemption                 |
+|527    |Schindler's List (1993)              |
+|42783  |Shadows of Forgotten Ancestors (1964)|
++-------+-------------------------------------+
+</code></pre></div></div>
+
+<h4 id="recommendation-for-a-particular-user-based-on-predictions-for-unwatched-movies">Recommendation for a particular user based on predictions for unwatched movies</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Consider any random user from the userId
+</span><span class="n">USER_ID</span> <span class="o">=</span> <span class="mi">1238</span> 
+
+<span class="c1"># Movies not rated by the selected user
+</span><span class="n">movies_to_be_rated</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">ratings</span>
+    <span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="sa">f</span><span class="s">"userId != </span><span class="si">{</span><span class="n">USER_ID</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"movieId"</span><span class="p">).</span><span class="n">distinct</span><span class="p">()</span>
+    <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"userId"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">lit</span><span class="p">(</span><span class="n">USER_ID</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="c1"># Predictions on unwatched movies only
+</span><span class="n">user_movie_preds</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">movies_to_be_rated</span><span class="p">)</span>
+<span class="n">user_movie_preds</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Movie recommendations for userId - Manually feeding unwatched movies
+</span><span class="p">(</span><span class="n">user_movie_preds</span>
+<span class="p">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="p">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s">"prediction"</span><span class="p">,</span><span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="p">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">movies</span><span class="p">,[</span><span class="s">"movieId"</span><span class="p">])</span>
+<span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">"userId"</span><span class="p">,</span><span class="s">"movieId"</span><span class="p">,</span><span class="s">"title"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">col</span><span class="p">(</span><span class="s">"prediction"</span><span class="p">).</span><span class="n">alias</span><span class="p">(</span><span class="s">"rating"</span><span class="p">))</span>
+<span class="p">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s">"rating"</span><span class="p">,</span><span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+<span class="p">).</span><span class="n">show</span><span class="p">(</span><span class="n">truncate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-------+------+----------+
+|movieId|userId|prediction|
++-------+------+----------+
+|  148.0|  1238| 2.7894876|
+|  463.0|  1238| 2.7958498|
+|  471.0|  1238| 3.5524511|
+|  496.0|  1238| 2.8227122|
+|  833.0|  1238|  2.266191|
+| 1088.0|  1238| 3.4465244|
+| 1238.0|  1238|  3.844698|
+| 1342.0|  1238|  2.479726|
+| 1580.0|  1238| 3.6329877|
+| 1591.0|  1238| 2.2646801|
+| 1645.0|  1238| 3.2694008|
+| 1829.0|  1238| 2.7408764|
+| 1959.0|  1238| 3.7475433|
+| 2122.0|  1238| 2.1890275|
+| 2142.0|  1238| 3.0301836|
+| 2366.0|  1238| 3.4558885|
+| 2659.0|  1238| 3.1594718|
+| 2866.0|  1238| 3.6068923|
+| 3175.0|  1238| 3.6340725|
+| 3749.0|  1238| 2.9524477|
++-------+------+----------+
+only showing top 20 rows
+
++------+-------+-------------------------------------+---------+
+|userId|movieId|title                                |rating   |
++------+-------+-------------------------------------+---------+
+|1238  |65001.0|Constantine's Sword (2007)           |5.064704 |
+|1238  |32657.0|Man Who Planted Trees                |4.921974 |
+|1238  |6691.0 |Dust (2001)                          |4.790737 |
+|1238  |33264.0|Satan's Tango (Sátántangó) (1994)    |4.5722423|
+|1238  |25975.0|Life of Oharu                        |4.5702443|
+|1238  |4454.0 |More (1998)                          |4.544714 |
+|1238  |63310.0|War Lord                             |4.5401587|
+|1238  |318.0  |Shawshank Redemption                 |4.530655 |
+|1238  |527.0  |Schindler's List (1993)              |4.5174904|
+|1238  |42783.0|Shadows of Forgotten Ancestors (1964)|4.472168 |
++------+-------+-------------------------------------+---------+
+</code></pre></div></div>
+
+
+
+<ul class="taxonomy__index">
+  
+  
+</ul>
+
+
+
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

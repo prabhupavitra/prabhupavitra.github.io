@@ -3,7 +3,7 @@ layout: single
 title: "About Me"
 permalink: /about/
 header:
-  overlay_image: /img/Nature/doorcounty.jpg
+  overlay_image: /img/Nature/IT.jpg
 author_profile: true
 classes: wide
 ---

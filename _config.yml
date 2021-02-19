@@ -9,7 +9,7 @@
 # Site settings
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "neon" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
+minimal_mistakes_skin    : "dark" # "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
 
 locale                   : "en-US"
 title                    : "The Realm of Data Science"
@@ -83,7 +83,7 @@ social:
 # Site Author
 author:
   name             : "Pavitra Prabhu"
-  avatar           : #"/img/doorcounty.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : #"/img/ai1.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "My adventure in Data Science and Analytics"
   location         : "Waukesha, WI"
   email            : #"pavitrashivananda.prabhu@gmail.com"
