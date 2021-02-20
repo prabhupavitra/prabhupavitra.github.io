@@ -1,6 +1,6 @@
 ---
 title: "Movie Recommender system using Pyspark"
-layout: posts
+layout: single
 author_profile: true
 excerpt: "Movie recommendation system using PySpark with grouplens 10M dataset"
 date:   2020-02-10 22:12:28 -0500
@@ -11,7 +11,7 @@ date:   2020-02-10 22:12:28 -0500
 <span style="font-family:Georgia; font-size:14px;">
 A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend relies on the kind of input (implicit vs explicit feedback),</span>
 
-<img src="/img/Project/p2/classification.png" alt="this is a placeholder image" idth="50%" height = "50%" class="center"  >
+<img src="/img/Project/p2/classification.png" alt="this is a placeholder image">
 
 > Popularity based recommendation systems
 <span style="font-family:Georgia; font-size:14px;">    
@@ -21,12 +21,10 @@ The popularity-based recommendation system utilizes the data available on top mo
 <span style="font-family:Georgia; font-size:14px;">   
 Association rule mining (also called as Market Basket Analysis), at a basic level, is a rule-based method that analyzes for patterns of co-occurrences, in a database(also called Basket Data). It identifies frequent if-then associations called association rules which consists of an antecedent (if) and a consequent (then). An example of an association rule based on basket data is that 90% of people who watch Star Wars and The Empire Strikes Back! in a given week , also watch A New Hope later that week. This method is greatly useful when user choices are not easily accessible. For example, companies that do not have an online presence uses association rule mining to study purchase patterns and placing the frequently bought items in the same aisle. Although the analysis is easy to understand and interpret, the method can get computationally expensive for large datasets.</span>
 
+<img src="/img/Project/p2/associationrule.png" alt="this is a placeholder image" class="center" >
 
 <span style="font-family:Georgia; font-size:14px;">   
 As user preferences became easily accessible, recommender systems have been developed to embed user choice and behavior patterns into the algorithms. The other two approaches, content-based filtering and collaborative filtering employs the usage of customer preferences in their algorithms. </span>
-
-<img src="/img/Project/p2/associationrule.png" alt="this is a placeholder image" idth="50%" height = "50%" class="center"  >
-
 
 > Content-based filtering 
 <span style="font-family:Georgia; font-size:14px;">   
@@ -36,7 +34,7 @@ A content-based filtering technique analyzes the past choices of a user and cons
 <span style="font-family:Georgia; font-size:14px;">   
 Collaborative filtering systems on the other hand, analyzes interactions or similarity between users and items. Its distinct because it looks at the behavior of multiple customers cross-referencing their purchase histories with each other. Good personalized recommendations enhances the user experience, thereby improving customer satisfaction and loyalty. This technique is generally more accurate than content filtering. This is because this technique analyzes user preferences and uses these for providing personalized recommendations to other similar users. </span>
 
-<img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" idth="50%" height = "50%" class="center"  >
+<img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" class="center"  >
 
 > Hybrid approach 
 <span style="font-family:Georgia; font-size:14px;">   
@@ -47,11 +45,11 @@ The hybrid approach of recomender systems use a combination of content-based and
 Collaborative filtering can be further divided into memory-based and model-based collaborative filtering. The memory-based approach uses user rating data to compute similarity between users or items. Memory-based systems are not always as fast and scalable as we would like them to be, especially in the context of actual systems that make real-time recommendations on the basis of large datasets.   </span>
 <span style="font-family:Georgia; font-size:14px;">  
 Although there are a number of algorithms that can be used to build the model in model-based approach, one of the most popular ones is the Matrix Factorization technique. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two matrices in a joint latent factor space of dimensionality f. Before we can get into further details of matrix factorization we will describe some key elements of this technique: The rating matrix, latent factors and the latent vectors. A rating matrix is a matrix of u(users) by i(items) of explicit user ratings over items. This is generally sparse because, not all users could have watched all movies. An entry in this sparse matrix corresponds to the rating, given by user u, of an item i. The latent vector of factors are inferred features from movie rating patterns of users, and are estimated by minimizing the loss function. Examples for latent factors in the context of movies, can be genre, depth of a character, amount of action, age group of the target audience or can even be completely uninterpretable. These inferred features are often called latent vectors and the k attributes are often called the latent factors. Furthermore, the expressive power of the model can be tuned by modifying the number of latent factors. </span>
-<img src="/img/Project/p2/mf1.png" alt="this is a placeholder image" idth="50%" height = "50%" class="center"  >
+<img src="/img/Project/p2/mf1.png" alt="this is a placeholder image"  >
 
 <span style="font-family:Georgia; font-size:14px;">  
 In this notebook, we will talk about building our movie recommender system with one of the sophisticated algorithms which is more efficient and appropriate for recommender systems : Matrix Factorization. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two low-rank matrices.</span>
-<img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" idth="50%" height = "50%" class="center"  >
+<img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" >
 
 
 ```python
@@ -185,6 +183,8 @@ plt.ylabel("Number of user ratings")
 plt.legend().remove()
 ```
 
+![Rating Distribution](/img/Project/p2/p2_output_14_0.png)
+
 > #### MovieId & Title
 
 ```python
@@ -204,6 +204,7 @@ plt.plot(ECDF(movies_ratings["count"]).x,ECDF(movies_ratings["count"]).y)
 plt.xlabel("Number of Ratings per movie")
 plt.ylabel("Cumulative Frequency")
 ```
+![movie Distribution](/img/Project/p2/p2_output_16_1.png)
 
 > #### UserId
 
@@ -224,6 +225,7 @@ plt.plot(ECDF(user_ratings["count"]).x,ECDF(user_ratings["count"]).y)
 plt.xlabel("Number of Ratings per user")
 plt.ylabel("Cumulative Frequency")
 ```
+![user Distribution](/img/Project/p2/p2_output_18_1.png)
 
 > #### Genres
 
@@ -247,6 +249,13 @@ avg_genre_rating.plot.barh("genre","num_movies")
 plt.title("Visualizing number of movies in each genre")
 ```
 
+![genre Distribution1](/img/Project/p2/p2_output_20_1.png)
+
+![genre Distribution2](/img/Project/p2/p2_output_20_2.png)
+
+![genre Distribution3](/img/Project/p2/p2_output_20_3.png)
+
+
 > #### Timestamp
 
 
@@ -268,6 +277,15 @@ day_month_rating.plot.scatter("day","num_movies")
 plt.title("Visualizing number of movies rated each day")
 ```
 
+
+![month Distribution1](/img/Project/p2/p2_output_22_1.png)
+
+![month Distribution2](/img/Project/p2/p2_output_22_2.png)
+
+![month Distribution3](/img/Project/p2/p2_output_22_3.png)
+
+
+
 ```python
 # Analyzing day of the week - Timestamp of rating
 day_week_rating = (train_set
@@ -285,6 +303,14 @@ plt.title("Visualizing number of ratings rated each day")
 day_week_rating.plot.scatter("day","num_movies")
 plt.title("Visualizing number of movies rated each day")
 ```
+
+
+![week Distribution1](/img/Project/p2/p2_output_23_1.png)
+
+![week Distribution2](/img/Project/p2/p2_output_23_2.png)
+
+![week Distribution3](/img/Project/p2/p2_output_23_3.png)
+
 
 > #### Release Year
 
@@ -312,6 +338,8 @@ plt.subplot(3, 1, 3)
 plt.scatter(release_year_rating.releaseyear.astype('int64'),release_year_rating.num_movies)
 plt.title("Visualizing number of movies vs Release Year")
 ```
+![week Distribution3](/img/Project/p2/p2_output_25_1.png)
+
 
 > ### Building a recommender system using ALS 
 
@@ -545,4 +573,3 @@ user_movie_preds.show()
     |1238  |42783.0|Shadows of Forgotten Ancestors (1964)|4.472168 |
     +------+-------+-------------------------------------+---------+
     
-

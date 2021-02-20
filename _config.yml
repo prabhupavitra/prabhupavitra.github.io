@@ -9,7 +9,7 @@
 # Site settings
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "dark" # "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
+minimal_mistakes_skin    : "mint" # "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
 
 locale                   : "en-US"
 title                    : "The Realm of Data Science"

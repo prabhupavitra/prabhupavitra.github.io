@@ -103,7 +103,7 @@
 
   </head>
 
-  <body class="layout--posts">
+  <body class="layout--single">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -259,15 +259,28 @@
 
 
 
-  <div class="archive">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Movie Recommender system using Pyspark">
+    <meta itemprop="description" content="Movie recommendation system using PySpark with grouplens 10M dataset">
+    <meta itemprop="datePublished" content="2020-02-10T21:12:28-06:00">
     
-      <h1 id="page-title" class="page__title">Movie Recommender system using Pyspark</h1>
-    
-    <p><img src="/img/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Movie Recommender system using Pyspark
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img src="/img/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
 <span style="font-family:Georgia; font-size:14px;">
 A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend relies on the kind of input (implicit vs explicit feedback),</span></p>
 
-<p><img src="/img/Project/p2/classification.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+<p><img src="/img/Project/p2/classification.png" alt="this is a placeholder image" /></p>
 
 <blockquote>
   <p>Popularity based recommendation systems
@@ -281,10 +294,10 @@ The popularity-based recommendation system utilizes the data available on top mo
 Association rule mining (also called as Market Basket Analysis), at a basic level, is a rule-based method that analyzes for patterns of co-occurrences, in a database(also called Basket Data). It identifies frequent if-then associations called association rules which consists of an antecedent (if) and a consequent (then). An example of an association rule based on basket data is that 90% of people who watch Star Wars and The Empire Strikes Back! in a given week , also watch A New Hope later that week. This method is greatly useful when user choices are not easily accessible. For example, companies that do not have an online presence uses association rule mining to study purchase patterns and placing the frequently bought items in the same aisle. Although the analysis is easy to understand and interpret, the method can get computationally expensive for large datasets.</span></p>
 </blockquote>
 
+<p><img src="/img/Project/p2/associationrule.png" alt="this is a placeholder image" class="center" /></p>
+
 <p><span style="font-family:Georgia; font-size:14px;"> <br />
 As user preferences became easily accessible, recommender systems have been developed to embed user choice and behavior patterns into the algorithms. The other two approaches, content-based filtering and collaborative filtering employs the usage of customer preferences in their algorithms. </span></p>
-
-<p><img src="/img/Project/p2/associationrule.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
 
 <blockquote>
   <p>Content-based filtering 
@@ -298,7 +311,7 @@ A content-based filtering technique analyzes the past choices of a user and cons
 Collaborative filtering systems on the other hand, analyzes interactions or similarity between users and items. Its distinct because it looks at the behavior of multiple customers cross-referencing their purchase histories with each other. Good personalized recommendations enhances the user experience, thereby improving customer satisfaction and loyalty. This technique is generally more accurate than content filtering. This is because this technique analyzes user preferences and uses these for providing personalized recommendations to other similar users. </span></p>
 </blockquote>
 
-<p><img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+<p><img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" class="center" /></p>
 
 <blockquote>
   <p>Hybrid approach 
@@ -311,11 +324,11 @@ The hybrid approach of recomender systems use a combination of content-based and
 Collaborative filtering can be further divided into memory-based and model-based collaborative filtering. The memory-based approach uses user rating data to compute similarity between users or items. Memory-based systems are not always as fast and scalable as we would like them to be, especially in the context of actual systems that make real-time recommendations on the basis of large datasets.   </span>
 <span style="font-family:Georgia; font-size:14px;"><br />
 Although there are a number of algorithms that can be used to build the model in model-based approach, one of the most popular ones is the Matrix Factorization technique. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two matrices in a joint latent factor space of dimensionality f. Before we can get into further details of matrix factorization we will describe some key elements of this technique: The rating matrix, latent factors and the latent vectors. A rating matrix is a matrix of u(users) by i(items) of explicit user ratings over items. This is generally sparse because, not all users could have watched all movies. An entry in this sparse matrix corresponds to the rating, given by user u, of an item i. The latent vector of factors are inferred features from movie rating patterns of users, and are estimated by minimizing the loss function. Examples for latent factors in the context of movies, can be genre, depth of a character, amount of action, age group of the target audience or can even be completely uninterpretable. These inferred features are often called latent vectors and the k attributes are often called the latent factors. Furthermore, the expressive power of the model can be tuned by modifying the number of latent factors. </span>
-<img src="/img/Project/p2/mf1.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+<img src="/img/Project/p2/mf1.png" alt="this is a placeholder image" /></p>
 
 <p><span style="font-family:Georgia; font-size:14px;"><br />
 In this notebook, we will talk about building our movie recommender system with one of the sophisticated algorithms which is more efficient and appropriate for recommender systems : Matrix Factorization. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two low-rank matrices.</span>
-<img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" idth="50%" height="50%" class="center" /></p>
+<img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creating spark session 
 </span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -438,6 +451,8 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">().</span><span class="n">remove</span><span class="p">()</span>
 </code></pre></div></div>
 
+<p><img src="/img/Project/p2/p2_output_14_0.png" alt="Rating Distribution" /></p>
+
 <blockquote>
   <h4 id="movieid--title">MovieId &amp; Title</h4>
 </blockquote>
@@ -458,6 +473,7 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of Ratings per movie"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Cumulative Frequency"</span><span class="p">)</span>
 </code></pre></div></div>
+<p><img src="/img/Project/p2/p2_output_16_1.png" alt="movie Distribution" /></p>
 
 <blockquote>
   <h4 id="userid">UserId</h4>
@@ -479,6 +495,7 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Number of Ratings per user"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Cumulative Frequency"</span><span class="p">)</span>
 </code></pre></div></div>
+<p><img src="/img/Project/p2/p2_output_18_1.png" alt="user Distribution" /></p>
 
 <blockquote>
   <h4 id="genres">Genres</h4>
@@ -503,6 +520,12 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies in each genre"</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><img src="/img/Project/p2/p2_output_20_1.png" alt="genre Distribution1" /></p>
+
+<p><img src="/img/Project/p2/p2_output_20_2.png" alt="genre Distribution2" /></p>
+
+<p><img src="/img/Project/p2/p2_output_20_3.png" alt="genre Distribution3" /></p>
+
 <blockquote>
   <h4 id="timestamp">Timestamp</h4>
 </blockquote>
@@ -524,6 +547,12 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies rated each day"</span><span class="p">)</span>
 </code></pre></div></div>
 
+<p><img src="/img/Project/p2/p2_output_22_1.png" alt="month Distribution1" /></p>
+
+<p><img src="/img/Project/p2/p2_output_22_2.png" alt="month Distribution2" /></p>
+
+<p><img src="/img/Project/p2/p2_output_22_3.png" alt="month Distribution3" /></p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analyzing day of the week - Timestamp of rating
 </span><span class="n">day_week_rating</span> <span class="o">=</span> <span class="p">(</span><span class="n">train_set</span>
  <span class="p">.</span><span class="n">withColumnRenamed</span><span class="p">(</span><span class="s">"timestamp"</span><span class="p">,</span><span class="s">"date"</span><span class="p">)</span>
@@ -540,6 +569,12 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">day_week_rating</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="s">"day"</span><span class="p">,</span><span class="s">"num_movies"</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies rated each day"</span><span class="p">)</span>
 </code></pre></div></div>
+
+<p><img src="/img/Project/p2/p2_output_23_1.png" alt="week Distribution1" /></p>
+
+<p><img src="/img/Project/p2/p2_output_23_2.png" alt="week Distribution2" /></p>
+
+<p><img src="/img/Project/p2/p2_output_23_3.png" alt="week Distribution3" /></p>
 
 <blockquote>
   <h4 id="release-year">Release Year</h4>
@@ -567,6 +602,7 @@ With an initial glance of the movielens dataset, we observe that movie informati
 <span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">releaseyear</span><span class="p">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'int64'</span><span class="p">),</span><span class="n">release_year_rating</span><span class="p">.</span><span class="n">num_movies</span><span class="p">)</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"Visualizing number of movies vs Release Year"</span><span class="p">)</span>
 </code></pre></div></div>
+<p><img src="/img/Project/p2/p2_output_25_1.png" alt="week Distribution3" /></p>
 
 <blockquote>
   <h3 id="building-a-recommender-system-using-als">Building a recommender system using ALS</h3>
@@ -781,17 +817,41 @@ only showing top 20 rows
 </code></pre></div></div>
 
 
+        
+      </section>
 
-<ul class="taxonomy__index">
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-10T21:12:28-06:00">February 10, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/projects/movierecommender/" class="pagination--pager" title="Movie Recommender system in R
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
   
   
-</ul>
-
-
-
-
-  </div>
 </div>
+
     </div>
 
     
