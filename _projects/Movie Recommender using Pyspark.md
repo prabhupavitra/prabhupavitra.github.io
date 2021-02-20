@@ -9,7 +9,15 @@ date:   2020-02-10 22:12:28 -0500
 
 <img src="/img/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 <span style="font-family:Georgia; font-size:14px;">
-A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend relies on the kind of input (implicit vs explicit feedback),</span>
+A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend, relies heavily on the kind of input (implicit vs explicit feedback), data sparsity, scalability and efficiency. Every method has its own advantages and drawbacks. </span>
+
+<span style="font-family:Georgia; font-size:14px;">
+Before proceeding any further with the methods used to build recommender systems, lets pitch in to discuss the topics like implicit and explicit feedback systems, data sparsity and cold-start problem.
+Explicit feedback systems refers to the systems where we can use ratings provided by users directly. This is preferred when available, because its more reliable due to absence of any sort of inference. Its not always available, as users are not always prepared to provide it. In contrast, implicit feedback systems interprets rating from user purchase history, navigation history, session duration, content of e-mail and button clicks, among others. This is easily available, because it needs no effort from user.</span>
+
+<span style="font-family:Georgia; font-size:14px;">
+Furthermore, issues of data sparsity and cold-start problem are quite important to address when building a recommender system. Cold-start problem refers to the issue of recommending an item when you have never seen how that item interacts with other users. This can occur when new users or items are added to the system with little or no ratings.
+Then, there is the problem of data sparsity. Data sparsity refers to the number of cells in a table that are empty(sparsity) and that contain information(density). It is quite important to note that, the accuracy of the recommender system is affected by the data sparsity and the cold-start problem by a considerable amount.      </span>
 
 <img src="/img/Project/p2/classification.png" alt="this is a placeholder image">
 
@@ -28,19 +36,22 @@ As user preferences became easily accessible, recommender systems have been deve
 
 > Content-based filtering 
 <span style="font-family:Georgia; font-size:14px;">   
-A content-based filtering technique analyzes the past choices of a user and constructs profiles based on the user actions alone to build a preference profile, instead of pairing users with the products that similar users liked. </span>
+A content-based filtering technique analyzes the past choices of a user and constructs profiles based on the user actions alone to build a preference profile, instead of pairing users with the products that similar users liked. The main advantages of this method is that, it is unaffected by the cold-start problem or user preference changes, and is more explainable since it doesn’t try to infer hidden user preferences.</span>
+<span style="font-family:Georgia; font-size:14px;"> 
+However, they do overspecialize recommendations and users may begin to only receive recommendations similar to the items that they have already encountered.</span>
 
 > Collaborative filtering
 <span style="font-family:Georgia; font-size:14px;">   
-Collaborative filtering systems on the other hand, analyzes interactions or similarity between users and items. Its distinct because it looks at the behavior of multiple customers cross-referencing their purchase histories with each other. Good personalized recommendations enhances the user experience, thereby improving customer satisfaction and loyalty. This technique is generally more accurate than content filtering. This is because this technique analyzes user preferences and uses these for providing personalized recommendations to other similar users. </span>
+Collaborative filtering is one of the most popular algorithms for recommender systems. It analyzes interactions or similarity between users and items and is distinct because it looks at the behavior of multiple customers cross-referencing their purchase histories with each other. Good personalized recommendations enhances the user experience, thereby improving customer satisfaction and loyalty. This technique is generally more accurate than content-based filtering. This is because this technique analyzes user preferences and uses these for providing personalized recommendations to other similar users. </span>
 
 <img src="/img/Project/p2/content-colab.png" alt="this is a placeholder image" class="center"  >
 
 > Hybrid approach 
 <span style="font-family:Georgia; font-size:14px;">   
-The hybrid approach of recomender systems use a combination of content-based and collaborative filtering. </span>
+The hybrid approach of recomender systems use a combination of any of the above-mentioned techniques and other machine learning techniques much like the Graph Recommender and Regression approach.  </span>
 
 ##### Implementation of Collaborative filtering
+
 <span style="font-family:Georgia; font-size:14px;">   
 Collaborative filtering can be further divided into memory-based and model-based collaborative filtering. The memory-based approach uses user rating data to compute similarity between users or items. Memory-based systems are not always as fast and scalable as we would like them to be, especially in the context of actual systems that make real-time recommendations on the basis of large datasets.   </span>
 <span style="font-family:Georgia; font-size:14px;">  
@@ -48,9 +59,12 @@ Although there are a number of algorithms that can be used to build the model in
 <img src="/img/Project/p2/mf1.png" alt="this is a placeholder image"  >
 
 <span style="font-family:Georgia; font-size:14px;">  
-In this notebook, we will talk about building our movie recommender system with one of the sophisticated algorithms which is more efficient and appropriate for recommender systems : Matrix Factorization. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two low-rank matrices.</span>
+In this article, we will build our movie recommender system with one of the sophisticated algorithms which is more efficient and appropriate for recommender systems : Matrix Factorization. Matrix factorization achieves collaborative filtering by approximating an incomplete rating matrix using the product of two low-rank matrices.</span>
+
 <img src="/img/Project/p2/mf2.png" alt="this is a placeholder image" >
 
+<span style="font-family:Georgia; font-size:14px;">
+We have used Apache Spark in our recommendation system since it overcomes the hurdle of scalability by implementing Alternating Least Squares to achieve collaborative filtering by matrix factorization technique. Let’s begin with data ingestion and exploration. To load the data as a spark dataframe, import pyspark and instantiate a spark session.</span>
 
 ```python
 # Creating spark session 
@@ -126,7 +140,7 @@ movielens.printSchema()
      |-- genres: string (nullable = true)
     
     
-###  Train-Validation Split 
+#####  Train-Validation Split 
 <span style="font-family:Georgia; font-size:14px;">  
 We then create a 80/20 train-validation split of the movielens dataset for model evaluation purposes. The model is created and trained on the train set and tested on the validation set. </span>
 
@@ -573,3 +587,9 @@ user_movie_preds.show()
     |1238  |42783.0|Shadows of Forgotten Ancestors (1964)|4.472168 |
     +------+-------+-------------------------------------+---------+
     
+<span style="font-family:Georgia; font-size:14px;">   
+It is seldom the case that one algorithm is enough to make real world recommendations. Its important to address all the issues we discussed and more. In reality, the algorithms used in real world are mostly hybrid and is tailored to the needs of the recommender system  needed. </span>
+
+<span style="font-family:Georgia; font-size:14px;">   
+I hope you enjoyed reading!!
+</span>
