@@ -1,5 +1,5 @@
 ---
-title: "Movie Recommender system using Pyspark"
+title: "Implicit Collaborative Filtering with PySpark"
 layout: single
 author_profile: true
 excerpt: "Movie recommendation system using PySpark with grouplens 10M dataset"

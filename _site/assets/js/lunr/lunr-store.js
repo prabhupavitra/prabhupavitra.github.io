@@ -11,7 +11,7 @@ var store = [{
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
         "teaser": null
       },{
-        "title": "Movie Recommender system using Pyspark",
+        "title": "Implicit Collaborative Filtering with PySpark",
         "excerpt":"A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/Movie%20Recommender%20using%20Pyspark/",
