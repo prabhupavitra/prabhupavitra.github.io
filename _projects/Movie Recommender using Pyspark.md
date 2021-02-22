@@ -2,7 +2,7 @@
 title: "Implicit Collaborative Filtering with PySpark"
 layout: single
 author_profile: true
-excerpt: "Movie recommendation system using PySpark with grouplens 10M dataset"
+excerpt: "Collaborative Filtering using PySpark with grouplens 10M dataset"
 date:   2020-02-10 22:12:28 -0500
 ---
 

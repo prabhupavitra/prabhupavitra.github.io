@@ -1,6 +1,6 @@
 ---
 title: "Movie Recommender system in R"
-excerpt: "Movie recommendation system using R with grouplens 10M dataset"
+excerpt: "Model based Movie recommendation system using R"
 date:   2020-08-10 22:12:28 -0500
 teaser: /img/Teaser/movierec.png
 
