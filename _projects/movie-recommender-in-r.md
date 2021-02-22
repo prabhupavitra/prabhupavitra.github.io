@@ -1,3 +1,12 @@
+---
+title: "Movie Recommender system in R"
+layout: posts
+author_profile: true
+excerpt: "Model based movie recommendation system using R"
+date:   2020-01-10 22:12:28 -0500
+header:
+  teaser: /img/Teaser/movierec.png
+---
 
 <html>
 

@@ -11,15 +11,15 @@ var store = [{
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
         "teaser": null
       },{
-        "title": "Implicit Collaborative Filtering with PySpark",
-        "excerpt":"A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/projects/Movie%20Recommender%20using%20Pyspark/",
-        "teaser": null
-      },{
         "title": "Movie Recommender system in R",
         "excerpt":"Movie Recommender System in R Movie Recommender System in R Introduction MovieLens Dataset Loss Functions Mean Absolute Error Root Mean Squared Error Project Checklist Methods and Analysis Data Ingestion Create Helper Functions Exploratory Data Analysis Rating Movies Users Date Genres Release Year of the Movie Data Preparation Model Selection Linear...","categories": [],
         "tags": [],
-        "url": "http://localhost:4000/projects/movierecommender/",
-        "teaser": null
+        "url": "http://localhost:4000/projects/movie-recommender-in-r/",
+        "teaser": "http://localhost:4000/img/Teaser/movierec.png"
+      },{
+        "title": "Implicit Collaborative Filtering with PySpark",
+        "excerpt":"A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/projects/collaborative-filtering-using-pyspark/",
+        "teaser": "http://localhost:4000/img/Teaser/movierec.jpg"
       }]
