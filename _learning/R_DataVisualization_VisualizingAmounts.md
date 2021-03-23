@@ -31,7 +31,7 @@ Most commonly used visualizations to compare amounts include:</span>
 <span style="font-family:Georgia; font-size:16px;"> 11. Dumbbell Charts</span>    
 
 <span style="font-family:Georgia; font-size:16px;">
-Most importantly, we will be using quandl api and quantmod api to import financial data. Us</span>    
+We will be using quandl api and quantmod api to import financial data. Using an API for importing data is beneficial, especially in finance, because the dataset is updated extremely frequently, and they offer a lot of benefits in terms of ease and flexibility. </span>    
 <span style="font-family:Georgia; font-size:16px;">
 We can install quandl & quantmod packages and register an account on quandl.com</span>    
 
