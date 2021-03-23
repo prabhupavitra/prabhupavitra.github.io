@@ -1,6 +1,6 @@
 var store = [{
-        "title": "Visualizing Amounts - Finance",
-        "excerpt":"R_DataVisualization_VisualizingAmounts Visualizing Amounts in Finance &#182; Most commonly used visualizations to compare amounts include: 1. Bar Charts 2. Diverging Bar Charts 3. Stacked Bar Charts 4. Grouped Bar Charts (also called Clustered Bar Charts) 5. Animated Bar Charts 6. Dot Plots (also called Cleveland Dot Charts) 7. Bubble Charts 8....","categories": [],
+        "title": "Financial Data Visualization - Amounts",
+        "excerpt":"This article is part of financial data visualization blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance. Although, both can be used to visualize...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingAmounts/",
         "teaser": null
@@ -9,6 +9,12 @@ var store = [{
         "excerpt":"R_DataVisualization_VisualizingDistributions Visualizing Distributions in Finance &#182; Analyzing and visualizing distributions is widely used in Data Science projects since we are interested in understanding the behaviour of a numeric variable. In other words, we would want to know the central tendency of a variable as well as the outliers. We would...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
+        "teaser": null
+      },{
+        "title": "Model Evaluation",
+        "excerpt":"         ","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Evaluation%20Metrics/",
         "teaser": null
       },{
         "title": "Movie Recommender system in R",
