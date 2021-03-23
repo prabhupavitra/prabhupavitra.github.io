@@ -729,3 +729,5 @@ heatmap_plot
   <img src="/img/Learning/visualization/heatmap" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 9: Heatmap illustrating CPI Inflation (Year 1995 - Year 2019) </figcaption>
 </figure>
+
+<span style="font-family:Georgia; font-size:16px;"> Click <a href="https://colab.research.google.com/github/prabhupavitra/Data-Visualization/blob/master/"> Colab Notebook </a> to edit and run the workbook using google colab or fork this<a href="https://github.com/prabhupavitra/Data-Visualization-with-R"> github repository </a>  </span> 
