@@ -5,7 +5,7 @@ author_profile: true
 excerpt: "Model based movie recommendation system using R"
 date:   2020-01-10 22:12:28 -0500
 header:
-  teaser: /img/Teaser/movierec.png
+  teaser: /img/Project/Teaser/movierec.png
 theme: mint
 ---
 <style TYPE="text/css">
@@ -27,7 +27,7 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<img src="/img/Teaser/movierec.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Project/Teaser/movierec.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 #### Introduction
 

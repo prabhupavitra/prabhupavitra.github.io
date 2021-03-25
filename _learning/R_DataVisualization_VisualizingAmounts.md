@@ -6,7 +6,7 @@ theme : "mint"
 ---
 
 
-<img src="/img/Learning/viz.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Learning/Teaser/viz-amounts.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 <span style="font-family:Georgia; font-size:16px;">
 This article is part of **financial data visualization** blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance.</span>  
@@ -193,7 +193,7 @@ mutate(Year = year(Date)) %>% filter(USD!="NA")
 head(precious_metals,5)
 ```
 
-<img src="/img/Learning/visualization/tbl-1.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
+<img src="/img/Learning/visualization/viz1/tbl-1.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
 
 > <span style="font-family:Georgia; font-size:16px;">Base Metals Prices : Spot Prices (U.S. Dollars per metric ton)</span>   
 
@@ -209,7 +209,7 @@ mutate(Year = year(Date))
 
 head(base_metals,1)
 ```
-<img src="/img/Learning/visualization/tbl-2.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
+<img src="/img/Learning/visualization/viz1/tbl-2.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
 
 > <span style="font-family:Georgia; font-size:16px;">CPI Data : CPI for U.S. City Average </span>   
 
@@ -233,7 +233,7 @@ mutate (Year =year(Date),Month=month(Date))
 head(cpi_monthly_sa,1)
 ```
 
-<img src="/img/Learning/visualization/tbl-3.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
+<img src="/img/Learning/visualization/viz1/tbl-3.png" alt="this is a placeholder image" width="50%" height = "50%" class="center" >
 
 <span style="font-family:Georgia; font-size:16px;"> Before we proceed with visualizations, we will calculate some commonly used CPI metrics</span>   
 
@@ -345,7 +345,7 @@ barplot_cpi
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/horizontal-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/horizontal-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 1: Horizontal Bar Chart depicting CPI data for All Urban Consumers for the year 2018 </figcaption>
 </figure>
 
@@ -383,7 +383,7 @@ barplot_cpiannual
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/diverging-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/diverging-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 2: Diverging Bar Chart showing showing average annual inflation for selected categories (Year 2019) </figcaption>
 </figure>
 
@@ -423,7 +423,7 @@ metals_stackedplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/stacked-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/stacked-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 3: Stacked Bar Chart illustrating history of precious metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
@@ -462,7 +462,7 @@ metals_groupedplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/grouped-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/grouped-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 4: Grouped Bar Chart illustrating history of base metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
@@ -526,7 +526,7 @@ IRdisplay::display_png(file = "gganim.gif")
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/animated-bar-chart.gif" loop=infinite />
+  <img src="/img/Learning/visualization/viz1/animated-bar-chart.gif" loop=infinite />
   <figcaption style="color: grey"> Figure 5: Animated bar chart illustrating CPI trends from 1984-2019 </figcaption>
 </figure>
 
@@ -557,7 +557,7 @@ gold_dotplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/dot-plot-1" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/dot-plot-1" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 6: Cleveland dot plot depicting gold prices history </figcaption>
 </figure>
 
@@ -646,7 +646,7 @@ cpi_dualdotplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/dot-plot-2" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/dot-plot-2" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 7: Cleveland dot plot depicting inflation changes in major categories (Year 2018- Year 2019) </figcaption>
 </figure>
 
@@ -689,7 +689,7 @@ basemetals_bubbleplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/bubble-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/bubble-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 8: Bubble chart illustrating comparison of base metal prices (Year 2019) </figcaption>
 </figure>
 
@@ -726,8 +726,10 @@ heatmap_plot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/heatmap" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/heatmap" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 9: Heatmap illustrating CPI Inflation (Year 1995 - Year 2019) </figcaption>
 </figure>
 
-<span style="font-family:Georgia; font-size:16px;"> Click <a href="https://colab.research.google.com/github/prabhupavitra/Data-Visualization/blob/master/"> Colab Notebook </a> to edit and run the workbook using google colab or fork this<a href="https://github.com/prabhupavitra/Data-Visualization-with-R"> github repository </a>  </span> 
+<span style="font-family:Georgia; font-size:16px;">
+Thanks for reading! As I mentioned in the beginning, there are a lot of cool visualization techniques available for visualizing amounts. To modify the visualizations with your own data, Click <a href="https://colab.research.google.com/github/prabhupavitra/Data-Visualization-with-R/blob/master/Visualizing%20Amounts.ipynb"> Colab Notebook </a> to edit and run the workbook using Google Colab. 
+If you want to get in touch with me, feel free to reach me on my email. You can also view the code in <a href="https://github.com/prabhupavitra/Data-Visualization-with-R"> my Github repository </a>.</span> 

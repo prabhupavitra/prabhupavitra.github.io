@@ -5,11 +5,11 @@ author_profile: true
 excerpt: "Collaborative Filtering using PySpark with grouplens 10M dataset"
 date:   2020-02-10 22:12:28 -0500
 header:
-    teaser: /img/Teaser/movierec.jpg
+    teaser: /img/Project/Teaser/movierec.jpg
 ---
 
 
-<img src="/img/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Project/Teaser/recomsyspyspark.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 <span style="font-family:Georgia; font-size:14px;">
 A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based recommendation systems, association rule mining, content-based filtering, collaborative filtering and hybrid methods. The method one chooses to recommend, relies heavily on the kind of input (implicit vs explicit feedback), data sparsity, scalability and efficiency. Every method has its own advantages and drawbacks. </span>
 
