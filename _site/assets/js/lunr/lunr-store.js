@@ -1,20 +1,44 @@
 var store = [{
         "title": "Financial Data Visualization - Amounts",
-        "excerpt":"This article is part of financial data visualization blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance. Although, both can be used to visualize...","categories": [],
+        "excerpt":"This article is part of financial data visualization series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance. Although, both can be used to visualize numeric...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingAmounts/",
         "teaser": null
       },{
         "title": "Financial Data Visualization - Distributions",
-        "excerpt":"This article is part of financial data visualization blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we examine ways of visualizing distributions in finance. Analyzing and visualizing distributions is widely used...","categories": [],
+        "excerpt":"This article is part of financial data visualization series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we examine ways of visualizing distributions in finance. Analyzing and visualizing distributions is widely used in...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
         "teaser": null
       },{
-        "title": "Model Evaluation Metrics",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Metrics blog series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "title": "Evaluation Metrics-Classification",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
         "tags": [],
-        "url": "http://localhost:4000/learning/Evaluation%20Metrics/",
+        "url": "http://localhost:4000/learning/Classification_Evaluation_Metrics.md/",
+        "teaser": null
+      },{
+        "title": "Evaluation Metrics - Clustering",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Clustering_Evaluation_Metrics/",
+        "teaser": null
+      },{
+        "title": "Hypothesis Testing for Cross-sectional data",
+        "excerpt":"                      Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.  ","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Hypothesis%20Testing_cross_sectional/",
+        "teaser": null
+      },{
+        "title": "Hypothesis Testing for Time Series Data",
+        "excerpt":"                      Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.  ","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Hypothesis%20Testing_timeseries/",
+        "teaser": null
+      },{
+        "title": "Evaluation Metrics-Regression",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Regression_Evaluation_Metrics/",
         "teaser": null
       },{
         "title": "Movie Recommender system in R",

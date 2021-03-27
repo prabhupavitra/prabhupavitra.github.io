@@ -276,7 +276,7 @@
 
 
 
-  11 minute read
+  26 minute read
 
 </p>
           
@@ -285,26 +285,48 @@
 
       <section class="page__content" itemprop="text">
         
-        <p><img src="/img/Learning/Teaser/viz-distributions.png" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+        <style type="text/css">
+code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
+</style>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'] // removed 'code' entry
+    }
+});
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
+
+<p><img src="/img/Learning/Teaser/viz-distributions.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
-This article is part of <strong>financial data visualization</strong> blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we examine ways of visualizing distributions in finance.</span></p>
+This article is part of <strong>financial data visualization</strong> series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we examine ways of visualizing distributions in finance.</span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
-Analyzing and visualizing distributions is widely used in Data Science projects since we are interested in understanding the behaviour of a numeric variable. In other words, we would want to know the central tendency of a variable as well as the outliers. We would also be interested in knowing if the variable is symmetrically distributed or skewed, if the distribution is unimodal/bimodal/multimodal, if it contains suspicious/impossible values and so on</span></p>
+Analyzing and visualizing distributions is widely used in Data Science projects since we are interested in understanding the behaviour of a numeric variable. In other words, we would want to know the central tendency of a variable as well as the outliers. We would also be interested in knowing if the variable is symmetrically distributed or skewed, if the distribution is unimodal/bimodal/multimodal, if it contains suspicious/impossible values and so on.</span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
-Most commonly used visualizations to compare amounts include:</span></p>
+Here’s a list of visualizations that we included in this article for visualizing distributions. You can click on any specific visualization below to navigate directly to the visualization. </span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;"> 1. Histogram</span> <br />
-<span style="font-family:Georgia; font-size:16px;"> 2. Density Plot</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 3. Empirical cumulative distribution function</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 4. Boxplot</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 5. Violin Plot</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 6. Strip Chart</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 7. Sina Plot</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 8. Ridgeline Plot</span>  <br />
-<span style="font-family:Georgia; font-size:16px;"> 9. Quantile–quantile plot</span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> 1. <a href="#histogram">Histogram</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 2. <a href="#density-plot">Density Plot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 3. <a href="#empirical-cumulative-distribution-function">Empirical cumulative distribution function</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 4. <a href="#box-plot">Boxplot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 5. <a href="#violin-plot">Violin Plot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 6. <a href="#strip-chart">Strip Chart</a></span><br />
+<span style="font-family:Georgia; font-size:16px;"> 7. <a href="#jitter-plot">Jitter plot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 8. <a href="#sina-plot">Sina Plot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 9. <a href="#ridgeline-plot">Ridgeline Plot</a></span>  <br />
+<span style="font-family:Georgia; font-size:16px;"> 10. <a href="#quantile-quantile-plot">Quantile–quantile plot</a></span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
 We will be using quandl api and quantmod api to import financial data. Using an API for importing data is beneficial, especially in finance, because the dataset is updated extremely frequently, and they offer a lot of benefits in terms of ease and flexibility. </span>  <br />
@@ -610,14 +632,11 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 </span></code></pre></div></div>
 
 <blockquote>
-  <p><span style="font-family:Georgia; font-size:18px;"> Univariate Distributions </span></p>
+  <p><span style="font-family:Georgia; font-size:18px;"> Univariate Distributions </span> <br />
+<span style="font-family:Georgia; font-size:16px;"> A univariate distribution refers to the distribution of just one random variable and understanding their form and function is extremely useful in data science. When visualizing a univariate distribution our purpose is to see how a single variable is spread. One can use this plot when visualizing a single variable. Histograms and density plots are a popular choice for visualizing single distribution. </span></p>
 </blockquote>
 
-<p><span style="font-family:Georgia; font-size:16px;"> A univariate distribution refers to the distribution of just one random variable and understanding their form and function is extremely useful in data science. When visualizing a univariate distribution our purpose is to see how a single variable is spread. One can use this plot when visualizing a single variable. Histograms and density plots are a popular choice for visualizing single distribution. </span></p>
-
-<blockquote>
-  <p><span style="font-family:Georgia; font-size:18px;"> Histogram </span></p>
-</blockquote>
+<h3 id="histogram">Histogram</h3>
 
 <p><span style="font-family:Georgia; font-size:16px;"> One of the simplest ways to show data spread is Histogram. To construct a histogram from a continuous variable you first need to split the data into intervals, called bins. Depending on the data distribution and the purpose of visualization, an appropriate bin width is chosen. Although software chooses a default bin width, it is vital to understand data-based binning techniques used in estimating bin width. </span></p>
 
@@ -636,13 +655,11 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 </span><span class="n">cpi_histplot</span><span class="w">
 </span></code></pre></div></div>
 <figure>
-  <img src="/img/Learning/visualization/viz2/univariate-histogram" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <img src="/img/Learning/visualization/viz2/univariate-histogram.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
   <figcaption style="color: grey"> Figure 1: Histogram illustrating the annual average change in monthly CPI </figcaption>
 </figure>
 
-<blockquote>
-  <p><span style="font-family:Georgia; font-size:18px;"> Kernel Density Plots </span></p>
-</blockquote>
+<h3 id="density-plot">Density Plot</h3>
 
 <p><span style="font-family:Georgia; font-size:16px;">Kernel Density plots are a popular choice for visualizing single as well as multiple distributions because it creates a smooth curve on a given set of data. The smoothness of the curve is controlled by a bandwidth parameter that is analogous to the histogram bin width.</span></p>
 
@@ -659,15 +676,13 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 </span><span class="n">cpi_kerneldensity</span><span class="w">
 </span></code></pre></div></div>
 <figure>
-  <img src="/img/Learning/visualization/viz2/univariate-kde" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <img src="/img/Learning/visualization/viz2/univariate-kde.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
   <figcaption style="color: grey"> Figure 2: Kernel Density Estimate illustrating the annual average change in monthly CPI </figcaption>
 </figure>
 
-<blockquote>
-  <p><span style="font-family:Georgia; font-size:18px;"> Empirical cumulative distribution function </span></p>
-</blockquote>
+<h3 id="empirical-cumulative-distribution-function">Empirical cumulative distribution function</h3>
 
-<p><span style="font-family:Georgia; font-size:16px;"> An Empirical cumulative distribution function is an estimator of the Cumulative Distribution Function. The ECDF allows you to plot a feature of your data in order from least to greatest and see the whole feature as if is distributed across the data set. It has some useful properties such as being consistent and having a known confidence band. Best of all, it’s non-parametric so it will work with pretty much any distribution.</span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> An Empirical cumulative distribution function(ECDF) is an estimator of the Cumulative Distribution Function. The ECDF allows you to plot a feature of your data in order from least to greatest and see the whole feature as if is distributed across the data set. It has some useful properties such as being consistent and having a known confidence band. Best of all, it’s non-parametric so it will work with pretty much any distribution.</span></p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Empirical cumulative distribution function in ascending order for December Over-the-year percent change in CPI</span><span class="w">
 </span><span class="c1"># ecdf using stat_ecdf() ; geom = "step" can be used for a step ecdf</span><span class="w">
@@ -691,7 +706,7 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 </span><span class="n">cpi_ecdf_plot</span><span class="w">
 </span></code></pre></div></div>
 <figure>
-  <img src="/img/Learning/visualization/viz2/univariate-ecdf-asc" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <img src="/img/Learning/visualization/viz2/univariate-ecdf-asc.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
   <figcaption style="color: grey"> Figure 3: Empirical Cumulative Distribution Function of Over-the-year percent change in CPI.(Ascending) </figcaption>
 </figure>
 
@@ -714,7 +729,7 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 
 </span></code></pre></div></div>
 <figure>
-  <img src="/img/Learning/visualization/viz2/univariate-ecdf-desc" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <img src="/img/Learning/visualization/viz2/univariate-ecdf-desc.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
   <figcaption style="color: grey"> Figure 4: Empirical Cumulative Distribution Function of Over-the-year percent change in CPI.(Descending) </figcaption>
 </figure>
 
@@ -737,15 +752,18 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 
 </span></code></pre></div></div>
 <figure>
-  <img src="/img/Learning/visualization/viz2/univariate-ecdf-norm" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <img src="/img/Learning/visualization/viz2/univariate-ecdf-norm.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
   <figcaption style="color: grey"> Figure 5: Normalized Empirical Cumulative Distribution Function of Over-the-year percent change in CPI </figcaption>
 </figure>
 
 <blockquote>
-  <p><span style="font-family:Georgia; font-size:18px;"> Multivariate Distributions </span></p>
+  <p><span style="font-family:Georgia; font-size:18px;"> Multivariate Distributions </span> <br />
+<span style="font-family:Georgia; font-size:16px;"> Visualizing multivariate distributions in a single plot arises in various situations as discussed in the following examples. For example, one might just be interested in comparing data spread of a single variable at various times for comparable data (Example: Price of precious metals); One may be curious about outliers or the density of the data points around a specified value; one might also want to compare multiple variables in a single dataset(Example: Salary distribution of male/female employees); One might be interested to know which data distribution is more volatile than the other; and so on.. The plots used in these scenarios depends on the number of distributions involved. The intention of the plot is to provide clarity on the purpose of the plot. Histograms and density plots are used when the number of distributions are less. This section is dedicated to multivariate data visualization in finance.  </span></p>
 </blockquote>
 
-<p><span style="font-family:Georgia; font-size:16px;"> Visualizing multivariate distributions in a single plot arises in various situations as discussed in the following examples. For example, one might just be interested in comparing data spread of a single variable at various times for comparable data (Example: Price of precious metals); One may be curious about outliers or the density of the data points around a specified value; one might also want to compare multiple variables in a single dataset(Example: Salary distribution of male/female employees); One might be interested to know which data distribution is more volatile than the other; and so on.. The plots used in these scenarios depends on the number of distributions involved. The intention of the plot is to provide clarity on the purpose of the plot. Histograms and density plots are used when the number of distributions are less. The plots used to visualize multiple distributions includes, but not limited to, box plots, violin plot, strip chart, sina plots, ridgeline plots, boxen plots. Density plots work well for multiple distributions as they are somewhat distinct and contiguous. </span></p>
+<p><span style="font-family:Georgia; font-size:18px;"> Density plot for Multivariate Distributions </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Density plots are quite useful when visualizing multivariate continous variables.  Here, we can estimate the underlying data-generating density by smoothing out the data points. Density plots work well for multiple distributions as they are somewhat distinct and contiguous. </span></p>
 
 <div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plots the Kernel density estimation for multiple distributions distinct and contiguous</span><span class="w">
 </span><span class="n">cpi_annualavg_kde</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
@@ -773,10 +791,491 @@ This notebook uses Quandl and quantmod API to import Financial Data directly to 
 
 </span><span class="n">cpi_annualavg_kdeplot</span><span class="w">
 </span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-kde.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 6: Density plots illustrating the annual average change in monthly CPI for Housing, Food, Recreation and Transportation</figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:16px;"> 
+Although density plots are one of the versatile visualizations in finance, they have a number of complications. Firstly, there is a need for choosing a smoothing window. While a window size that is small enough to capture peaks in the dense regions of the data may lead to instable estimates else, a bigger window might smooth out pronounced features of the density, such as sharp peaks. Moreover, the density lines do not convey the information on how much data was used to estimate them, and plots can be especially problematic if the sample sizes for the curves differ. </span></p>
+
+<blockquote>
+  <p><span style="font-family:Georgia; font-size:18px;"> Empirical cumulative distribution plots for multiple distributions </span></p>
+</blockquote>
+
+<p><span style="font-family:Georgia; font-size:16px;"> 
+Since density plots have a lot of drawbacks, a better alternative used for multivariate distributions is the ECDF plot. In the following example, we use ECDF plot to visualize the data previously visualized using density plots.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Empirical cumulative distribution function in ascending order </span><span class="w">
+</span><span class="c1"># For December Over-the-year percent change in CPI (Categories : Housing, Food, Recreation and Transportation)</span><span class="w">
+</span><span class="n">cpi_fstc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_otypct</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Transportation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Recreation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Food &amp; Beverages'</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_multecdf_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_fstc</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="m">81</span><span class="o">*</span><span class="n">..y..</span><span class="p">,</span><span class="w">
+                     </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.5</span><span class="p">,</span><span class="w"> </span><span class="m">82</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"ECDF of Over-the-Year Percent Change in CPI (Ascending)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">cpi_multecdf_plot</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-ecdf-asc.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 7: Ascending ECDF plots depicting Over-the-Year Percent Change in CPI for Housing, Food, Recreation and Transportation</figcaption>
+</figure>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalized ecdf for Multiple distributions</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_fstc</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">OverYrPercentChange</span><span class="p">,</span><span class="w">  
+                       </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="n">..y..</span><span class="p">,</span><span class="w">
+                       </span><span class="n">color</span><span class="o">=</span><span class="n">cpi_fstc</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-22</span><span class="p">,</span><span class="w"> </span><span class="m">22</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Over-the-year percent change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ECDF"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of Over-the-Year Percent Change in CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+        </span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-ecdf-norm.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 8: Normalized ECDF plots depicting Over-the-Year Percent Change in CPI for Housing, Food, Recreation and Transportation</figcaption>
+</figure>
+
+<blockquote>
+  <p><span style="font-family:Georgia; font-size:18px;"> Highly Skewed Distributions </span> <br />
+<span style="font-family:Georgia; font-size:16px;"> So far, we analyzed univariate and multivariate distributions easily using density and ECDF plots since the distribution was normal or near normal. Visualizing highly skewed distributions are quite tricky. Using density plots or ECDF plots render little to no information about the underlying data. For instance, lets visualize trading volume of IBM stock to understand the same.</span></p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Density plot of a Highly skewed distribution : Trading Volume of IBM Stock</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume_millions</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"IBM Stock Trading Volume"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of Trading Volume of IBM Stock"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/univariate-kde-skewed.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 9: Density plot illustrating Trading Volume of IBM Stock; This distribution is highly skewed to the right</figcaption>
+</figure>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalized ECDF of a Highly skewed distribution : Trading Volume of Bitcoin</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.5e+07</span><span class="p">,</span><span class="w"> </span><span class="m">2.5e+09</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">name</span><span class="o">=</span><span class="s2">"Trading Volume of Bitcoin (in millions)"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-.01</span><span class="p">,</span><span class="w"> </span><span class="m">1.01</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cumulative Frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/univariate-ecdf-skewed.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 10: Normalized ECDF plot illustrating Trading Volume of IBM Stock; Note that, neither density plot, nor ECDF plot gives too much information about underlying data; Hence, it is vital to reduce the skewness in the data in order to extract more information from the data. </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:16px;">
+Log transformation, is a widely used method to address skewed data, is one of the most popular transformations used to reduce right skewness.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Density plot of logarithm of a Highly skewed distribution : Trading Volume of Bitcoin</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="w">
+    </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"log"</span><span class="p">[</span><span class="s2">"10"</span><span class="p">],</span><span class="w"> </span><span class="s2">"(Trading Volume)"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"density"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density estimate of Logarithm of Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/bimodal-kde.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 11: Density plot depicting the trading volume of bitcoin after log transformation.  </figcaption>
+</figure>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ECDF of logarithm of a right skewed distribution : Trading Volume of IBM Stock </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="w">
+    </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"log"</span><span class="p">[</span><span class="s2">"10"</span><span class="p">],</span><span class="w"> </span><span class="s2">"(Trading Volume)"</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cumulative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Normalized ECDF of logarithm of Trading Volume of IBM Stock"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/bimodal-ecdf.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 12: ECDF plot depicting the trading volume of bitcoin after log transformation.  </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:16px;"> One of the notable applications of ECDF plot is in identifying whether the data follows Power law. The next section is a brief overview of Power Law Distributions.</span></p>
+
+<blockquote>
+  <p><span style="font-family:Georgia; font-size:18px;">Power Law Distributions</span> <br />
+<span style="font-family:Georgia; font-size:16px;"> A power law is a statistical distribution over a quantity x following the form $x^{−α}$, with α constant. Among other things, this means that when plotted on doubly logarithmic scales, the cumulative distribution function for a power law follows a straight line with slope 1 – α. Measurement of the slope can give a rough estimate of α. The log‐log plots that we discussed in the previous section are widely used as a simple visual diagnostic for power‐law behaviour. In other words, to see that this distribution is not a power law, we plot two quantities against each other with logarithmic axes and they show do not show a linear relationship. This indicates that the two quantities do not have a power law distribution. On the contrary, if the descending ecdf with logarithmic axes shows perfect linerarity, we would conclude that the variables follow power law distribution. In the following example, we shall check if the trading volume of bitcoin follows power law or not.</span></p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Descending ecdf with logarithmic x and y axes ; </span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">btcusd_return</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">btcusd_return</span><span class="o">$</span><span class="n">Trading_Volume</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">-</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e2</span><span class="p">,</span><span class="w"> </span><span class="m">1e3</span><span class="p">,</span><span class="w"> </span><span class="m">1e4</span><span class="p">,</span><span class="w"> </span><span class="m">1e5</span><span class="p">,</span><span class="w"> </span><span class="m">1e6</span><span class="p">,</span><span class="w"> </span><span class="m">1e7</span><span class="p">),</span><span class="w">
+                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">4</span><span class="p">),</span><span class="w">
+                           </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">5</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">6</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">7</span><span class="p">)),</span><span class="w">
+                </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Trading Volume"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-3</span><span class="p">,</span><span class="w"> </span><span class="m">1e-2</span><span class="p">,</span><span class="w"> </span><span class="m">1e-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"relative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Power Law does not Hold"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Descending ECDF with log axes depicting Trading Volume of Bitcoin"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># When Power law holds, the plot will look like like a straight line</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/univariate-powerlaw.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 13: Descending ECDF plot with log axes depicting the trading volume of bitcoin; We observe that, the plot is not linear and we can conclude that the power law does not hold in this case. </figcaption>
+</figure>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"poweRlaw"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># The Moby Dick data set contains the frequency of unique words in the novel Moby Dick by Herman Melville.</span><span class="w">
+</span><span class="n">data</span><span class="p">(</span><span class="s2">"moby"</span><span class="p">,</span><span class="w"> </span><span class="n">package</span><span class="o">=</span><span class="s2">"poweRlaw"</span><span class="p">)</span><span class="w">
+</span><span class="n">moby_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">moby</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Density plot of a Highly skewed distribution : Trading Volume of IBM Stock</span><span class="w">
+</span><span class="n">moby_kde</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">moby_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">moby</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_density</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"#56B4E950"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">,</span><span class="n">adjust</span><span class="o">=</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">xlim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">500</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Word Count"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Kernel density of word frequencies"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">  
+
+</span><span class="c1"># Descending ecdf with logarithmic x and y axes ; When Power law holds, the plot will look like like a straight line</span><span class="w">
+</span><span class="n">moby_powerlaw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">moby_df</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">moby</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">-</span><span class="n">..y..</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">stat_ecdf</span><span class="p">(</span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"step"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w"> 
+            </span><span class="n">pad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e0</span><span class="p">,</span><span class="w"> </span><span class="m">1e1</span><span class="p">,</span><span class="w"> </span><span class="m">1e2</span><span class="p">,</span><span class="w"> </span><span class="m">1e3</span><span class="p">,</span><span class="w"> </span><span class="m">1e4</span><span class="p">),</span><span class="w">
+                </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="w">
+                           </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">3</span><span class="p">),</span><span class="w"> </span><span class="nf">expression</span><span class="p">(</span><span class="m">10</span><span class="o">^</span><span class="m">4</span><span class="p">)),</span><span class="w">
+                </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Word Count"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_log10</span><span class="p">(</span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-3</span><span class="p">,</span><span class="w"> </span><span class="m">1e-2</span><span class="p">,</span><span class="w"> </span><span class="m">1e-1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"relative frequency"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotate</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Power Law holds"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"darkgreen"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Descending ECDF with log axes"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">plot_grid</span><span class="p">(</span><span class="n">moby_kde</span><span class="p">,</span><span class="w"> </span><span class="n">moby_powerlaw</span><span class="p">,</span><span class="w"> </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AUTO"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/univariate-powerlaw2.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 14: The descending ECDF of the frequencies of occurrence of English words in the novel Moby Dick by Herman Melville. The horizontal axis is the total number of times a word occurs in the book, and the vertical axis is the number of words which occur that many times or more.</figcaption>
+</figure>
+
+<h3 id="quantile-quantile-plots">Quantile-Quantile plots</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Q-Q plots are yet another way to visualize univariate distributions. The quantile-quantile (q-q) plot is a graphical technique for determining if two data sets come from populations with a common distribution. In general, the basic idea is to compute the theoretically expected value for each data point based on the distribution in question. If the data indeed follow the assumed distribution, then the points on the q-q plot will fall approximately on a straight line. In the following code, we visualize the annual average change in monthly CPI using  Q-Q plot.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.list</span><span class="p">(</span><span class="n">MASS</span><span class="o">::</span><span class="n">fitdistr</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">,</span><span class="s2">"normal"</span><span class="p">)</span><span class="o">$</span><span class="n">estimate</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Coordinates for the axis line segments </span><span class="w">
+</span><span class="n">df_segment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">-19</span><span class="p">),</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">19</span><span class="p">,</span><span class="m">-19</span><span class="p">),</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="w"> </span><span class="m">-19</span><span class="p">),</span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">19</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># Q-Q plot using stat_qq() and geom_abline()</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">cpi_annualavg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">sample</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cpi_annualavg</span><span class="o">$</span><span class="n">AnnualAvgChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_abline</span><span class="p">(</span><span class="n">slope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">intercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey70"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_qq</span><span class="p">(</span><span class="n">dparams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_segment</span><span class="p">(</span><span class="w">
+    </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df_segment</span><span class="p">,</span><span class="w">
+    </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xend</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yend</span><span class="p">),</span><span class="w">
+    </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">inherit.aes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="o">*</span><span class="p">(</span><span class="m">5</span><span class="o">:</span><span class="m">10</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_y_continuous</span><span class="p">(</span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-19</span><span class="p">,</span><span class="m">19</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="o">*</span><span class="p">(</span><span class="m">5</span><span class="o">:</span><span class="m">10</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"observed"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_fixed</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Q-Q plot of Annual Average Change in monthly CPI "</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">))</span><span class="w">
+</span></code></pre></div></div>
+<figure>
+  <img src="/img/Learning/visualization/viz2/univariate-qqplot.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 15: Q-Q plot illustrating the annual average change in monthly CPI. </figcaption>
+</figure>
+
+<h3 id="multiple-univariate-distributions">Multiple Univariate Distributions</h3>
+<p><span style="font-family:Georgia; font-size:16px;"> Visualizing multiple univariate distributions in a single plot arises when we are interested in comparing attributes of the underlying data distributions. To be specific, we can use these following visualizations if we are interested in comparing attributes like density, skewness, median, minimum data value, maximum point density among many others. The most popular one among these visualizations is the box plot. Others include boxen plots, violin plots, strip chart, jitter plot, swarm plot, sina plot, ridgeline plots etc. Each has its own advantages and caveats. Additionally, we can compare the distributions vertically or horizontally depending on the attributes we are interested in. We shall discuss these above mentioned visualizations in detail in the following section. </span></p>
+
+<h3 id="box-plot">Box plot</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Box plots, also called as box and whisker plot, displays the five-number summary of the underlying distribution. They are very popular since they are simple yet so informative when visualizing multiple distributions at once. They are very useful in comparing median, range and outliers. In the following example, we will use box plot to compare the distribution of percent change in consumer price index for some categories.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># month-to-month Percent Change in CPI-U for Food, Housing, Transport &amp; Recreation</span><span class="w">
+</span><span class="n">cpi_pct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">cpi_pctchng</span><span class="p">,</span><span class="n">Category</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'Housing'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Transportation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Recreation'</span><span class="p">,</span><span class="w">
+                                              </span><span class="s1">'Food &amp; Beverages'</span><span class="p">))</span><span class="w">
+
+
+</span><span class="c1"># Boxplot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_boxplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">outlier.colour</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">outlier.shape</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="w">
+                    </span><span class="n">alpha</span><span class="o">=</span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Box plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Monthly Percent Change"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">,</span><span class="n">reverse</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">    
+
+</span><span class="n">cpi_boxplot</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-boxplot.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 16: Box plot illustrating the month-to-month Percent Change in CPI-U </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:16px;">Although box plots are very popular, some information about the underlying distribution is lost. For example, one cannot find how values in the data are distributed (For instance, its not possible to know if data is bimodal or multimodal). Additionally, there are sophisticated alternatives to box plot these days and we discuss them in the next section. </span></p>
+
+<h3 id="violin-plot">Violin plot</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">With Violin plots, it is easy to visualize overall data density as they display the density for all data points. A violin plot combines density plot with a box plot. Unlike box plots, the violin plot displays the density of all points than just the middle half. The best source of information I came across regarding this topic include a paper by Hadley Wickham and Lisa Stryjewski titled 40 years of boxplots and another from Jerry L. Hintze and Ray D. Nelson titled Violin Plots: A Box Plot-Density Trace Synergism.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Violin plot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_violinplot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_violin</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Violin plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">    
+
+</span><span class="n">cpi_violinplot</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-violinplot.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 17: Violin plot illustrating the month-to-month Percent Change in CPI-U </figcaption>
+</figure>
+
+<h3 id="strip-chart">Strip Chart</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> A strip chart encodes each sample of a distribution as a dot and is a variant of the dot plot. They are excellent for visualizing small one-dimensional dataset. Although strip charts can reveal gaps, outliers, and data outside of the expected range, they are not a suitable approach if there is overlapping of points. In the example below, we visualize the monthly CPI using strip chart in the following code; We can observe that, the points are overlapping in the plot and one cannot identify underlying patterns. One solution to this problem is, to use the strip charts on the sample of data. A better alternative is, the jitter plot.   </span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Strip chart of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="c1"># Using geom_point()</span><span class="w">
+</span><span class="n">cpi_stripchart</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Strip chart of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">cpi_stripchart</span><span class="w">
+
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-stripchart.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 18: Strip Chart plot illustrating the month-to-month Percent Change in CPI-U </figcaption>
+</figure>
+
+<h3 id="jitter-plot">Jitter plot</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> In cases where the overlapping of points causes a reduction in the readability of the plot, we can use the jitter plot. Jitter plot introduces a small movement to the plotted points, making it easier to read and understand scatter plots. It is useful in identifying outliers and the normal behaviour or belt of the variable. </span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Jitter plot(Strip chart with jitters) of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_jitter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_point</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position_jitter</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">.15</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">320</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Jitter plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">   
+
+</span><span class="n">cpi_jitter</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-jitterplot.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 19: Jitter plot illustrating the month-to-month Percent Change in CPI-U </figcaption>
+</figure>
+
+<h3 id="sina-plot">Sina plot</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Sina plot is an enhanced jitter strip chart inspired by the jitter plot and the violin plot. They are useful in visualizing a single variable in a multiclass dataset. The width of the jitter is controlled by the density distribution of the data within each class.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Sina plot of carrier delays of largest air carriers in the Unites States</span><span class="w">
+</span><span class="n">cpi_sina</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cpi_pct</span><span class="p">,</span><span class="w">
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">PercentChange</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">cpi_pct</span><span class="o">$</span><span class="n">Category</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ylim</span><span class="p">(</span><span class="m">-2.5</span><span class="p">,</span><span class="m">2.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">geom_violin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">ggforce</span><span class="o">::</span><span class="n">geom_sina</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+       </span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Sina plot of month-to-month Percent Change in CPI-U"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Category"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Percent Change in monthly CPI"</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s2">"CPI Category"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+       </span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="o">=</span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+             </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">  
+
+</span><span class="n">cpi_sina</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-sinaplot.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 20: Sina plot illustrating the month-to-month Percent Change in CPI-U </figcaption>
+</figure>
+
+<h3 id="ridgeline-plot">Ridgeline plot</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Ridgeline plots, also called ridge plots or joy plots, are represented using histograms or density plots and are useful when a number of data segments have to be plotted on the same horizontal scale. Since they slightly overlap and create the impression of a mountain range, they are called ridgeline plots.</span></p>
+
+<div class="language-r highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Ridgeline plots to view price distribution of precious metals (1968-Present)</span><span class="w">
+</span><span class="n">preciousmetals_ridgeline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">precious_metals</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">precious_metals</span><span class="o">$</span><span class="n">USD</span><span class="p">,</span><span class="w">
+           </span><span class="n">y</span><span class="o">=</span><span class="n">precious_metals</span><span class="o">$</span><span class="n">Commodity</span><span class="p">,</span><span class="w">
+           </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">precious_metals</span><span class="o">$</span><span class="n">Commodity</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">geom_density_ridges</span><span class="p">(</span><span class="n">bandwidth</span><span class="o">=</span><span class="m">40</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">xlim</span><span class="p">(</span><span class="m">-100</span><span class="p">,</span><span class="m">2250</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">"Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Prices"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">clip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"off"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pprabhu_pal</span><span class="p">(</span><span class="s2">"div"</span><span class="p">)(</span><span class="m">4</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme_pprabhu</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Ridgeline plot of USD per troy ounce of Precious Metals"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+</span><span class="n">theme</span><span class="p">(</span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="n">face</span><span class="o">=</span><span class="s2">"italic"</span><span class="p">),</span><span class="w">
+      </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="m">0</span><span class="p">))</span><span class="w">
+
+</span><span class="n">preciousmetals_ridgeline</span><span class="w">
+</span></code></pre></div></div>
+
+<figure>
+  <img src="/img/Learning/visualization/viz2/multivariate-ridgeline.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 21: Ridgeline plot illustrating the distribution of precious metal prices </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:16px;">
+The list of plots discussed above is by no means an exhaustive list, but it gives an idea of the range of plots available to visualize multiple univariate distributions in a single plot. That said, there are a number of variations of the plots discussed above. Variable-width box plots, notched box plots, beeswarm plots, violin scatterplots, violin strip charts, bean plots, waffle charts, barcode charts, jittered strip plots, boxen plots are some of them. If you are interested in reading more about these, please scan through the links mentioned in the <a href="#further-reading">Further Reading</a> section.</span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
 Thanks for reading! As I mentioned in the beginning, there are a lot of cool visualization techniques available for visualizing distributions. To modify the visualizations with your own data, Click <a href="https://colab.research.google.com/github/prabhupavitra/Data-Visualization-with-R/blob/master/Visualizing%20Amounts.ipynb"> Colab Notebook </a> to edit and run the workbook using Google Colab. 
 If you want to get in touch with me, feel free to reach me on my email. You can also view the code in <a href="https://github.com/prabhupavitra/Data-Visualization-with-R"> my Github repository </a>.</span></p>
+
+<h3 id="further-reading">Further Reading</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">(1) <a href="https://datavizproject.com"> https://datavizproject.com</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;">(2) <a href="https://datavizcatalogue.com"> https://datavizcatalogue.com</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;">(3) <a href="https://www.data-to-viz.com/"> https://www.data-to-viz.com/</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;">(4) <a href="https://www.r-graph-gallery.com/"> https://www.r-graph-gallery.com/</a></span></p>
+
+<h3 id="references">References</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">(1) Claus O. Wilke. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures.https://clauswilke.com/dataviz/</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(2) Kieran Healy. Data Visualization : A Practical Introduction. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(3) Few, Stephen. Now You See It: Simple Visualization Techniques for Quantitative Analysis. Oakland, CA: Analytics Press, 2009.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(4) Nussbaumer Knaflic, Cole. Storytelling with Data: A Data Visualization Guide for Business Professionals. Hoboken, NJ: John Wiley and Sons, 2015.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(5) Iliinsky, Noah, and Julie Steele. Designing Data Visualizations. Sebastopol, CA: O’Reilly, 2011.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(6) Klanten, Robert, Sven Ehmann, and Floyd Schulze. Visual Storytelling: Inspiring a New Visual Language. Berlin, Germany: Gestalten, 2011.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(7) McCandless, David. The Visual Miscellaneum: A Colorful Guide to the World’s Most Consequential Trivia. New York, NY: Harper Design, 2012.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(8) Tufte, Edward. The Visual Display of Quantitative Information. Cheshire, CT: Graphics Press, 2001.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(9) Ware, Colin. Visual Thinking for Design. Burlington, MA: Morgan Kaufmann, 2008.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(10) Ware, Colin. Information Visualization: Perception for Design. San Francisco, CA: Morgan Kaufmann, 2004.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(11) Yau, Nathan. Visualize This: The FlowingData Guide to Design, Visualization, and Statistics. Indianapolis, IN: John Wiley &amp; Sons, 2011.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">(12) Hadley Wickham and Lisa Stryjewski. 40 years of boxplots. 2011. https://vita.had.co.nz/papers/boxplots.pdf</span></p>
+
 
         
       </section>
@@ -811,7 +1310,7 @@ If you want to get in touch with me, feel free to reach me on my email. You can 
 ">Previous</a>
     
     
-      <a href="/learning/Evaluation%20Metrics/" class="pagination--pager" title="Model Evaluation Metrics
+      <a href="/learning/Classification_Evaluation_Metrics.md/" class="pagination--pager" title="Evaluation Metrics-Classification
 ">Next</a>
     
   </nav>

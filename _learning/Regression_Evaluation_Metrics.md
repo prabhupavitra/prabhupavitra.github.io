@@ -1,6 +1,6 @@
 ---
-title: "Model Evaluation Metrics"
-excerpt: "Exploring Evaluation metrics in machine learning"
+title: "Evaluation Metrics-Regression"
+excerpt: "Exploring Machine Learning Evaluation Metrics in Regression tasks"
 date:   2021-03-10 22:12:28 -0500
 theme : "mint"
 ---
@@ -28,10 +28,11 @@ MathJax.Hub.Queue(function() {
 
 > <span style="font-family:Georgia; font-size:20px;"> Performance Evaluation Metrics in Machine Learning</span>   
 
-<span style="font-family:Georgia; font-size:16px;"> This article is part of **Machine Learning Metrics** blog series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address. </span>  
+<span style="font-family:Georgia; font-size:16px;"> This article is part of **Machine Learning Evaluation Metrics** series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address. </span>  
 
-<span style="font-family:Georgia; font-size:16px;"> 1. Classification Metrics</span>   
-<span style="font-family:Georgia; font-size:16px;"> 2. Regression Metrics</span>   
+
+<span style="font-family:Georgia; font-size:16px;"> 1. Regression Metrics</span>   
+<span style="font-family:Georgia; font-size:16px;"> 2. Classification Metrics</span>   
 <span style="font-family:Georgia; font-size:16px;"> 3. Ranking Metrics</span>   
 <span style="font-family:Georgia; font-size:16px;"> 4. Clustering Metrics</span>   
 <span style="font-family:Georgia; font-size:16px;"> 5. Statistical Metrics</span>   

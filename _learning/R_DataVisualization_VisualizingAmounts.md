@@ -9,12 +9,12 @@ theme : "mint"
 <img src="/img/Learning/Teaser/viz-amounts.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 <span style="font-family:Georgia; font-size:16px;">
-This article is part of **financial data visualization** blog series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance.</span>  
+This article is part of **financial data visualization** series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance.</span>  
 
 <span style="font-family:Georgia; font-size:16px;">
 Although, both can be used to visualize numeric data; the purpose is a lot different. The purpose of visualizing amounts is to compare magnitude of discrete numeric data over time or any other categorical variable. Bar plots and Line plots are excellent ways to visualize amounts. The length of the bar is proportional to the magnitude of the discrete numeric variable.</span>   
 <span style="font-family:Georgia; font-size:16px;">
-Most commonly used visualizations to compare amounts include:</span>   
+In this article, we cover some of the more common visualizations used to represent amounts (i.e. magnitude of the quantitative values)</span>   
 
 <span style="font-family:Georgia; font-size:16px;"> 1. Bar Charts</span>   
 <span style="font-family:Georgia; font-size:16px;"> 2. Diverging Bar Charts</span>    
@@ -345,7 +345,7 @@ barplot_cpi
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/horizontal-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/horizontal-bar-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 1: Horizontal Bar Chart depicting CPI data for All Urban Consumers for the year 2018 </figcaption>
 </figure>
 
@@ -383,7 +383,7 @@ barplot_cpiannual
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/diverging-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/diverging-bar-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 2: Diverging Bar Chart showing showing average annual inflation for selected categories (Year 2019) </figcaption>
 </figure>
 
@@ -423,7 +423,7 @@ metals_stackedplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/stacked-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/stacked-bar-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 3: Stacked Bar Chart illustrating history of precious metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
@@ -462,7 +462,7 @@ metals_groupedplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/grouped-bar-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/grouped-bar-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 4: Grouped Bar Chart illustrating history of base metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
@@ -557,7 +557,7 @@ gold_dotplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/dot-plot-1" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/dot-plot-1.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 6: Cleveland dot plot depicting gold prices history </figcaption>
 </figure>
 
@@ -646,7 +646,7 @@ cpi_dualdotplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/dot-plot-2" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/dot-plot-2.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 7: Cleveland dot plot depicting inflation changes in major categories (Year 2018- Year 2019) </figcaption>
 </figure>
 
@@ -689,7 +689,7 @@ basemetals_bubbleplot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/bubble-chart" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/bubble-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 8: Bubble chart illustrating comparison of base metal prices (Year 2019) </figcaption>
 </figure>
 
@@ -726,7 +726,7 @@ heatmap_plot
 ```
 
 <figure>
-  <img src="/img/Learning/visualization/viz1/heatmap" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <img src="/img/Learning/visualization/viz1/heatmap.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 9: Heatmap illustrating CPI Inflation (Year 1995 - Year 2019) </figcaption>
 </figure>
 
