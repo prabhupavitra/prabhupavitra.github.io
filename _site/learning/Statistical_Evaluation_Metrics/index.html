@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Evaluation Metrics - Classification - The Realm of Data Science</title>
-<meta name="description" content="Exploring Machine Learning Evaluation Metrics in Classification tasks ">
+<!-- begin _includes/seo.html --><title>Evaluation Metrics - Statistical - The Realm of Data Science</title>
+<meta name="description" content="Exploring Machine Learning Evaluation Metrics in Clustering tasks ">
 
 
   <meta name="author" content="Pavitra Prabhu">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="The Realm of Data Science">
-<meta property="og:title" content="Evaluation Metrics - Classification">
-<meta property="og:url" content="http://localhost:4000/learning/Classification_Evaluation_Metrics.md/">
+<meta property="og:title" content="Evaluation Metrics - Statistical">
+<meta property="og:url" content="http://localhost:4000/learning/Statistical_Evaluation_Metrics/">
 
 
-  <meta property="og:description" content="Exploring Machine Learning Evaluation Metrics in Classification tasks ">
+  <meta property="og:description" content="Exploring Machine Learning Evaluation Metrics in Clustering tasks ">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/learning/Classification_Evaluation_Metrics.md/">
+<link rel="canonical" href="http://localhost:4000/learning/Statistical_Evaluation_Metrics/">
 
 
 
@@ -260,15 +260,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Evaluation Metrics - Classification">
-    <meta itemprop="description" content="Exploring Machine Learning Evaluation Metrics in Classification tasks">
+    <meta itemprop="headline" content="Evaluation Metrics - Statistical">
+    <meta itemprop="description" content="Exploring Machine Learning Evaluation Metrics in Clustering tasks">
     <meta itemprop="datePublished" content="2021-03-10T21:12:28-06:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Evaluation Metrics - Classification
+          <h1 id="page-title" class="page__title" itemprop="headline">Evaluation Metrics - Statistical
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -312,15 +312,15 @@ MathJax.Hub.Queue(function() {
   <p><span style="font-family:Georgia; font-size:20px;"> Performance Evaluation Metrics in Machine Learning</span></p>
 </blockquote>
 
-<p><span style="font-family:Georgia; font-size:16px;"> This article is part of <strong>Machine Learning Evaluation Metrics</strong> series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address. In this article, we shall discuss the metrics used to evaluate classification.</span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> This article is part of <strong>Machine Learning Evaluation Metrics</strong> series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address.  In this article, we shall discuss the metrics used to evaluate ranking.</span></p>
 
 <p>The following list is a overview of how the model evaluation metrics/techniques are classified:</p>
 
 <p><span style="font-family:Georgia; font-size:16px;"> 1. Regression Metrics</span> <br />
-<span style="font-family:Georgia; font-size:16px;"> 2. <strong>Classification Metrics</strong></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 2. Classification Metrics</span> <br />
 <span style="font-family:Georgia; font-size:16px;"> 3. Ranking Metrics</span> <br />
-<span style="font-family:Georgia; font-size:16px;"> 4. Clustering Metrics</span> <br />
-<span style="font-family:Georgia; font-size:16px;"> 5. Statistical Metrics</span></p>
+<span style="font-family:Georgia; font-size:16px;"> 4. Clustering Metrics<span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 5. <strong>Statistical Metrics</strong></span></span></span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
 Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.</span></p>
@@ -343,23 +343,22 @@ Thanks for reading! If you want to get in touch with me or leave me any feedback
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Evaluation+Metrics+-+Classification%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FClassification_Evaluation_Metrics.md%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Evaluation+Metrics+-+Statistical%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FStatistical_Evaluation_Metrics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FClassification_Evaluation_Metrics.md%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FStatistical_Evaluation_Metrics%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FClassification_Evaluation_Metrics.md%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FStatistical_Evaluation_Metrics%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/learning/R_DataVisualization_VisualizingDistributions/" class="pagination--pager" title="Financial Data Visualization - Distributions
+      <a href="/learning/Regression_Evaluation_Metrics/" class="pagination--pager" title="Evaluation Metrics - Regression
 ">Previous</a>
     
     
-      <a href="/learning/Clustering_Evaluation_Metrics/" class="pagination--pager" title="Evaluation Metrics - Clustering
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 

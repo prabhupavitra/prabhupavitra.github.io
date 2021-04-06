@@ -11,7 +11,7 @@ var store = [{
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
         "teaser": null
       },{
-        "title": "Evaluation Metrics-Classification",
+        "title": "Evaluation Metrics - Classification",
         "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/Classification_Evaluation_Metrics.md/",
@@ -35,10 +35,28 @@ var store = [{
         "url": "http://localhost:4000/learning/Hypothesis%20Testing_timeseries/",
         "teaser": null
       },{
-        "title": "Evaluation Metrics-Regression",
+        "title": "Evaluation Metrics - Other evaluation techniques",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Other_Evaluation_Techniques/",
+        "teaser": null
+      },{
+        "title": "Evaluation Metrics - Ranking",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Ranking_Evaluation_Metrics/",
+        "teaser": null
+      },{
+        "title": "Evaluation Metrics - Regression",
         "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/Regression_Evaluation_Metrics/",
+        "teaser": null
+      },{
+        "title": "Evaluation Metrics - Statistical",
+        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/Statistical_Evaluation_Metrics/",
         "teaser": null
       },{
         "title": "Movie Recommender system in R",

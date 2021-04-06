@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Evaluation Metrics-Regression - The Realm of Data Science</title>
+<!-- begin _includes/seo.html --><title>Evaluation Metrics - Regression - The Realm of Data Science</title>
 <meta name="description" content="Exploring Machine Learning Evaluation Metrics in Regression tasks ">
 
 
@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="The Realm of Data Science">
-<meta property="og:title" content="Evaluation Metrics-Regression">
+<meta property="og:title" content="Evaluation Metrics - Regression">
 <meta property="og:url" content="http://localhost:4000/learning/Regression_Evaluation_Metrics/">
 
 
@@ -260,7 +260,7 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Evaluation Metrics-Regression">
+    <meta itemprop="headline" content="Evaluation Metrics - Regression">
     <meta itemprop="description" content="Exploring Machine Learning Evaluation Metrics in Regression tasks">
     <meta itemprop="datePublished" content="2021-03-10T21:12:28-06:00">
     
@@ -268,7 +268,7 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Evaluation Metrics-Regression
+          <h1 id="page-title" class="page__title" itemprop="headline">Evaluation Metrics - Regression
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -276,7 +276,7 @@
 
 
 
-  less than 1 minute read
+  4 minute read
 
 </p>
           
@@ -306,22 +306,179 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<p><img src="/img/Learning/Teaser/performanceeval.png" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+<p><img src="/img/Learning/Teaser/reg-eval-metrics.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
 
 <blockquote>
   <p><span style="font-family:Georgia; font-size:20px;"> Performance Evaluation Metrics in Machine Learning</span></p>
 </blockquote>
 
-<p><span style="font-family:Georgia; font-size:16px;"> This article is part of <strong>Machine Learning Evaluation Metrics</strong> series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address. </span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> This article is part of <strong>Machine Learning Evaluation Metrics</strong> series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats and are grouped based on the ML problem they address. In this article, we shall discuss the metrics used to evaluate regression.</span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;"> 1. Regression Metrics</span> <br />
+<p><span style="font-family:Georgia; font-size:16px;"> The following list is a overview of how the model evaluation metrics/techniques are classified:</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> 1. <strong>Regression Metrics</strong></span> <br />
 <span style="font-family:Georgia; font-size:16px;"> 2. Classification Metrics</span> <br />
 <span style="font-family:Georgia; font-size:16px;"> 3. Ranking Metrics</span> <br />
 <span style="font-family:Georgia; font-size:16px;"> 4. Clustering Metrics</span> <br />
-<span style="font-family:Georgia; font-size:16px;"> 5. Statistical Metrics</span></p>
+<span style="font-family:Georgia; font-size:16px;"> 5. Statistical Metrics</span> 
+<span style="font-family:Georgia; font-size:16px;"> 5. Other Model Evaluation Techniques</span></p>
+
+<h3 id="rmse">RMSE</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Root mean squared error (RMSE) is a quantifiable measure to check how the model’s predictions stack up against the actual outcome for regression tasks. It is defined as the square root of the average squared distance between the actual outcome and the predictions:</span></p>
+
+\[RMSE = \sqrt{\frac {1}{N} \sum_{u,i}{(\hat{y_i} - y_i)^2}}\]
+
+<p><span style="font-family:Georgia; font-size:16px;">
+where $N$ is the number of observations, $\hat{y_i}$ is the predicted value and $y_i$ is the actual value.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> Easy to optimize  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> Less intuitive to understand;  </span></li>
+  <li><span style="font-family:Georgia; font-size:16px;"> Sensitive to outliers;  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>When to use RMSE?</strong></span>   <br />
+ <span style="font-family:Georgia; font-size:16px;"> Use RMSE to evaluate your regression model, when the error is evenly distributed across the dataset or for error terms that follow a normal distribution. Since its computationally efficient, its a loss metric of choice when hyperparameter tuning or batch training a deep neural network.</span></p>
+
+<h3 id="mae">MAE</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Mean Absolute Error(MAE) is a loss function used for regression tasks and is defined as the sum of absolute differences between our target and predicted variables. </span></p>
+
+\[MAE = \frac {1}{N} \sum_{i=1}^{N}{|\hat{y_i} - y_i|}\]
+
+<p><span style="font-family:Georgia; font-size:16px;">
+where $N$ is the number of observations, $\hat{y_i}$ is the predicted value and $y_i$ is the actual value.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> Easy to understand;  </span></li>
+  <li><span style="font-family:Georgia; font-size:16px;"> Robust to outliers;  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> MAE with absolute value calculation is not differentiable globally, and hence not easy to optimize.   </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>When to use MAE?</strong></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> If your use case consists of dataset with large outliers, RMSE will be much larger than MAE. Using MAE will be appropriate in such cases.</span></p>
+
+<h3 id="quantile-of-errors">Quantile of Errors</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Quantile of errors, also known as the residual quantiles play a vital role in inspecting statistical models. It is useful in examining models like the normal linear regression, because we can expect that the residuals are normally distributed and have equal variance. In non-normal regression situations, such as logistic regression or log-linear analysis, the residual quantiles are practically of no use. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> Robust to outliers;  </span></li>
+  <li><span style="font-family:Georgia; font-size:16px;"> Useful for examining normal linear regression models;  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> Not applicable in case of non-normal regression situations;  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>When to use Residual Quantiles?</strong></span>   <br />
+<span style="font-family:Georgia; font-size:16px;"> Use quantiles to evaluate your statistical models, when the distribution is normal. </span></p>
+
+<h3 id="mape">MAPE</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> The mean absolute percentage error(MAPE), also known as mean absolute percentage deviation (MAPD) is one of the most widely used measures of forecast accuracy and is expressed as a ratio defined by the formula: </span></p>
+
+\[MAPE = \frac {1}{n} \sum_{t=1}^{n}\left |{\frac{A_t - F_t}{A_t}}\right |\]
+
+<p><span style="font-family:Georgia; font-size:16px;">
+where $A_t$ is the Actual value, $F_t$ is the forecast value. The MAPE is also sometimes reported as a percentage, which is the above equation multiplied by 100. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> THey are dimensionless and easy to interpret;  </span></li>
+  <li><span style="font-family:Georgia; font-size:16px;"> It is scale-independent and can apply easily to both high and low volume products;  </span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+<ul>
+  <li><span style="font-family:Georgia; font-size:16px;"> MAPE produces infinite or undefined values for zero or close-to-zero actual values</span></li>
+  <li><span style="font-family:Georgia; font-size:16px;"> MAPE is asymmetric, it imposes a larger penalty for negative errors than for positive errors.</span></li>
+  <li><span style="font-family:Georgia; font-size:16px;">MAPE assumes that the unit of measurement of the variable has a meaningful zero value. For instance, it should not be used to calculate the accuracy of a temperature forecast since it can take arbitrary zero value. </span></li>
+  <li><span style="font-family:Georgia; font-size:16px;">MAPE is not differentiable everywhere, and it can cause issues when used as an optimization criterion.</span></li>
+</ul>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>When to use MAPE?</strong></span>   <br />
+<span style="font-family:Georgia; font-size:16px;"> MAPE is a good measure for assessing demand volatility, comparing overall process outcome, Although MAPE is used extensively in forecasting accuracy, it is advised to use it in conjunction with other metrics . Additionally, there are various alternative measures to fix the shortcomings of MAPE. These include symmetric mean absolute percentage error (SMAPE), mean absolute proportional error (MASE), average direction accuracy (MDA), weighted MAPE (WMAPE) etc. </span></p>
+
+<h3 id="rmsle">RMSLE</h3>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Applications</strong></span></p>
+
+<h3 id="rrse">RRSE</h3>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Applications</strong></span></p>
+
+<h3 id="rae">RAE</h3>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Applications</strong></span></p>
+
+<h3 id="r-squared">R-Squared</h3>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Applications</strong></span></p>
+
+<h3 id="adjusted-r-squared">Adjusted R-Squared</h3>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Advantages</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Limitations</strong></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"><strong>Applications</strong></span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;">
 Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.</span></p>
+
+<h5 id="references">References</h5>
+
+<p>Gneiting, T. Making and Evaluating Point Forecasts. Journal of the American Statistical Association, 2011, 106, 746-762</p>
+
+<p>Goodwin, P. &amp; Lawton, R. On the asymmetry of the symmetric MAPE. International Journal of Forecasting, 1999, 15, 405-408</p>
+
+<p>Hoover, J. Measuring Forecast Accuracy: Omissions in Today’s Forecasting Engines and Demand-Planning Software. Foresight: The International Journal of Applied Forecasting, 2006, 4, 32-35</p>
+
+<p>Kolassa, S. Why the “best” point forecast depends on the error or accuracy measure (Invited commentary on the M4 forecasting competition). International Journal of Forecasting, 2020, 36(1), 208-211</p>
+
+<p>Kolassa, S. &amp; Martin, R. Percentage Errors Can Ruin Your Day (and Rolling the Dice Shows How). Foresight: The International Journal of Applied Forecasting, 2011, 23, 21-29</p>
+
+<p>Kolassa, S. &amp; Schütz, W. Advantages of the MAD/Mean ratio over the MAPE. Foresight: The International Journal of Applied Forecasting, 2007, 6, 40-43</p>
+
+<p>McKenzie, J. Mean absolute percentage error and bias in economic forecasting. Economics Letters, 2011, 113, 259-262</p>
+
+<p>Zheng, S. Gradient descent algorithms for quantile regression with smooth approximation. International Journal of Machine Learning and Cybernetics, 2011, 2, 191-207</p>
+
+<p>Mark A. Moon, Demand and Supply Integration: The Key to World-Class Demand Forecasting. Performance Measurement, 2013,</p>
+
+<p>Next Generation Demand Management
+by Charles W. Chase
+Published by Wiley, 2016 WHY MAPE IS NOT ALWAYS THE BEST METRIC</p>
 
         
       </section>
@@ -341,7 +498,7 @@ Thanks for reading! If you want to get in touch with me or leave me any feedback
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Evaluation+Metrics-Regression%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FRegression_Evaluation_Metrics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Evaluation+Metrics+-+Regression%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FRegression_Evaluation_Metrics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FRegression_Evaluation_Metrics%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -352,11 +509,12 @@ Thanks for reading! If you want to get in touch with me or leave me any feedback
       
   <nav class="pagination">
     
-      <a href="/learning/Hypothesis%20Testing_timeseries/" class="pagination--pager" title="Hypothesis Testing for Time Series Data
+      <a href="/learning/Ranking_Evaluation_Metrics/" class="pagination--pager" title="Evaluation Metrics - Ranking
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/learning/Statistical_Evaluation_Metrics/" class="pagination--pager" title="Evaluation Metrics - Statistical
+">Next</a>
     
   </nav>
 
