@@ -1,8 +1,8 @@
 ---
-title: "Movie Recommender system in R"
+title: "Loan Amortization"
 layout: single
 author_profile: true
-excerpt: "Model based movie recommendation system using R"
+excerpt: "Loan amortization using vba and Python"
 date:   2020-01-10 22:12:28 -0500
 header:
   teaser: /img/Project/Teaser/movierec.png

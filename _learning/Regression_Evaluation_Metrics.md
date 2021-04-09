@@ -116,7 +116,13 @@ where $A_t$ is the Actual value, $F_t$ is the forecast value. The MAPE is also s
 
 ### RMSLE
 
-<span style="font-family:Georgia; font-size:18px;">**Advantages**</span>     
+<span style="font-family:Georgia; font-size:16px;"> The root mean squared log error(RMSLE) 
+
+$$ RMSLE = \sqrt{\frac {1}{N} \sum_{u,i}{(\hat{y_i} - y_i)^2}} $$   
+
+<span style="font-family:Georgia; font-size:18px;">**Advantages**</span>   
+- <span style="font-family:Georgia; font-size:16px;"> Robust to outliers;  </span>     
+
 
 <span style="font-family:Georgia; font-size:18px;">**Limitations**</span>     
 

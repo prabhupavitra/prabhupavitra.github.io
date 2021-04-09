@@ -59,6 +59,12 @@ var store = [{
         "url": "http://localhost:4000/learning/Statistical_Evaluation_Metrics/",
         "teaser": null
       },{
+        "title": "Loan Amortization",
+        "excerpt":"Introduction The evolution of e-commerce and online streaming platforms has largely grown over the past several years. Early setbacks to more widespread adoption of these services, namely delivery costs in case of online retailers and bandwidth availability, especially with the video streaming platforms, have largely faded. Now many retailers are...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/projects/movie-recommender-in-r%20copy/",
+        "teaser": "http://localhost:4000/img/Project/Teaser/movierec.png"
+      },{
         "title": "Movie Recommender system in R",
         "excerpt":"Introduction The evolution of e-commerce and online streaming platforms has largely grown over the past several years. Early setbacks to more widespread adoption of these services, namely delivery costs in case of online retailers and bandwidth availability, especially with the video streaming platforms, have largely faded. Now many retailers are...","categories": [],
         "tags": [],
