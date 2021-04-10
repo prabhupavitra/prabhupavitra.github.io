@@ -24,7 +24,7 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<img src="/img/Learning/Teaser/viz-distributions.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Learning/LearningTeaser/viz-distributions.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 <span style="font-family:Georgia; font-size:16px;">
 This article is part of **financial data visualization** series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we examine ways of visualizing distributions in finance.</span>  

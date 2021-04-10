@@ -6,7 +6,7 @@ theme : "mint"
 ---
 
 
-<img src="/img/Learning/Teaser/viz-amounts.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Learning/LearningTeaser/viz-amounts.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 <span style="font-family:Georgia; font-size:16px;">
 This article is part of **financial data visualization** series where we cover most prominent plots used to quickly comprehend thousands or even millions of data points to support decision-making in finance. In this article, we dive deeper into visualizing amounts in finance.</span>  
@@ -16,14 +16,14 @@ Although, both can be used to visualize numeric data; the purpose is a lot diffe
 <span style="font-family:Georgia; font-size:16px;">
 In this article, we cover some of the more common visualizations used to represent amounts (i.e. magnitude of the quantitative values)</span>   
 
-<span style="font-family:Georgia; font-size:16px;"> 1. Bar Charts</span>   
-<span style="font-family:Georgia; font-size:16px;"> 2. Diverging Bar Charts</span>    
-<span style="font-family:Georgia; font-size:16px;"> 3. Stacked Bar Charts</span>    
-<span style="font-family:Georgia; font-size:16px;"> 4. Grouped Bar Charts (also called Clustered Bar Charts)</span>    
-<span style="font-family:Georgia; font-size:16px;"> 5. Animated Bar Charts</span>    
-<span style="font-family:Georgia; font-size:16px;"> 6. Dot Plots (also called Cleveland Dot Charts)</span>    
-<span style="font-family:Georgia; font-size:16px;"> 7. Bubble Charts</span>    
-<span style="font-family:Georgia; font-size:16px;"> 8. Heatmaps</span>    
+<span style="font-family:Georgia; font-size:16px;"> 1. [Bar Charts](#bar-charts)</span>   
+<span style="font-family:Georgia; font-size:16px;"> 2. [Diverging Bar Charts](#diverging-bar-chart)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 3. [Stacked Bar Charts](#stacked-bar-chart)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 4. [Grouped Bar Charts (also called Clustered Bar Charts)](#grouped-bar-chart)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 5. [Animated Bar Charts](#animated-bar-chart)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 6. [Dot Plots (also called Cleveland Dot Charts)](#cleveland-dot-plots)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 7. [Bubble Charts](#bubble-chart)</span>    
+<span style="font-family:Georgia; font-size:16px;"> 8. [Heatmaps](#heatmap)</span>    
 
 <span style="font-family:Georgia; font-size:16px;"> Others include :</span>    
 <span style="font-family:Georgia; font-size:16px;"> 9.  Waterfall Charts</span>    
@@ -269,7 +269,8 @@ mutate(AnnualAvgChange = (AnnualAvg/lag(AnnualAvg)-1)*100,
 filter(AnnualAvgChange!="NA")
 
 ```
-> <span style="font-family:Georgia; font-size:18px;">Bar Charts </span>   
+
+### Bar Charts 
 
 <span style="font-family:Georgia; font-size:16px;">
 A simple way to visualize the quantitative data of a categorical variable is the bar chart. The height of the bar is proportional to the quantity we want to visualize. They can be used for displaying data that are classified as nominal data/ordinal data.</span>    
@@ -349,7 +350,7 @@ barplot_cpi
   <figcaption style="color: grey"> Figure 1: Horizontal Bar Chart depicting CPI data for All Urban Consumers for the year 2018 </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Diverging bar chart </span>    
+### Diverging bar chart 
 
 <span style="font-family:Georgia; font-size:16px;">A diverging bar chart is a bar chart with a diverging aspect; i.e. It makes comparison of amounts from a divergent line easy to visualize. This divergent line can represent zero, but it can also be used to simply separate the two distinguishing members of the dataset based on the amount.In the plot depicted below, the divergent line is zero; Its quite easier to visualize which Categories saw a 
 positive rate of inflation vs negative.</span>   
@@ -387,7 +388,7 @@ barplot_cpiannual
   <figcaption style="color: grey"> Figure 2: Diverging Bar Chart showing showing average annual inflation for selected categories (Year 2019) </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Stacked bar chart </span>    
+### Stacked bar chart
 
 <span style="font-family:Georgia; font-size:16px;">The stacked bar chart extends the standard bar chart from visualizing quantity of one categorical variable to two. Each bar in a standard bar chart is divided into a number of sub-bars stacked end to end, each one corresponding to a level of the second categorical variable. The main objective of a standard bar chart is to compare numeric values between levels of a categorical variable. It also visualizes relative decomposition of each of the categories.</span>  
 
@@ -427,7 +428,7 @@ metals_stackedplot
   <figcaption style="color: grey"> Figure 3: Stacked Bar Chart illustrating history of precious metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Grouped bar chart </span>  
+### Grouped bar chart  
 
 <span style="font-family:Georgia; font-size:16px;"> 
 The grouped bar chart, also known as clustered bar graph, multi-set bar chart, or grouped column chart is a variation of bar chart used when we need to visualize distribution of data points or making comparisons across different categories of data.</span>   
@@ -466,7 +467,7 @@ metals_groupedplot
   <figcaption style="color: grey"> Figure 4: Grouped Bar Chart illustrating history of base metal prices (Year 2001 - Year 2019) </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Animated bar chart </span>  
+### Animated bar chart 
 
 <span style="font-family:Georgia; font-size:16px;">Animated bar charts are mostly used for visualization of trends over time. They provide a holistic data 
 story/insight in a concise and easy to understand chart, which makes them more popular in social media. </span>   
@@ -530,7 +531,7 @@ IRdisplay::display_png(file = "gganim.gif")
   <figcaption style="color: grey"> Figure 5: Animated bar chart illustrating CPI trends from 1984-2019 </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Cleveland Dot Plots </span>  
+### Cleveland Dot Plots
 
 <span style="font-family:Georgia; font-size:16px;"> Dot plots are one of the simplest way to visualize single numerical variable with a modest number of observations. Cleveland dot plots refer to plots of points that each belong to one of several categories. They are an alternative to bar charts or pie charts, and look somewhat like a horizontal bar chart where the bars are replaced by a dots at the values associated with each category. They are a great alternative to the bar chart and the power of these plots becomes evident on refining and they can easily communicate important aspects of your data to viewers. In the example below, we have considered depicting Gold fixing price. Although this is a simple and basic case of dot plot, they are capable of depicting lot more information. </span>
 
@@ -650,7 +651,7 @@ cpi_dualdotplot
   <figcaption style="color: grey"> Figure 7: Cleveland dot plot depicting inflation changes in major categories (Year 2018- Year 2019) </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Bubble Chart </span>  
+### Bubble Chart 
 
 <span style="font-family:Georgia; font-size:16px;">A bubble chart uses areas of circle to represent the quantity of a numeric variable. It is a preferred when we want to represent relationship between two or more numeric variables. In the following example, we represent the prices of base metals for the year 2019.</span>   
 
@@ -693,7 +694,7 @@ basemetals_bubbleplot
   <figcaption style="color: grey"> Figure 8: Bubble chart illustrating comparison of base metal prices (Year 2019) </figcaption>
 </figure>
 
-> <span style="font-family:Georgia; font-size:18px;"> Heatmap </span>  
+### Heatmap 
 
 <span style="font-family:Georgia; font-size:16px;">A heatmap depicts values for a main variable of interest across two axis variables as a grid and uses color coding to represent the quantity of values. In the below example, we generate a heatmap to depict historic monthly change in rate of inflation for major categories.</span>   
 

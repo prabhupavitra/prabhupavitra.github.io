@@ -63,17 +63,17 @@ var store = [{
         "excerpt":"Introduction The evolution of e-commerce and online streaming platforms has largely grown over the past several years. Early setbacks to more widespread adoption of these services, namely delivery costs in case of online retailers and bandwidth availability, especially with the video streaming platforms, have largely faded. Now many retailers are...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/movie-recommender-in-r/",
-        "teaser": "http://localhost:4000/img/Project/Teaser/movierec.png"
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.png"
       },{
         "title": "Implicit Collaborative Filtering with PySpark",
         "excerpt":"A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/collaborative-filtering-using-pyspark/",
-        "teaser": "http://localhost:4000/img/Project/Teaser/movierec.jpg"
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.jpg"
       },{
         "title": "Loan Amortization",
         "excerpt":"Introduction This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/loan_amortization/",
-        "teaser": "http://localhost:4000/img/Project/Teaser/amortization.jpeg"
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/amortization.jpeg"
       }]
