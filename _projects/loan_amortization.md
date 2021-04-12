@@ -2,7 +2,7 @@
 title: "Loan Amortization"
 layout: single
 author_profile: true
-excerpt: "Financial Modeling Series - loan amortization using vba & Python"
+excerpt: "Financial Modeling Series - Loan Amortization using vba & Python"
 date:   2021-02-14 22:12:28 -0500
 header:
   teaser: /img/Project/ProjectTeaser/amortization.jpeg
@@ -27,12 +27,12 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<img src="/img/Project/ProjectTeaser/home-loan.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Project/ProjectTeaser/amort1.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 #### Introduction
 
 <span style="font-family:Georgia; font-size:18px;">
-This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper level, but feel free to navigate directly to the [Excel](#loan-amortization-using-microsoft-excel) or [Python](#loan-amortization-using-python) sections however you please.</span>   
+This article is part of a series about **financial modeling** using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper level, but feel free to navigate directly to the [Excel](#loan-amortization-using-microsoft-excel) or [Python](#loan-amortization-using-python) sections however you please.</span>   
 
 <span style="font-family:Georgia; font-size:18px;">
 **So, what does it mean when a loan is amortized?**</span>   
@@ -92,4 +92,6 @@ We will be using IF statements in the amortization table so that changes in the 
 
 <span style="font-family:Georgia; font-size:18px;">
 (1) Benninga, Simon (April 2014). Financial Modeling. Cambridge, MA: MIT Press. ISBN: 9780262027281.</span>    
+<span style="font-family:Georgia; font-size:18px;">
+(2) Ross, S. A., R. W. Westerfield, and J. Jaffe. 2010. Corporate Finance, 9th ed. McGraw-Hill.
 
