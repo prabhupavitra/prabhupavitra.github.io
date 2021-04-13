@@ -24,7 +24,7 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<img src="/img/Learning/Teaser/reg-eval-metrics.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Learning/LearningTeaser/reg-eval-metrics.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 > <span style="font-family:Georgia; font-size:20px;"> Performance Evaluation Metrics in Machine Learning</span>   
 

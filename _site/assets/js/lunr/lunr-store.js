@@ -59,6 +59,12 @@ var store = [{
         "url": "http://localhost:4000/learning/Statistical_Evaluation_Metrics/",
         "teaser": null
       },{
+        "title": "Loan Amortization",
+        "excerpt":"Introduction This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/projects/loan_amortization/",
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/amortization.jpeg"
+      },{
         "title": "Movie Recommender system in R",
         "excerpt":"Introduction The evolution of e-commerce and online streaming platforms has largely grown over the past several years. Early setbacks to more widespread adoption of these services, namely delivery costs in case of online retailers and bandwidth availability, especially with the video streaming platforms, have largely faded. Now many retailers are...","categories": [],
         "tags": [],
@@ -70,10 +76,4 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/projects/collaborative-filtering-using-pyspark/",
         "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.jpg"
-      },{
-        "title": "Loan Amortization",
-        "excerpt":"Introduction This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/projects/loan_amortization/",
-        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/amortization.jpeg"
       }]
