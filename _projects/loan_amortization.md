@@ -88,6 +88,266 @@ We will be using IF statements in the amortization table so that changes in the 
 
 #### Loan Amortization using Python
 
+<span style="font-family:Georgia; font-size:18px;">
+To begin, we shall recreate a layout similar to that created in the excel spreadsheet. For obvious reasons, we will use the pandas library to achieve such a layout since this project demands us to create data frames. The first step is to load the required libraries and then we will create user defined functions for generating the loan summary, sensitivity analysis and the amortization schedule.</span>   
+
+```python
+# Libraries needed 
+import numpy as np
+import numpy_financial as npf
+import pandas as pd
+from IPython.display import display, HTML
+```
+<span style="font-family:Georgia; font-size:18px;">
+We will then create some helper functions to validate the input variables to our model. The following code is useful for validating the principal, annual rate of interest, loan term and the number of payments per year.</span>   
+
+```python
+#Input Validation for Principal, annual rate , loan term and no of payments
+class InputValidation:
+    """
+    This class validates the inputs (Principal, annual rate, term in years and number of payments per year)
+    Principal(principal) : Validates if input Loan amount is a positive integer
+    Annual Rate(annual_interest_rate) : Validates if the Annual rate is >0
+    Term in Years(per): Validates if term is a positive finite integer
+    No of Payments(nper):Validates if nper is a positive finite integer
+    """
+    def __init__(self,inputvar):
+        self.inputvar = inputvar
+    
+    #Method for checking if the input variable is a positive integer value (Eg. Principal)
+    def check_positive_integer(self):
+        while True:
+            try:
+                tempvar = float(input(f"\nPlease Enter a positive integer value for {self.inputvar}:"))
+                if tempvar.is_integer() and tempvar>0:
+                    break 
+                else:
+                    print(f"\n{self.inputvar} should be a positive integer value!")
+            except:
+                print(f"\n{self.inputvar} is not a number!")
+    
+        return tempvar
+
+    #Method for checking if the input variable is a positive value (Eg. Annual interest rate)
+    def check_positive_float(self):
+        while True:
+            try:
+                tempvar = float(input(f"\nPlease Enter a positive integer value for {self.inputvar}:"))
+                if tempvar>0 and tempvar < 100:
+                    break
+                else:
+                    print(f"\n{self.inputvar} should be a positive value greater than 0 and less than 100!")
+            except:
+                print("\nNot a valid Option!! Try again..")
+        return tempvar
+        
+    #Method for checking if the input variable is a finite term (Eg.Loan term and No. of payments per year)
+    def finiteterm_check(self):
+        while True:
+            try:
+                tempvar = float(input(f"\nPlease Enter a positive integer value for {self.inputvar}:"))
+                if tempvar.is_integer() and tempvar>0 and tempvar<100:
+                    break 
+                else:
+                    print(f"\n{self.inputvar} should be a positive integer value less than 100!")
+            except:
+                print(f"\n{self.inputvar} is not a number!")
+    
+        return tempvar
+       
+```
+<span style="font-family:Georgia; font-size:18px;">
+Firstly, we will display the summary and loan information that is input by the user. We will use the function *generate_summary* to generate a data table with all inputs and an overview of the output generated.</span>    
+
+<span style="font-family:Georgia; font-size:18px;">
+We will then create a user defined function *generate_matrix* for generating the payment per period for various rates and terms to perform a sensitivity analysis on the payment per period. We have used a general range for loan term from 5 to 40 years with a step size of 5 years.
+The following code generates a data table for various values of loan term and annual rate of interest. </span>   
+
+```python
+# Function to generate matrix of various term vs rate of interest
+def generate_matrix(principal,paymentfreq,initial_rate,ratestep,period,periodstep):
+    """
+    This function generates the payment matrix at various rates and terms
+    """
+    # Generates a matrix of 6 x 9 matrix with payments at various 
+    # Declaring Row iterator
+    termrows = [i for i in range(5,45,periodstep)]
+
+    # Declaring Column Iterator
+    #ratecolumn = [(round(j*100,3)) for j in np.arange(initial_rate,initial_rate+ 4.5/100,ratestep)]
+    ratecolumn = [(round(j*100,3)) for j in np.arange(initial_rate - 2/100,initial_rate,ratestep)]  +\
+    [(round(j*100,3)) for j in np.arange(initial_rate+ratestep,initial_rate+ 2.25/100,ratestep)] 
+    
+    # Naming axis and index
+    mymatrix = pd.DataFrame(columns =ratecolumn ,index=termrows).rename_axis('Annual rate',axis=1)    
+    mymatrix['Period']=termrows
+    mymatrix.set_index('Period',inplace=True)
+    
+    # Generating Payment matrix for generated list of period and rates
+    for i in termrows:
+        for j in ratecolumn:
+            mymatrix.at[i,j] = -npf.pmt(float(j/100)/paymentfreq,i*paymentfreq,principal)
+            
+    return (mymatrix)
+```
+<span style="font-family:Georgia; font-size:18px;">
+ The next task is to create an amortization schedule with period, opening balance, payment per period(EMI), interest expense, repayment of principal and the closing balance. Similar to previously created tables, we will use a user defined function to generate this table as well. The following code implements function *generate_payment_schedule* to create an amortization schedule.</span>   
+
+```python
+def generate_payment_schedule(principal,annual_interest_rate,per,nper):
+    """
+    This function generates the amortization schedule
+    """
+    # Declaration of Variables
+    periodic_interest_rate = annual_interest_rate/nper
+    no_of_payments = nper*per
+    
+    # Defining the Structure of DataFrame
+    columnnames =['Period','Opening Balance','Payment','Interest Expense','Repayment of Principal','Closing Balance']
+
+    # Filling Static Columns & Index
+    period=[i for i in range(1,no_of_payments+1)]
+    
+    # Formatting the DataFrame
+    # pd.options.display.float_format = '${:,.2f}'.format
+ 
+    # Initialization of the DataFrame
+    mymatrix = pd.DataFrame(columns =columnnames,index=period)
+    
+    # Calculations 
+    mymatrix.at[1,'Opening Balance']=principal
+    mymatrix['Period']=period
+    mymatrix.set_index('Period',inplace=True)
+    mymatrix['Payment']=-npf.pmt(periodic_interest_rate,no_of_payments,principal)
+    mymatrix['Interest Expense']=-npf.ipmt(periodic_interest_rate,mymatrix.index, no_of_payments,principal)
+    mymatrix['Repayment of Principal']= -npf.ppmt(periodic_interest_rate,mymatrix.index,no_of_payments,principal)
+    
+
+    #Calculation of dynamic part of Amortization Schedule
+    for i in period:
+        if i>1:
+            mymatrix['Closing Balance']= mymatrix['Opening Balance']-mymatrix['Repayment of Principal']
+            mymatrix.at[i,'Opening Balance']=mymatrix.at[i-1,'Closing Balance']
+        if mymatrix.at[i,'Opening Balance']-mymatrix.at[i,'Repayment of Principal']<0.1:
+            mymatrix.at[i,'Closing Balance']=0
+
+
+    mymatrix.at[1,'Opening Balance']=principal
+    return (mymatrix)
+```
+<span style="font-family:Georgia; font-size:18px;">
+This is then followed by the main part of the code which will accept a user input and generate all the data tables discussed above using the functions created. This is achieved by the code below.</span>   
+
+```python
+def amortization_table():
+    """ Calculate the loan amortization schedule given the loan details
+
+     Arguments:
+        annual_interest_rate: The annual interest rate for this loan
+        per: Number of years for the loan
+        nper: Number of payments in a year
+        principal: Amount borrowed
+
+    Returns:
+        matrix : Returns a 6 x 9 matrix of payments at various rates and term
+        schedule: Amortization schedule as a pandas dataframe
+        summary: Pandas dataframe that summarizes the payoff information
+    """
+    # Taking User Input     
+    principalval = InputValidation("Principal")
+    principal= principalval.check_positive_integer()
+
+    rateval = InputValidation("Annual Interest Rate")
+    annual_interest_rate=rateval.check_positive_float()/100
+    
+    pervalidation = InputValidation("Loan Term in years")
+    per = int(pervalidation.finiteterm_check())
+
+    npervalidation = InputValidation("No of Payments per year")
+    nper = int(npervalidation.finiteterm_check())
+    
+    # Input information on the loan
+    loan_df = pd.DataFrame(['$'+ str(principal),str(annual_interest_rate*100)+'%',per,nper],
+                            columns=[""],
+                            index=["Loan Amount","Annual Rate of Interest","Number of Years","Payments per Year"])
+    
+
+    # Payment at various rates vs term
+    matrix = generate_matrix(principal,nper,annual_interest_rate,0.005,per,5)
+
+    # Amortization Schedule
+    schedule = generate_payment_schedule(principal,annual_interest_rate,per,nper)
+    summary= generate_summary(principal,annual_interest_rate,per,nper)
+    
+    
+    display(pd.concat([loan_df, summary], axis=0).style.set_caption("Loan Summary").set_table_styles([
+                                      {'selector' : '',
+                                       'props' : [('background-color','white'),
+                                                  ('border','2px solid black')]},
+                                      {'selector': 'caption',
+                                       'props': [('color', '#4f4646'),
+                                                 ('font-size', '16px'),
+                                                 ('text-align', 'center')]}]))
+    
+    display(matrix.style.set_caption("Two-dimensional Sensitivity analysis on Payment per Period").set_table_styles([
+                            {'selector' : '',
+                            'props' : [('background-color','white'),
+                                       ('border','2px solid black')]},
+                            {'selector': 'caption',
+                            'props': [('color', '#4f4646'),
+                                      ('font-size', '16px'),
+                                      ('text-align', 'center')]}]).format('${:,.2f}'))
+
+    print("\n \033[1m Based on the information you entered, your payment is {} for {} years with a rate of {}%\033[1m".\
+          format(summary.at["Payment per period",""],per,annual_interest_rate*100))
+    
+    display(schedule.style.set_caption("Payment Schedule").set_table_styles([
+                            {'selector' : '',
+                            'props' : [('background-color','white'),
+                                       ('border','2px solid black')]},
+                            {'selector': 'caption',
+                            'props': [('color', '#4f4646'),
+                                      ('font-size', '16px'),
+                                      ('text-align', 'center')]}]).format('${:,.2f}'))
+```
+
+<img src="/img/Project/p3/user_input_1.png" alt="this is a placeholder image"  height = "25%" class="center" >
+
+<figure>
+  <img src="/img/Project/p3/user_input_2.png" alt="this is a placeholder image"  height = "25%" class="center" >
+  <figcaption style="color: grey"> Figure 4: *amortization_table* accepting User input  </figcaption>
+</figure> 
+
+<span style="font-family:Georgia; font-size:18px;">
+The above snapshots gives an idea of how our main function, *amortization_table* takes user input. Figure 5 illustrates the summary/loan information.</span>   
+
+<figure>
+  <img src="/img/Project/p3/summary_pandas.png" alt="this is a placeholder image"  height = "25%" class="center" >
+  <figcaption style="color: grey"> Figure 5: Loan Summary table generated using pandas </figcaption>
+</figure> 
+
+
+<figure>
+  <img src="/img/Project/p3/matrix_pandas.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <figcaption style="color: grey"> Figure 6: Sensitivity analysis on Payment per period </figcaption>
+</figure>
+
+<span style="font-family:Georgia; font-size:18px;">
+Figure 6 displays the data table with two-dimensional sensitivity analysis on the payment per period and Figure 7 presents the amortization schedule for the corresponding user input.</span>  
+
+
+<figure>
+  <img src="/img/Project/p3/amort_schedule_pandas.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+  <figcaption style="color: grey"> Figure 7: Amortization Schedule </figcaption>
+</figure>
+
+<span style="font-family:Georgia; font-size:18px;">
+In this article, we implemented loan amortization using microsoft excel and pandas. Although both approaches are quite easy to implement, code written in python can be reused for similar projects and is more efficient. To modify any part of the code, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or download this workbook by clicking on this [link](https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Loan%20Amortization_Pandas.ipynb).</span>  
+<span style="font-family:Georgia; font-size:18px;">
+Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email. </span>   
+
+
+
 ##### References
 
 <span style="font-family:Georgia; font-size:18px;">

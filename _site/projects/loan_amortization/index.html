@@ -365,6 +365,257 @@ We will be using IF statements in the amortization table so that changes in the 
 
 <h4 id="loan-amortization-using-python">Loan Amortization using Python</h4>
 
+<p><span style="font-family:Georgia; font-size:18px;">
+To begin, we shall recreate a layout similar to that created in the excel spreadsheet. For obvious reasons, we will use the pandas library to achieve such a layout since this project demands us to create data frames. The first step is to load the required libraries and then we will create user defined functions for generating the loan summary, sensitivity analysis and the amortization schedule.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Libraries needed 
+</span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">numpy_financial</span> <span class="k">as</span> <span class="n">npf</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;">
+We will then create some helper functions to validate the input variables to our model. The following code is useful for validating the principal, annual rate of interest, loan term and the number of payments per year.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Input Validation for Principal, annual rate , loan term and no of payments
+</span><span class="k">class</span> <span class="nc">InputValidation</span><span class="p">:</span>
+    <span class="s">"""
+    This class validates the inputs (Principal, annual rate, term in years and number of payments per year)
+    Principal(principal) : Validates if input Loan amount is a positive integer
+    Annual Rate(annual_interest_rate) : Validates if the Annual rate is &gt;0
+    Term in Years(per): Validates if term is a positive finite integer
+    No of Payments(nper):Validates if nper is a positive finite integer
+    """</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputvar</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span> <span class="o">=</span> <span class="n">inputvar</span>
+    
+    <span class="c1">#Method for checking if the input variable is a positive integer value (Eg. Principal)
+</span>    <span class="k">def</span> <span class="nf">check_positive_integer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tempvar</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Please Enter a positive integer value for </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s">:"</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">tempvar</span><span class="p">.</span><span class="n">is_integer</span><span class="p">()</span> <span class="ow">and</span> <span class="n">tempvar</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">break</span> 
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s"> should be a positive integer value!"</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s"> is not a number!"</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="n">tempvar</span>
+
+    <span class="c1">#Method for checking if the input variable is a positive value (Eg. Annual interest rate)
+</span>    <span class="k">def</span> <span class="nf">check_positive_float</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tempvar</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Please Enter a positive integer value for </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s">:"</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">tempvar</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">tempvar</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s"> should be a positive value greater than 0 and less than 100!"</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Not a valid Option!! Try again.."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tempvar</span>
+        
+    <span class="c1">#Method for checking if the input variable is a finite term (Eg.Loan term and No. of payments per year)
+</span>    <span class="k">def</span> <span class="nf">finiteterm_check</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tempvar</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Please Enter a positive integer value for </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s">:"</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">tempvar</span><span class="p">.</span><span class="n">is_integer</span><span class="p">()</span> <span class="ow">and</span> <span class="n">tempvar</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">tempvar</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">:</span>
+                    <span class="k">break</span> 
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s"> should be a positive integer value less than 100!"</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">inputvar</span><span class="si">}</span><span class="s"> is not a number!"</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="n">tempvar</span>
+       
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;">
+Firstly, we will display the summary and loan information that is input by the user. We will use the function <em>generate_summary</em> to generate a data table with all inputs and an overview of the output generated.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+We will then create a user defined function <em>generate_matrix</em> for generating the payment per period for various rates and terms to perform a sensitivity analysis on the payment per period. We have used a general range for loan term from 5 to 40 years with a step size of 5 years.
+The following code generates a data table for various values of loan term and annual rate of interest. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Function to generate matrix of various term vs rate of interest
+</span><span class="k">def</span> <span class="nf">generate_matrix</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span><span class="n">paymentfreq</span><span class="p">,</span><span class="n">initial_rate</span><span class="p">,</span><span class="n">ratestep</span><span class="p">,</span><span class="n">period</span><span class="p">,</span><span class="n">periodstep</span><span class="p">):</span>
+    <span class="s">"""
+    This function generates the payment matrix at various rates and terms
+    """</span>
+    <span class="c1"># Generates a matrix of 6 x 9 matrix with payments at various 
+</span>    <span class="c1"># Declaring Row iterator
+</span>    <span class="n">termrows</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="n">periodstep</span><span class="p">)]</span>
+
+    <span class="c1"># Declaring Column Iterator
+</span>    <span class="c1">#ratecolumn = [(round(j*100,3)) for j in np.arange(initial_rate,initial_rate+ 4.5/100,ratestep)]
+</span>    <span class="n">ratecolumn</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">round</span><span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">initial_rate</span> <span class="o">-</span> <span class="mi">2</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="n">initial_rate</span><span class="p">,</span><span class="n">ratestep</span><span class="p">)]</span>  <span class="o">+</span>\
+    <span class="p">[(</span><span class="nb">round</span><span class="p">(</span><span class="n">j</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="p">.</span><span class="n">arange</span><span class="p">(</span><span class="n">initial_rate</span><span class="o">+</span><span class="n">ratestep</span><span class="p">,</span><span class="n">initial_rate</span><span class="o">+</span> <span class="mf">2.25</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span><span class="n">ratestep</span><span class="p">)]</span> 
+    
+    <span class="c1"># Naming axis and index
+</span>    <span class="n">mymatrix</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span><span class="n">ratecolumn</span> <span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">termrows</span><span class="p">).</span><span class="n">rename_axis</span><span class="p">(</span><span class="s">'Annual rate'</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>    
+    <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Period'</span><span class="p">]</span><span class="o">=</span><span class="n">termrows</span>
+    <span class="n">mymatrix</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">'Period'</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    
+    <span class="c1"># Generating Payment matrix for generated list of period and rates
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">termrows</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">ratecolumn</span><span class="p">:</span>
+            <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">npf</span><span class="p">.</span><span class="n">pmt</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">j</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="n">paymentfreq</span><span class="p">,</span><span class="n">i</span><span class="o">*</span><span class="n">paymentfreq</span><span class="p">,</span><span class="n">principal</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="p">(</span><span class="n">mymatrix</span><span class="p">)</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;">
+ The next task is to create an amortization schedule with period, opening balance, payment per period(EMI), interest expense, repayment of principal and the closing balance. Similar to previously created tables, we will use a user defined function to generate this table as well. The following code implements function <em>generate_payment_schedule</em> to create an amortization schedule.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_payment_schedule</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span><span class="n">annual_interest_rate</span><span class="p">,</span><span class="n">per</span><span class="p">,</span><span class="n">nper</span><span class="p">):</span>
+    <span class="s">"""
+    This function generates the amortization schedule
+    """</span>
+    <span class="c1"># Declaration of Variables
+</span>    <span class="n">periodic_interest_rate</span> <span class="o">=</span> <span class="n">annual_interest_rate</span><span class="o">/</span><span class="n">nper</span>
+    <span class="n">no_of_payments</span> <span class="o">=</span> <span class="n">nper</span><span class="o">*</span><span class="n">per</span>
+    
+    <span class="c1"># Defining the Structure of DataFrame
+</span>    <span class="n">columnnames</span> <span class="o">=</span><span class="p">[</span><span class="s">'Period'</span><span class="p">,</span><span class="s">'Opening Balance'</span><span class="p">,</span><span class="s">'Payment'</span><span class="p">,</span><span class="s">'Interest Expense'</span><span class="p">,</span><span class="s">'Repayment of Principal'</span><span class="p">,</span><span class="s">'Closing Balance'</span><span class="p">]</span>
+
+    <span class="c1"># Filling Static Columns &amp; Index
+</span>    <span class="n">period</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">no_of_payments</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="c1"># Formatting the DataFrame
+</span>    <span class="c1"># pd.options.display.float_format = '${:,.2f}'.format
+</span> 
+    <span class="c1"># Initialization of the DataFrame
+</span>    <span class="n">mymatrix</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span><span class="n">columnnames</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">period</span><span class="p">)</span>
+    
+    <span class="c1"># Calculations 
+</span>    <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s">'Opening Balance'</span><span class="p">]</span><span class="o">=</span><span class="n">principal</span>
+    <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Period'</span><span class="p">]</span><span class="o">=</span><span class="n">period</span>
+    <span class="n">mymatrix</span><span class="p">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">'Period'</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Payment'</span><span class="p">]</span><span class="o">=-</span><span class="n">npf</span><span class="p">.</span><span class="n">pmt</span><span class="p">(</span><span class="n">periodic_interest_rate</span><span class="p">,</span><span class="n">no_of_payments</span><span class="p">,</span><span class="n">principal</span><span class="p">)</span>
+    <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Interest Expense'</span><span class="p">]</span><span class="o">=-</span><span class="n">npf</span><span class="p">.</span><span class="n">ipmt</span><span class="p">(</span><span class="n">periodic_interest_rate</span><span class="p">,</span><span class="n">mymatrix</span><span class="p">.</span><span class="n">index</span><span class="p">,</span> <span class="n">no_of_payments</span><span class="p">,</span><span class="n">principal</span><span class="p">)</span>
+    <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Repayment of Principal'</span><span class="p">]</span><span class="o">=</span> <span class="o">-</span><span class="n">npf</span><span class="p">.</span><span class="n">ppmt</span><span class="p">(</span><span class="n">periodic_interest_rate</span><span class="p">,</span><span class="n">mymatrix</span><span class="p">.</span><span class="n">index</span><span class="p">,</span><span class="n">no_of_payments</span><span class="p">,</span><span class="n">principal</span><span class="p">)</span>
+    
+
+    <span class="c1">#Calculation of dynamic part of Amortization Schedule
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">period</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Closing Balance'</span><span class="p">]</span><span class="o">=</span> <span class="n">mymatrix</span><span class="p">[</span><span class="s">'Opening Balance'</span><span class="p">]</span><span class="o">-</span><span class="n">mymatrix</span><span class="p">[</span><span class="s">'Repayment of Principal'</span><span class="p">]</span>
+            <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s">'Opening Balance'</span><span class="p">]</span><span class="o">=</span><span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s">'Closing Balance'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s">'Opening Balance'</span><span class="p">]</span><span class="o">-</span><span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s">'Repayment of Principal'</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.1</span><span class="p">:</span>
+            <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s">'Closing Balance'</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+
+
+    <span class="n">mymatrix</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s">'Opening Balance'</span><span class="p">]</span><span class="o">=</span><span class="n">principal</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">mymatrix</span><span class="p">)</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;">
+This is then followed by the main part of the code which will accept a user input and generate all the data tables discussed above using the functions created. This is achieved by the code below.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">amortization_table</span><span class="p">():</span>
+    <span class="s">""" Calculate the loan amortization schedule given the loan details
+
+     Arguments:
+        annual_interest_rate: The annual interest rate for this loan
+        per: Number of years for the loan
+        nper: Number of payments in a year
+        principal: Amount borrowed
+
+    Returns:
+        matrix : Returns a 6 x 9 matrix of payments at various rates and term
+        schedule: Amortization schedule as a pandas dataframe
+        summary: Pandas dataframe that summarizes the payoff information
+    """</span>
+    <span class="c1"># Taking User Input     
+</span>    <span class="n">principalval</span> <span class="o">=</span> <span class="n">InputValidation</span><span class="p">(</span><span class="s">"Principal"</span><span class="p">)</span>
+    <span class="n">principal</span><span class="o">=</span> <span class="n">principalval</span><span class="p">.</span><span class="n">check_positive_integer</span><span class="p">()</span>
+
+    <span class="n">rateval</span> <span class="o">=</span> <span class="n">InputValidation</span><span class="p">(</span><span class="s">"Annual Interest Rate"</span><span class="p">)</span>
+    <span class="n">annual_interest_rate</span><span class="o">=</span><span class="n">rateval</span><span class="p">.</span><span class="n">check_positive_float</span><span class="p">()</span><span class="o">/</span><span class="mi">100</span>
+    
+    <span class="n">pervalidation</span> <span class="o">=</span> <span class="n">InputValidation</span><span class="p">(</span><span class="s">"Loan Term in years"</span><span class="p">)</span>
+    <span class="n">per</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pervalidation</span><span class="p">.</span><span class="n">finiteterm_check</span><span class="p">())</span>
+
+    <span class="n">npervalidation</span> <span class="o">=</span> <span class="n">InputValidation</span><span class="p">(</span><span class="s">"No of Payments per year"</span><span class="p">)</span>
+    <span class="n">nper</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">npervalidation</span><span class="p">.</span><span class="n">finiteterm_check</span><span class="p">())</span>
+    
+    <span class="c1"># Input information on the loan
+</span>    <span class="n">loan_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="s">'$'</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">principal</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">annual_interest_rate</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">+</span><span class="s">'%'</span><span class="p">,</span><span class="n">per</span><span class="p">,</span><span class="n">nper</span><span class="p">],</span>
+                            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">""</span><span class="p">],</span>
+                            <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">"Loan Amount"</span><span class="p">,</span><span class="s">"Annual Rate of Interest"</span><span class="p">,</span><span class="s">"Number of Years"</span><span class="p">,</span><span class="s">"Payments per Year"</span><span class="p">])</span>
+    
+
+    <span class="c1"># Payment at various rates vs term
+</span>    <span class="n">matrix</span> <span class="o">=</span> <span class="n">generate_matrix</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span><span class="n">nper</span><span class="p">,</span><span class="n">annual_interest_rate</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="n">per</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Amortization Schedule
+</span>    <span class="n">schedule</span> <span class="o">=</span> <span class="n">generate_payment_schedule</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span><span class="n">annual_interest_rate</span><span class="p">,</span><span class="n">per</span><span class="p">,</span><span class="n">nper</span><span class="p">)</span>
+    <span class="n">summary</span><span class="o">=</span> <span class="n">generate_summary</span><span class="p">(</span><span class="n">principal</span><span class="p">,</span><span class="n">annual_interest_rate</span><span class="p">,</span><span class="n">per</span><span class="p">,</span><span class="n">nper</span><span class="p">)</span>
+    
+    
+    <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="n">concat</span><span class="p">([</span><span class="n">loan_df</span><span class="p">,</span> <span class="n">summary</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="n">style</span><span class="p">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s">"Loan Summary"</span><span class="p">).</span><span class="n">set_table_styles</span><span class="p">([</span>
+                                      <span class="p">{</span><span class="s">'selector'</span> <span class="p">:</span> <span class="s">''</span><span class="p">,</span>
+                                       <span class="s">'props'</span> <span class="p">:</span> <span class="p">[(</span><span class="s">'background-color'</span><span class="p">,</span><span class="s">'white'</span><span class="p">),</span>
+                                                  <span class="p">(</span><span class="s">'border'</span><span class="p">,</span><span class="s">'2px solid black'</span><span class="p">)]},</span>
+                                      <span class="p">{</span><span class="s">'selector'</span><span class="p">:</span> <span class="s">'caption'</span><span class="p">,</span>
+                                       <span class="s">'props'</span><span class="p">:</span> <span class="p">[(</span><span class="s">'color'</span><span class="p">,</span> <span class="s">'#4f4646'</span><span class="p">),</span>
+                                                 <span class="p">(</span><span class="s">'font-size'</span><span class="p">,</span> <span class="s">'16px'</span><span class="p">),</span>
+                                                 <span class="p">(</span><span class="s">'text-align'</span><span class="p">,</span> <span class="s">'center'</span><span class="p">)]}]))</span>
+    
+    <span class="n">display</span><span class="p">(</span><span class="n">matrix</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s">"Two-dimensional Sensitivity analysis on Payment per Period"</span><span class="p">).</span><span class="n">set_table_styles</span><span class="p">([</span>
+                            <span class="p">{</span><span class="s">'selector'</span> <span class="p">:</span> <span class="s">''</span><span class="p">,</span>
+                            <span class="s">'props'</span> <span class="p">:</span> <span class="p">[(</span><span class="s">'background-color'</span><span class="p">,</span><span class="s">'white'</span><span class="p">),</span>
+                                       <span class="p">(</span><span class="s">'border'</span><span class="p">,</span><span class="s">'2px solid black'</span><span class="p">)]},</span>
+                            <span class="p">{</span><span class="s">'selector'</span><span class="p">:</span> <span class="s">'caption'</span><span class="p">,</span>
+                            <span class="s">'props'</span><span class="p">:</span> <span class="p">[(</span><span class="s">'color'</span><span class="p">,</span> <span class="s">'#4f4646'</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="s">'font-size'</span><span class="p">,</span> <span class="s">'16px'</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="s">'text-align'</span><span class="p">,</span> <span class="s">'center'</span><span class="p">)]}]).</span><span class="nb">format</span><span class="p">(</span><span class="s">'${:,.2f}'</span><span class="p">))</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s"> </span><span class="se">\033</span><span class="s">[1m Based on the information you entered, your payment is {} for {} years with a rate of {}%</span><span class="se">\033</span><span class="s">[1m"</span><span class="p">.</span>\
+          <span class="nb">format</span><span class="p">(</span><span class="n">summary</span><span class="p">.</span><span class="n">at</span><span class="p">[</span><span class="s">"Payment per period"</span><span class="p">,</span><span class="s">""</span><span class="p">],</span><span class="n">per</span><span class="p">,</span><span class="n">annual_interest_rate</span><span class="o">*</span><span class="mi">100</span><span class="p">))</span>
+    
+    <span class="n">display</span><span class="p">(</span><span class="n">schedule</span><span class="p">.</span><span class="n">style</span><span class="p">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s">"Payment Schedule"</span><span class="p">).</span><span class="n">set_table_styles</span><span class="p">([</span>
+                            <span class="p">{</span><span class="s">'selector'</span> <span class="p">:</span> <span class="s">''</span><span class="p">,</span>
+                            <span class="s">'props'</span> <span class="p">:</span> <span class="p">[(</span><span class="s">'background-color'</span><span class="p">,</span><span class="s">'white'</span><span class="p">),</span>
+                                       <span class="p">(</span><span class="s">'border'</span><span class="p">,</span><span class="s">'2px solid black'</span><span class="p">)]},</span>
+                            <span class="p">{</span><span class="s">'selector'</span><span class="p">:</span> <span class="s">'caption'</span><span class="p">,</span>
+                            <span class="s">'props'</span><span class="p">:</span> <span class="p">[(</span><span class="s">'color'</span><span class="p">,</span> <span class="s">'#4f4646'</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="s">'font-size'</span><span class="p">,</span> <span class="s">'16px'</span><span class="p">),</span>
+                                      <span class="p">(</span><span class="s">'text-align'</span><span class="p">,</span> <span class="s">'center'</span><span class="p">)]}]).</span><span class="nb">format</span><span class="p">(</span><span class="s">'${:,.2f}'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><img src="/img/Project/p3/user_input_1.png" alt="this is a placeholder image" height="25%" class="center" /></p>
+
+<figure>
+  <img src="/img/Project/p3/user_input_2.png" alt="this is a placeholder image" height="25%" class="center" />
+  <figcaption style="color: grey"> Figure 4: *amortization_table* accepting User input  </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+The above snapshots gives an idea of how our main function, <em>amortization_table</em> takes user input. Figure 5 illustrates the summary/loan information.</span></p>
+
+<figure>
+  <img src="/img/Project/p3/summary_pandas.png" alt="this is a placeholder image" height="25%" class="center" />
+  <figcaption style="color: grey"> Figure 5: Loan Summary table generated using pandas </figcaption>
+</figure>
+
+<figure>
+  <img src="/img/Project/p3/matrix_pandas.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 6: Sensitivity analysis on Payment per period </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Figure 6 displays the data table with two-dimensional sensitivity analysis on the payment per period and Figure 7 presents the amortization schedule for the corresponding user input.</span></p>
+
+<figure>
+  <img src="/img/Project/p3/amort_schedule_pandas.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 7: Amortization Schedule </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+In this article, we implemented loan amortization using microsoft excel and pandas. Although both approaches are quite easy to implement, code written in python can be reused for similar projects and is more efficient. To modify any part of the code, you can fork my <a href="https://github.com/prabhupavitra/Financial-Modeling/">github repository</a> or download this workbook by clicking on this <a href="https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Loan%20Amortization_Pandas.ipynb">link</a>.</span><br />
+<span style="font-family:Georgia; font-size:18px;">
+Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email. </span></p>
+
 <h5 id="references">References</h5>
 
 <p><span style="font-family:Georgia; font-size:18px;">
