@@ -67,7 +67,7 @@ We begin initializing our input to the amortization calculator, such as, the ann
 </figure>
 
 <span style="font-family:Georgia; font-size:18px;">
-The loan EMI data table is a table that does a sensitivity analysis on the loan information provided in the summary. This paragraph elaborates on the implementation of two-dimensional excel data tables to perform sensitivity analysis on the payment per period/EMI with loan term and the annual interest rate. Figure 2 illustrates the sensitivity analysis on the payment per period.</span>   
+The loan EMI data table is a table that does a sensitivity analysis on the loan information provided in the summary. This paragraph elaborates on the implementation of two-dimensional excel data tables to perform sensitivity analysis on the payment per period/EMI with loan term and the annual interest rate. Figure 2 illustrates the sensitivity analysis on the payment per period. We see that, the upper left-hand corner of our data table contains, the formula as a reference to the payment per period(available in the loan summary section). We now use the Data Table command. We fill in both the Row input cell (indicating the cell that contains loan term in the loan summary) and the Column input cell (indicating the cell that contains annual interest rate in the loan summary).</span>   
 
 <figure>
   <img src="/img/Project/p3/emi-comp-chart.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
@@ -75,8 +75,7 @@ The loan EMI data table is a table that does a sensitivity analysis on the loan 
 </figure>
 
 <span style="font-family:Georgia; font-size:18px;">
-The upper left-hand corner of our data table contains, the formula as a reference to the payment per period(available in the loan summary section) .
-We now use the Data Table command. We fill in both the Row input cell (indicating the cell that contains loan term in the loan summary) and the Column input cell (indicating the cell that contains annual interest rate in the loan summary). We then proceed with generating the loan amortization schedule.</span>   
+ We then proceed with generating the loan amortization schedule. Figure 3 depicts a portion of amortization schedule for the user input from loan summary section. We will be using IF statements in the amortization table so that changes in the “Number of Years” and/or “Payments per Year” input variables will be correctly incorporated into the cells. We use the excel functions PMT, IPMT, and PPMT to compute the “Payment” and “Interest” and “Repayment of Principal” column entries, respectively.</span>   
 
 <figure>
   <img src="/img/Project/p3/amort-schedule.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
@@ -84,12 +83,12 @@ We now use the Data Table command. We fill in both the Row input cell (indicatin
 </figure>
 
 <span style="font-family:Georgia; font-size:18px;">
-We will be using IF statements in the amortization table so that changes in the “Number of Years” and/or “Payments per Year” input variables will be correctly incorporated into the cells. We use the excel functions PMT, IPMT, and PPMT to compute the “Payment” and “Interest” and “Repayment of Principal” column entries, respectively. Figure 3 depicts amortization schedule for our input from loan summary section. To modify any of the cells or edit the worksheet, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or download this workbook by clicking on this [link](https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Amortization.xlsx).</span>   
+This concludes the implementation of loan amortization using microsoft excel. To modify any of the cells or edit the worksheet, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or download this workbook by clicking on this [link](https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Amortization.xlsx).</span>   
 
 #### Loan Amortization using Python
 
 <span style="font-family:Georgia; font-size:18px;">
-To begin, we shall recreate a layout similar to that created in the excel spreadsheet. For obvious reasons, we will use the pandas library to achieve such a layout since this project demands us to create data frames. The first step is to load the required libraries and then we will create user defined functions for generating the loan summary, sensitivity analysis and the amortization schedule.</span>   
+To begin, we shall recreate a layout similar to that of excel spreadsheet. For obvious reasons, we will use the pandas library to achieve such a layout since this project demands us to create data frames. The first step is to load the required libraries and then we will create user defined functions for generating the loan summary, sensitivity analysis and the amortization schedule.</span>   
 
 ```python
 # Libraries needed 
@@ -157,7 +156,23 @@ class InputValidation:
        
 ```
 <span style="font-family:Georgia; font-size:18px;">
-Firstly, we will display the summary and loan information that is input by the user. We will use the function *generate_summary* to generate a data table with all inputs and an overview of the output generated.</span>    
+Next, we will display the summary and loan information that is input by the user. We will use the function *generate_summary* to generate an overview of the loan summary table. The code below implements the user defined function to generate the loan summary.</span>    
+
+```python
+def generate_summary(principal,initial_rate,per,nper):
+    """
+    This function generates summary for amortization schedule
+    """
+    mysum = generate_payment_schedule(principal,initial_rate,per,nper)
+    total_interest = mysum["Interest Expense"].sum().round(2)
+    pmt = -npf.pmt(initial_rate/nper,per*nper,principal)
+    total=total_interest+principal
+    mymatrix = pd.DataFrame(['$'+str(pmt.round(2)),'$'+str(total_interest.round(2)),'$'+str(total.round(2))],
+                            columns=[""],
+                            index=["Payment per period","Total Interest","Total Payments"])
+    
+    return mymatrix
+```
 
 <span style="font-family:Georgia; font-size:18px;">
 We will then create a user defined function *generate_matrix* for generating the payment per period for various rates and terms to perform a sensitivity analysis on the payment per period. We have used a general range for loan term from 5 to 40 years with a step size of 5 years.
@@ -315,7 +330,7 @@ def amortization_table():
 
 <figure>
   <img src="/img/Project/p3/user_input_2.png" alt="this is a placeholder image"  height = "25%" class="center" >
-  <figcaption style="color: grey"> Figure 4: *amortization_table* accepting User input  </figcaption>
+  <figcaption style="color: grey"> Figure 4: The starting point for the loan amortization program in python :z amortization_table accepting User input  </figcaption>
 </figure> 
 
 <span style="font-family:Georgia; font-size:18px;">
