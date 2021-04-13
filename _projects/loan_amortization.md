@@ -3,7 +3,7 @@ title: "Loan Amortization"
 layout: single
 author_profile: true
 excerpt: "Financial Modeling Series - Loan Amortization using vba & Python"
-date:   2021-02-14 22:12:28 -0500
+date:   2020-02-12 22:12:28 -0500
 header:
   teaser: /img/Project/ProjectTeaser/amortization.jpeg
 theme: mint

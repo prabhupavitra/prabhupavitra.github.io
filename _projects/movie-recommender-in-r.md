@@ -3,7 +3,7 @@ title: "Movie Recommender system in R"
 layout: single
 author_profile: true
 excerpt: "Model based movie recommendation system using R"
-date:   2020-01-10 22:12:28 -0500
+date:   2020-10-3 22:12:28 -0500
 header:
   teaser: /img/Project/ProjectTeaser/movierec.png
 theme: mint
