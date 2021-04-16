@@ -1,5 +1,5 @@
 ---
-title: "Movie Recommender system in R"
+title: "Movie Recommender system"
 layout: single
 author_profile: true
 excerpt: "Model based movie recommendation system using R"

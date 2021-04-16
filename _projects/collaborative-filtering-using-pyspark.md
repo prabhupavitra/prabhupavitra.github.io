@@ -5,7 +5,7 @@ author_profile: true
 excerpt: "Collaborative Filtering using PySpark with grouplens 10M dataset"
 date:   2020-12-9 22:12:28 -0500
 header:
-    teaser: /img/Project/ProjectTeaser/movierec.jpg
+    teaser: /img/Project/ProjectTeaser/thumbnail_recomsyspyspark.jpg
 ---
 
 

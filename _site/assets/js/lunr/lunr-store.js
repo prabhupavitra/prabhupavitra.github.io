@@ -63,17 +63,23 @@ var store = [{
         "excerpt":"Introduction This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/loan_amortization/",
-        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/amortization.jpeg"
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/thumbnail_amortization.jpeg"
       },{
-        "title": "Movie Recommender system in R",
+        "title": "Movie Recommender system",
         "excerpt":"Introduction The evolution of e-commerce and online streaming platforms has largely grown over the past several years. Early setbacks to more widespread adoption of these services, namely delivery costs in case of online retailers and bandwidth availability, especially with the video streaming platforms, have largely faded. Now many retailers are...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/movie-recommender-in-r/",
         "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.png"
       },{
+        "title": "Credit Card Fraud Detection ",
+        "excerpt":"Introduction Nowadays, artificial intelligence(AI) is being used in all realms of business. One such interesting application of machine learning is online fraud detection. With increased sophistication and scale of fraudulent transactions, fraud detection has become one of the indispensable tool for every organization. The conventional approaches to fighting online fraud...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/projects/credit-card-fraud-detection-in-r/",
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/thumbnail_creditcardfraud.jpg"
+      },{
         "title": "Implicit Collaborative Filtering with PySpark",
         "excerpt":"A recommender system analyzes data, on both products and users, to make item suggestions to a given user, indexed by u, or predict how that user would rate an item, indexed by i. They can be classified based on the approach used for recommendation. Most popular ones include popularity based...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/collaborative-filtering-using-pyspark/",
-        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.jpg"
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/thumbnail_recomsyspyspark.jpg"
       }]

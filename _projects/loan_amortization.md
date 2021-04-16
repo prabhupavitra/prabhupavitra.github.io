@@ -5,7 +5,7 @@ author_profile: true
 excerpt: "Financial Modeling Series - Loan Amortization using vba & Python"
 date:   2020-02-12 22:12:28 -0500
 header:
-  teaser: /img/Project/ProjectTeaser/amortization.jpeg
+  teaser: /img/Project/ProjectTeaser/thumbnail_amortization.jpeg
 theme: mint
 ---
 <style TYPE="text/css">
@@ -27,7 +27,7 @@ MathJax.Hub.Queue(function() {
 </script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML-full"></script>
 
-<img src="/img/Project/ProjectTeaser/amort1.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Project/ProjectTeaser/amortization.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 #### Introduction
 
@@ -83,7 +83,9 @@ The loan EMI data table is a table that does a sensitivity analysis on the loan 
 </figure>
 
 <span style="font-family:Georgia; font-size:18px;">
-This concludes the implementation of loan amortization using microsoft excel. To modify any of the cells or edit the worksheet, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or download this workbook by clicking on this [link](https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Amortization.xlsx).</span>   
+This concludes the implementation of loan amortization using microsoft excel. To modify any of the cells or edit the worksheet, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or get a copy of the entire spreadsheet from the embedded workbook below. </span>   
+
+<iframe width="700" height="280" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=2FB97D588E2014D8%21264&authkey=%21AH_3hZERRNsvhGI&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True"></iframe>
 
 #### Loan Amortization using Python
 
@@ -360,7 +362,6 @@ Figure 6 displays the data table with two-dimensional sensitivity analysis on th
 In this article, we implemented loan amortization using microsoft excel and pandas. Although both approaches are quite easy to implement, code written in python can be reused for similar projects and is more efficient. To modify any part of the code, you can fork my [github repository](https://github.com/prabhupavitra/Financial-Modeling/) or download this workbook by clicking on this [link](https://github.com/prabhupavitra/Financial-Modeling/blob/master/CodeFiles/Loan%20Amortization_Pandas.ipynb).</span>  
 <span style="font-family:Georgia; font-size:18px;">
 Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email. </span>   
-
 
 
 ##### References
