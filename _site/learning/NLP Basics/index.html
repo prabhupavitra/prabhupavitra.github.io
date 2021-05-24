@@ -1,0 +1,492 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>NLP Series - Linguistics - The Realm of Data Science</title>
+<meta name="description" content="Natural Language Processing ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="NLP Series - Linguistics">
+<meta property="og:url" content="http://localhost:4000/learning/NLP%20Basics/">
+
+
+  <meta property="og:description" content="Natural Language Processing ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2021-04-01T22:12:28-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/learning/NLP%20Basics/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="NLP Series - Linguistics">
+    <meta itemprop="description" content="Natural Language Processing">
+    <meta itemprop="datePublished" content="2021-04-01T22:12:28-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">NLP Series - Linguistics
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img src="/img/Learning/LearningTeaser/linguistics.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+
+<blockquote>
+  <p><span style="font-family:Georgia; font-size:20px;"> Natural Language Processing Basics - Linguistics </span></p>
+</blockquote>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Natural language processing (NLP) is a field at the intersection of computer science, artificial intelligence, and linguistics. NLP is performed by solving a number of sub-problems, where each sub-problem constitutes a level. Note that, a portion of those levels could be applied, not necessarily all of them. Also, the levels could be applied in a different order independent of their granularity.  </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">This article is part of <strong>Natural Language Processing</strong> series where we cover most prominent building blocks in building Natural Language Processing(NLP) applications. In this article, we shall discuss some of the linguistic concepts that help in understanding NLP techniques.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Let’s dive in to some of the subfields of linguistics that are vital for understanding NLP systems:</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> 1. <a href="#phonetics--phonology">Phonetics &amp; Phonology</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 2. <a href="#morphology">Morphology</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 3. <a href="#syntax">Syntax</a></span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 4. <a href="#semantics">Semantics</a><span> <br />
+<span style="font-family:Georgia; font-size:16px;"> 5. <a href="#pragmatics">Pragmatics</a></span></span></span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">There are a couple of other topics we should keep in mind when understanding linguistics for the purpose of building NLP systems and understanding them certainly helps in understanding how NLP systems work.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> 1. <a href="#Sociolinguistics">Sociolinguistics</a></span> 
+<span style="font-family:Georgia; font-size:16px;"> 2. <a href="#computational-linguistics">Computational Linguistics</a></span> 
+<span style="font-family:Georgia; font-size:16px;"> 2. <a href="#writing-systems">Writing Systems</a></span></p>
+
+<figure>
+<img src="/img/Learning/NLP/major_levels_of_linguistic_structure.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 1: Major Subfields of Linguistics</figcaption>
+</figure>
+
+<h3 id="phonetics--phonology">Phonetics &amp; Phonology</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> <strong>Phonetics</strong> is the study of individual sounds in verbal languages, or handshapes in sign languages. It deals with the production of speech sounds by humans, often without prior knowledge of the language being spoken. It also looks at the concept of voicing, occurring at the pair of muscles found in your voice box. For instance, the same sound may be represented by many letters or combination of letters(i.e. All underlined letters have same pronounciation: h<u>e</u>, p<u>eo</u>ple, k<u>e</u>y, bel<u>ie</u>ve, s<u>ei</u>ze, mach<u>i</u>ne, s<u>ea</u>s, s<u>ee</u>, am<u>oe</u>ba). The same letter may even represent a variety of sounds.   </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">In 1888, the International Phonetic Alphabet (IPA) was invented in order to have a system in which there was a oneto-one correspondence between each sound in language and each phonetic symbol. The IPA uses symbols to represent a great variety of sounds. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"><strong>Phonology</strong> refers to the study of how the individual sounds or handshapes are combined into specific patterns. It is a branch of linguistics that studies how languages or dialects systematically organize their sounds. The  fundamental unit of sound in a language is the <em>Phoneme</em>. Phonemes are specifically important in applications involving speech understanding, such as speech recognition, speech-to-text transcription, and text-to-speech conversion.
+Languages have phonologies, which are collections of phonemes and rules about how to use and realize the phonemes.</span></p>
+
+<h3 id="morphology">Morphology</h3>
+<p><span style="font-family:Georgia; font-size:16px;"><strong>Morphology</strong> is the study of morphemes. A morpheme is the smallest unit of language that has a meaning. Not all morphemes are words, but all prefixes and suffixes are morphemes. For instance, in the word “multitasking”, “multi-“ is not a word but a prefix that changes the meaning when put together with “task”. “Multi-“ is a morpheme. Lexemes are the structural variations of morphemes related to one another by meaning. Morphological analysis, analyzes the structure of words by studying its morphemes and lexemes, and is a foundational block for many NLP tasks, such as tokenization, stemming, learning word embeddings, and part-of-speech tagging. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">There are four kinds of morphemes, defined by unbound versus bound and content versus functional: Content morphemes, Functional morphemes, derivational affixes and inflectional affixes. Content morphemes(Unbound content morphemes or lexical morphemes) express a concrete meaning or content, and function morphemes have more of a grammatical role. For example, the morphemes cat and fast can be considered content morphemes. On the other hand, the unbound functional morphemes are words that perform a function in a sentence. The examples include words like “they” and “will” which are used to make the future tense. Then, there is bound content morphemes(also called derivational affixes), that turn one word into another. For instance,”er” used with word “call” can turn the word into another word “caller”. The last one, Bound functional morphemes or inflectional affixes, refers to the affixes that indicate the function of a word in a sentence. Examples : “-ed” (past tense, “cook” + “-ed” = “cooked”, “-(e)s” (plural, “flower”+”-(e)s” = “flowers”, “pass”+”-(e)s” = “passes”)</span></p>
+
+<h3 id="syntax">Syntax</h3>
+<p><span style="font-family:Georgia; font-size:16px;">Syntax is a set of rules to construct grammatically correct sentences out of words and phrases in a language. Syntactic structure in linguistics is represented in many different ways. A common approach to representing sentences is a parse tree, also called as phrase structure trees (PSTs). Let’s look at the PST in Figure 2 for the following sentence:   </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"><em>The chef cooks the soup.</em></span></p>
+
+<figure>
+<img src="/img/Learning/NLP/pst.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 2: Syntactic structure of the sentence (Phrase Structure Tree)</figcaption>
+</figure>
+
+<h3 id="semantics">Semantics</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Semantics, is the study of the meaning of linguistic elements. It is the direct meaning of the words and sentences without external context. One feature of the field of semantics is, modeling how meaning is composed from the structures of language, so semantics is most closely related to syntax. Most projects that use NLP are looking for the meaning in the text being analyzed, so we will be revisiting this field multiple times. </span></p>
+
+<h3 id="pragmatics">Pragmatics</h3>
+<p><span style="font-family:Georgia; font-size:16px;">Pragmatics is a subfield that looks at the use and meaning of language in context. It will help us understand the intent behind the text we are analyzing. It adds world knowledge and external context of the conversation to enable us to infer implied meaning. It is sometimes defined in contrast with linguistic semantics, which can be described as the study of the rule systems that determine the literal meanings of linguistic expressions. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">According to Roman Jakobson, we can divide the functions of language into six factors which are required for communication. This model of pragmatics considers messages as focusing on some combination of these factors. Following are the six functions (with the associated factor):</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">- Emotive (the addresser)</span><br />
+<span style="font-family:Georgia; font-size:16px;">- Conative (the addressee)</span><br />
+<span style="font-family:Georgia; font-size:16px;">- Poetic (the message)</span> <br />
+<span style="font-family:Georgia; font-size:16px;">- Metalingual (the code)</span> <br />
+<span style="font-family:Georgia; font-size:16px;">- Phatic (the channel)</span> <br />
+<span style="font-family:Georgia; font-size:16px;">- Referential (the context)</span></p>
+
+<figure>
+<img src="/img/Learning/NLP/roman_jakobson_model.jpeg" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 3: Roman Jakobson’s functions of language</figcaption>
+</figure>
+
+<h3 id="sociolinguistics">Sociolinguistics</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Sociolinguistics is the study of the complex relationship between language and society. Although sociolinguistics is not a major subfield of linguistics, it is an interdisciplinary field between sociology and linguistics. Understanding the social context of text is important in understanding how to interpret the text.  </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">Every individual has their own unique personal version of language. The collection of varieties that an individual speaks can be considered an <em>idiolect</em>. The different varieties that an individual uses are called <em>registers</em>. Registers covers the concept of formality as well as other manners of speech, gesture, and writing.</span></p>
+
+<h3 id="computational-linguistics">Computational Linguistics</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Computational linguistics is the scientific and engineering discipline concerned with understanding written and spoken language from a computational perspective, and building artifacts that usefully process and produce language, either in bulk or in a dialogue setting. It is the study of linguistics from a computational perspective. This means using computers and algorithms to perform linguistics tasks such as marking your text as a part of speech (such as noun or verb), instead of performing this task manually.</span></p>
+
+<h3 id="writing-systems">Writing Systems</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">In this article we’ve discussed many aspects of language, but so far we’ve focused on aspects that are part of language that is either only spoken or both spoken and written. Writing system, also called as Orthography, refers to the set of conventions used to represent a language in writing.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">The smallest meaningful contrastive unit in a writing system is called a <strong>grapheme</strong>. There are various kinds of writing systems depending upon what the grapheme is used to represent. Alphabets, abjads, abugidas, syllabaries and logographs are some of them. We shall discuss each one of them in detail.  </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> An <strong>alphabet</strong> is a phonetic-based writing system in which there is a symbol representing consonants and vowels. Examples of alphabet writing systems include Latin, Cyrillic, Greek, Hangul and so on. Latin is used throughout the world for many languages in Western Europe, like English and Finnish, and for ones that were influenced by European colonization, like Vietnamese and Swahili. The Cyrillic alphabet is used in many countries in Eastern Europe, Central Asia, and North Asia. Some languages that use Cyrillic alphabets include Russian and Bulgarian. Whereas the Greek alphabet is used by modern Greek and its dialects, and by some minority languages in Greek-speaking majority areas, the Hangul alphabet, is used to write Korean. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> An <strong>abjad</strong>, is a phonetic-based writing system in which the consonants get their own symbols, and vowels can be left unwritten. One important thing to keep in mind when creating UIs for languages that use these scripts is that these writing systems are almost entirely written right-to-left. Examples include many Semitic languages like Arabic and Hebrew. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">A <strong>syllabary</strong> is a phonetic-based system of writing in which there is a different symbol for each possible syllable in a language. In contrast to the other phonetic-based systems, syllabaries are often invented, instead of being derived. Examples include Hiragana, which is one of the syllabaries used to write Japanese, and Katakana, used to write Ainu, an interesting language spoken in northern Japan and unrelated to Japanese. Then there is Tsalagi, the syllabary invented by Sequoyah for writing his native Cherokee language.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">An <strong>abugida</strong>, sometimes known as alphasyllabary, neosyllabary or pseudo-alphabet, is a segmental writing system in which consonant-vowel sequences are written as a unit; each unit is based on a consonant letter, and vowel notation is secondary.Consider the most widely used abugida today, Devanagari. It originated some time before the 10th century AD, developed from the earlier Brahmi script. The other examples include, Thai, derived from the Brahmi script, and Ge’ez, used in East Africa to write various languages of Ethiopia.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">Finally, we have writing systems where each grapheme can represent a whole word or morpheme of any length. They are called <strong>logographic</strong> writing systems. There is only one such system widely used today—Han Chinese characters. It is used to write most of the languages of China, as well as Japanese uses Hanji, Chinese logographs, combined with Hiragana.</span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Read more data science articles <a href="https://prabhupavitra.github.io/learning/"> here </a> including tutorials from beginner to advanced levels!  </span></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-04-01T22:12:28-05:00">April 1, 2021</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=NLP+Series+-+Linguistics%20http%3A%2F%2Flocalhost%3A4000%2Flearning%2FNLP%2520Basics%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FNLP%2520Basics%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Flearning%2FNLP%2520Basics%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/learning/Regression_Evaluation_Metrics/" class="pagination--pager" title="Evaluation Metrics - Regression
+">Previous</a>
+    
+    
+      <a href="/learning/NLP%20Pipeline/" class="pagination--pager" title="NLP Series - NLP Pipeline
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+      </div>
+    </div>
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

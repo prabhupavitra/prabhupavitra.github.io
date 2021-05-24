@@ -11,52 +11,22 @@ var store = [{
         "url": "http://localhost:4000/learning/R_DataVisualization_VisualizingDistributions/",
         "teaser": null
       },{
-        "title": "Evaluation Metrics - Classification",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Classification_Evaluation_Metrics.md/",
-        "teaser": null
-      },{
-        "title": "Evaluation Metrics - Clustering",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Clustering_Evaluation_Metrics/",
-        "teaser": null
-      },{
-        "title": "Hypothesis Testing for Cross-sectional data",
-        "excerpt":"                      Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.  ","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Hypothesis%20Testing_cross_sectional/",
-        "teaser": null
-      },{
-        "title": "Hypothesis Testing for Time Series Data",
-        "excerpt":"                      Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email.  ","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Hypothesis%20Testing_timeseries/",
-        "teaser": null
-      },{
-        "title": "Evaluation Metrics - Other evaluation techniques",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Other_Evaluation_Techniques/",
-        "teaser": null
-      },{
-        "title": "Evaluation Metrics - Ranking",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
-        "tags": [],
-        "url": "http://localhost:4000/learning/Ranking_Evaluation_Metrics/",
-        "teaser": null
-      },{
         "title": "Evaluation Metrics - Regression",
         "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/Regression_Evaluation_Metrics/",
         "teaser": null
       },{
-        "title": "Evaluation Metrics - Statistical",
-        "excerpt":"Performance Evaluation Metrics in Machine Learning This article is part of Machine Learning Evaluation Metrics series where we cover most prominent machine learning metrics used to evaluate/compare machine learning models. Choosing an appropriate metric is crucial while evaluating machine learning (ML) models. Each metric has its own applications and caveats...","categories": [],
+        "title": "NLP Series - Linguistics",
+        "excerpt":"Natural Language Processing Basics - Linguistics Natural language processing (NLP) is a field at the intersection of computer science, artificial intelligence, and linguistics. NLP is performed by solving a number of sub-problems, where each sub-problem constitutes a level. Note that, a portion of those levels could be applied, not necessarily...","categories": [],
         "tags": [],
-        "url": "http://localhost:4000/learning/Statistical_Evaluation_Metrics/",
+        "url": "http://localhost:4000/learning/NLP%20Basics/",
+        "teaser": null
+      },{
+        "title": "NLP Series - NLP Pipeline",
+        "excerpt":"Natural Language Processing Basics - NLP Pipeline If there’s one form of media which we are exposed to every single day, it’s text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social media, product...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/NLP%20Pipeline/",
         "teaser": null
       },{
         "title": "Loan Amortization",
