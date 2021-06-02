@@ -53,21 +53,21 @@ theme : "mint"
 
 ### Glossary
 
-Synonym Replacement
+<span style="font-family:Georgia; font-size:16px;">Synonym Replacement</span>   
 
-Back Translation
+<span style="font-family:Georgia; font-size:16px;">Back Translation</span>   
 
-Bigram Flipping
+<span style="font-family:Georgia; font-size:16px;">Bigram Flipping</span>   
 
-Replacing entities
+<span style="font-family:Georgia; font-size:16px;">Replacing entities</span>   
 
-Adding noise to data
+<span style="font-family:Georgia; font-size:16px;">Adding noise to data</span>   
 
-Snorkel
+<span style="font-family:Georgia; font-size:16px;">Snorkel</span>   
 
-Easy Data Augmentation (EDA)    
+<span style="font-family:Georgia; font-size:16px;">Easy Data Augmentation (EDA)    </span>   
 
-Active learning
+<span style="font-family:Georgia; font-size:16px;">Active learning</span>   
 
 
 <span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Read more data science articles <a href="https://prabhupavitra.github.io/learning/"> here </a> including tutorials from beginner to advanced levels!  </span> 
