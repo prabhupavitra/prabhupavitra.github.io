@@ -29,8 +29,8 @@ var store = [{
         "url": "http://localhost:4000/learning/NLP%20Pipeline/",
         "teaser": null
       },{
-        "title": "NLP Series - Glossary",
-        "excerpt":"Natural Language Processing Basics - Core Terminologies and techniques If there’s one form of media which we are exposed to every single day, it’s text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social...","categories": [],
+        "title": "NLP Series - Essentials ",
+        "excerpt":"Natural Language Processing Basics - Core Terminologies and Techniques If there’s one form of media which we are exposed to every single day, it’s text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/learning/NLP_Glossary/",
         "teaser": null
