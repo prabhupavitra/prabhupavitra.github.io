@@ -11,9 +11,10 @@ theme : "mint"
 
 <span style="font-family:Georgia; font-size:16px;"> If there's one form of media which we are exposed to every single day, it's text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social media, product reviews, tweets and reddit messages. Generally speaking, the data from these sources are useful for the purposes of research and commerce. </span>  
 
-<span style="font-family:Georgia; font-size:16px;"> A NLP pipeline, refers to the series of steps involved in a text-processing pipeline used for any NLP application development. In this article, we will learn about the various steps involved and how they play important roles in solving the NLP problem. </span>  
+<span style="font-family:Georgia; font-size:16px;"> An NLP pipeline, refers to the series of steps involved in a text-processing pipeline used for any NLP application development. In this article, we will learn about the various steps involved and how they play important roles in solving the NLP problem. This article is part of **Natural Language Processing** series where we cover most prominent building blocks in building Natural Language Processing(NLP) applications. In this article, we shall discuss various stages involved in a data-driven NLP pipeline.</span>  
 
-<span style="font-family:Georgia; font-size:16px;"> The key stages of a NLP pipeline for a data-driven NLP system are as follows.</span>
+
+<span style="font-family:Georgia; font-size:16px;"> The key stages of an NLP pipeline for a data-driven NLP system are as follows.</span>
 
 <span style="font-family:Georgia; font-size:16px;"> 1. [Data acquisition](#data-acquisition)</span>   
 <span style="font-family:Georgia; font-size:16px;"> 2. [Text cleaning](#text-cleaning)</span>   
@@ -54,47 +55,20 @@ Feature engineering aids in the the feature extraction and is a crucial step tha
   
 ### Modeling
 
-<span style="font-family:Georgia; font-size:16px;"></span>   
+<span style="font-family:Georgia; font-size:16px;">Modeling stage is a solution building stage in an NLP pipeline. After collecting the data and performing all the cleanup and pre-processing tasks, we build an appropriate solution to use the model for predictions. Classification is the most commonly used model that we encounter in NLP projects.  </span>   
 
 
 ### Evaluation
 
-<span style="font-family:Georgia; font-size:16px;"></span>   
+<span style="font-family:Georgia; font-size:16px;">Evaluation is a key stage in an NLP pipeline that enables us to measure the performance of the model that we built in the previous stage. However, it's important to note that, both the model and the features selected have an influence on the evaluation. Good features make the model building task simpler and bad features may need a much more complicated model to achieve the same level of performance. Most popular metrics in NLP include accuracy, precision, recall, F1 Score, AUC, MRR, MAP, RMSE, MAPE, BLEU, METEOR, ROUGE, Perplexity and so on.   </span>   
 
 ### Deployment
 
-<span style="font-family:Georgia; font-size:16px;"></span>   
+<span style="font-family:Georgia; font-size:16px;">Deployment is one of the stages in the post-modeling phase of an NLP pipeline. Once we are happy with the performance of the model, it is ready to be deployed into production where we plug our NLP module to the incoming stream of data and the output is consumable by downstream applications. An NLP module is typically deployed as a webservice and its vital to ensure that the deployed module is scalable under heavy loads. </span>   
 
 ### Monitoring & Updating Model
 
-<span style="font-family:Georgia; font-size:16px;"></span>   
-
-
-### Glossary
-
-<span style="font-family:Georgia; font-size:16px;">Synonym Replacement</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Back Translation</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Bigram Flipping</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Replacing entities</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Adding noise to data</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Snorkel</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Easy Data Augmentation (EDA)    </span>   
-
-<span style="font-family:Georgia; font-size:16px;">Active learning</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Unicode Normalization</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Text Encoding</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Bag-of-words</span>   
-
-<span style="font-family:Georgia; font-size:16px;">Bag-of-words</span>   
+<span style="font-family:Georgia; font-size:16px;">Like any other software engineering project, it is essential to conduct extensive validation before the final deployment and regular monitoring is required to make sure the output of the model makes sense. This might include measuring model using appropriate KPIs(Key Performance Indicator). Model updation and improvement are then performed based on the need and the approach may differ for different post-deployment scenarios.</span>   
 
 
 <span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Read more data science articles <a href="https://prabhupavitra.github.io/learning/"> here </a> including tutorials from beginner to advanced levels!  </span> 
