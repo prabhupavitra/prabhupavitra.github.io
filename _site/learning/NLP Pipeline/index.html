@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>NLP Series - NLP Pipeline - The Realm of Data Science</title>
-<meta name="description" content="Natural Language Processing using Pyspark ">
+<meta name="description" content="Stages involved in a Natural Language Processing Project ">
 
 
   <meta name="author" content="Pavitra Prabhu">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="http://localhost:4000/learning/NLP%20Pipeline/">
 
 
-  <meta property="og:description" content="Natural Language Processing using Pyspark ">
+  <meta property="og:description" content="Stages involved in a Natural Language Processing Project ">
 
 
 
@@ -261,7 +261,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="NLP Series - NLP Pipeline">
-    <meta itemprop="description" content="Natural Language Processing using Pyspark">
+    <meta itemprop="description" content="Stages involved in a Natural Language Processing Project">
     <meta itemprop="datePublished" content="2021-04-15T22:12:28-05:00">
     
 
@@ -276,7 +276,7 @@
 
 
 
-  2 minute read
+  6 minute read
 
 </p>
           
@@ -285,7 +285,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p><img src="/img/Learning/NLP/nlp-pipeline.png" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+        <p><img src="/img/Learning/NLP/pipeline.png" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
 
 <blockquote>
   <p><span style="font-family:Georgia; font-size:20px;"> Natural Language Processing Basics - NLP Pipeline</span></p>
@@ -293,9 +293,9 @@
 
 <p><span style="font-family:Georgia; font-size:16px;"> If there’s one form of media which we are exposed to every single day, it’s text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social media, product reviews, tweets and reddit messages. Generally speaking, the data from these sources are useful for the purposes of research and commerce. </span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;"> A NLP pipeline, refers to the series of steps involved in a text-processing pipeline used for any NLP application development. In this article, we will learn about the various steps involved and how they play important roles in solving the NLP problem. </span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> An NLP pipeline, refers to the series of steps involved in a text-processing pipeline used for any NLP application development. In this article, we will learn about the various steps involved and how they play important roles in solving the NLP problem. This article is part of <strong>Natural Language Processing</strong> series where we cover most prominent building blocks in building Natural Language Processing(NLP) applications. In this article, we shall discuss various stages involved in a data-driven NLP pipeline.</span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;"> The key stages of a NLP pipeline for a data-driven NLP system are as follows.</span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> The key stages of an NLP pipeline for a data-driven NLP system are as follows.</span></p>
 
 <p><span style="font-family:Georgia; font-size:16px;"> 1. <a href="#data-acquisition">Data acquisition</a></span> <br />
 <span style="font-family:Georgia; font-size:16px;"> 2. <a href="#text-cleaning">Text cleaning</a></span> <br />
@@ -310,45 +310,44 @@
 
 <h3 id="data-acquisition">Data Acquisition</h3>
 
-<p><span style="font-family:Georgia; font-size:16px;"> Data is the heart of the machine learning world and therefore its vital to undetstand the source of data and the strategies useful for gathering data. There are several ways to collect data. Firstly, we could check if there are any publicly available datasets for the task at hand. These refer to the pre-cleaned, freely available datasets. When our problem statement aligns with a clean, pre-existing, properly formulated dataset, we should certainly take advantage of existing, open-source expertise.</span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> Data is the heart of the machine learning world and therefore its vital to understand the source of data and the strategies useful for gathering data. There are several ways to collect data. Firstly, we could check if there are any publicly available datasets for the task at hand. These refer to the pre-cleaned, freely available datasets. When our problem statement aligns with a clean, pre-existing, properly formulated dataset, we should certainly take advantage of existing, open-source expertise.</span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;">Although there are a number of publicly available datasets for a wide range of NLP tasks, its not always guaranteed that these can be used for every task. They are mostly beneficial for generic NLP tasks and not much useful as the task gets more specific.  In that case, the next strategy would be to scrape data on the internet. Web Scraping is one of the versatile strategies that allows us to extract data from websites. Once extracted, this information is cleaned and converted into a structured form for further analysis. For many industrial settings, this is not sufficient either. In cases when the problem statement is too specific to generalize over an open-source dataset, we start looking for data within the organization. In other words, we use private data generated by the machine learning engineers. While instrumenting data is quite beneficial, it takes time. Data Augmentation is one of the techniques used to remedy the issue of latency in this scenario. </span></p>
+<p><span style="font-family:Georgia; font-size:16px;">Although there are a number of publicly available datasets for a wide range of NLP tasks, its not always guaranteed that these can be used for every task. They are mostly beneficial for generic NLP tasks and not much useful as the task gets more specific.  In that case, the next strategy would be to scrape data on the internet. Web Scraping is one of the versatile strategies that allows us to extract data from websites. Once extracted, this information is cleaned and converted into a structured form for further analysis. For many industrial settings, this is not sufficient either. In cases when the problem statement is too specific to generalize over an open-source dataset, we start looking for data within the organization. In other words, we use private data generated by the machine learning engineers.</span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;">The purpose of data augmentation is to exploit language properties in order to create text that is syntactically similar to source text. Some of the common tricks used to achieve data augmentation include synonym replacement , back translation, TF-IDF–based word replacement, bigram flipping, replacing entities and adding noise to data. More advanced techniques for data augmentation include Snorkel, Easy Data Augmentation (EDA) and active learning.  </span></p>
+<p><span style="font-family:Georgia; font-size:16px;">While instrumenting data is quite beneficial, it takes time. Data Augmentation is one of the techniques used to remedy the issue of latency in this scenario. The purpose of data augmentation is to exploit language properties in order to create text that is syntactically similar to source text. Some of the common tricks used to achieve data augmentation include synonym replacement , back translation, TF-IDF–based word replacement, bigram flipping, replacing entities and adding noise to data. More advanced techniques for data augmentation include Snorkel, Easy Data Augmentation (EDA) and active learning. Nonetheless, we need a clean dataset in order for the above mentioned techniques to work well. Hence, we proceed to the next stage in the pipeline which is as important as the text source itself : text cleaning. </span></p>
 
 <h3 id="text-cleaning">Text Cleaning</h3>
+<p><span style="font-family:Georgia; font-size:16px;"> Text cleaning refers to raw text extraction from the input data. This is a generic stage in all machine learning pipelines and we don’t necessarily use any NLP technique to achieve text cleaning. The text cleaning strategy solely depends on the type of data source. </span></p>
+
+<p><span style="font-family:Georgia; font-size:16px;">For example, if we used web scraping to collect data we might have to use appropriate HTML tags to extract specific data for the project to avoid noise in data. Then, we may also encounter various unicode characters like math, emoji, dingbats, and other miscellanous symbols. We can handle these using unicode normalization to make data consumable in downstream pipelines. But, removing the unicode characters might alter the linguistic understanding of data. In addition, the input data often has spelling errors which needs to be corrected before feeding data to downstream pipelines. These were just a few of the text cleaning tasks involved in HTML parsing and the number of tasks can get complicated depending upon the data we require for building our model. Due to the intricacies involved, text cleanup can also be the most time-consuming part of a project. </span></p>
 
 <h3 id="pre-processing">Pre-Processing</h3>
 
+<p><span style="font-family:Georgia; font-size:16px;">Moving on to the next stage in our pipeline, text pre-processing refers to the processing of text thats needed to enable efficient models further in the pipeline. Some common pre-processing steps in NLP include tokenization, sentence segmentation, stop word removal, stemming and lemmatization, removing digits, lowercasing, normalization, language detection, code mixing, transliteration. Advanced processing tasks such as POS tagging, parsing, coreference resolution are classified as pre-processing tasks. This is one of the most important stages of the pipeline with regards to the model efficiency.</span></p>
+
 <h3 id="feature-engineering">Feature Engineering</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Feature engineering is an integral step in any machine learning pipeline. The intention is to convert raw data into a format that can be consumed by the machine. One of the trade-offs of feature engineering to keep in mind is the trade-off of  interpretability vs accuracy of the model.
+Feature engineering aids in the the feature extraction and is a crucial step that even a single noisy or unrelated feature can potentially harm the performance of the whole model by adding more randomness to the data. This stage of the NLP pipeline is heavily task specific. For example, in Bag-of-Words featurization, a text document is converted into a vector of counts. This is then used by the next step in the pipeline, which we call modeling. Bag-of-n-Grams
+</span></p>
 
 <h3 id="modeling">Modeling</h3>
 
+<p><span style="font-family:Georgia; font-size:16px;">Modeling stage is a solution building stage in an NLP pipeline. After collecting the data and performing all the cleanup and pre-processing tasks, we build an appropriate solution to use the model for predictions. Classification is the most commonly used model that we encounter in NLP projects.  </span></p>
+
 <h3 id="evaluation">Evaluation</h3>
+
+<p><span style="font-family:Georgia; font-size:16px;">Evaluation is a key stage in an NLP pipeline that enables us to measure the performance of the model that we built in the previous stage. However, it’s important to note that, both the model and the features selected have an influence on the evaluation. Good features make the model building task simpler and bad features may need a much more complicated model to achieve the same level of performance. Most popular metrics in NLP include accuracy, precision, recall, F1 Score, AUC, MRR, MAP, RMSE, MAPE, BLEU, METEOR, ROUGE, Perplexity and so on.   </span></p>
 
 <h3 id="deployment">Deployment</h3>
 
+<p><span style="font-family:Georgia; font-size:16px;">Deployment is one of the stages in the post-modeling phase of an NLP pipeline. Once we are happy with the performance of the model, it is ready to be deployed into production where we plug our NLP module to the incoming stream of data and the output is consumable by downstream applications. An NLP module is typically deployed as a webservice and its vital to ensure that the deployed module is scalable under heavy loads. </span></p>
+
 <h3 id="monitoring--updating-model">Monitoring &amp; Updating Model</h3>
 
-<h3 id="glossary">Glossary</h3>
+<p><span style="font-family:Georgia; font-size:16px;">Like any other software engineering project, it is essential to conduct extensive validation before the final deployment and regular monitoring is required to make sure the output of the model makes sense. This might include measuring model using appropriate KPIs(Key Performance Indicator). Model updation and improvement are then performed based on the need and the approach may differ for different post-deployment scenarios.</span></p>
 
-<p><span style="font-family:Georgia; font-size:16px;">Synonym Replacement</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Back Translation</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Bigram Flipping</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Replacing entities</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Adding noise to data</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Snorkel</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Easy Data Augmentation (EDA)    </span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;">Active learning</span></p>
-
-<p><span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Read more data science articles <a href="https://prabhupavitra.github.io/learning/"> here </a> including tutorials from beginner to advanced levels!  </span></p>
+<p><span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Check out my <a href="https://prabhupavitra.github.io/learning/NLP_Glossary/"> NLP Glossary  </a> page or read more data science articles by clicking <a href="https://prabhupavitra.github.io/learning/"> here </a> including various tutorials and learnings from beginner to advanced levels!  </span></p>
 
         
       </section>
@@ -383,7 +382,8 @@
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/learning/NLP_Glossary/" class="pagination--pager" title="NLP Series - Glossary
+">Next</a>
     
   </nav>
 

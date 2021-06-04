@@ -1,11 +1,11 @@
 ---
 title: "NLP Series - NLP Pipeline"
-excerpt: "Natural Language Processing using Pyspark"
+excerpt: "Stages involved in a Natural Language Processing Project"
 date:   2021-04-15 22:12:28 -0500
 theme : "mint"
 ---
 
-<img src="/img/Learning/NLP/nlp-pipeline.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Learning/NLP/pipeline.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
 
 > <span style="font-family:Georgia; font-size:20px;"> Natural Language Processing Basics - NLP Pipeline</span>   
 
@@ -71,4 +71,4 @@ Feature engineering aids in the the feature extraction and is a crucial step tha
 <span style="font-family:Georgia; font-size:16px;">Like any other software engineering project, it is essential to conduct extensive validation before the final deployment and regular monitoring is required to make sure the output of the model makes sense. This might include measuring model using appropriate KPIs(Key Performance Indicator). Model updation and improvement are then performed based on the need and the approach may differ for different post-deployment scenarios.</span>   
 
 
-<span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Read more data science articles <a href="https://prabhupavitra.github.io/learning/"> here </a> including tutorials from beginner to advanced levels!  </span> 
+<span style="font-family:Georgia; font-size:16px;"> Thanks for reading! I hope you found this article helpful. Check out my <a href="https://prabhupavitra.github.io/learning/NLP_Glossary/"> NLP Glossary  </a> page or read more data science articles by clicking <a href="https://prabhupavitra.github.io/learning/"> here </a> including various tutorials and learnings from beginner to advanced levels!  </span> 

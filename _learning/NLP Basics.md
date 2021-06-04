@@ -1,6 +1,6 @@
 ---
 title: "NLP Series - Linguistics"
-excerpt: "Natural Language Processing"
+excerpt: "Understanding of Linguistics needed for Natural Language Processing"
 date:   2021-04-01 22:12:28 -0500
 theme : "dark"
 ---

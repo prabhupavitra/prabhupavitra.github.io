@@ -29,6 +29,12 @@ var store = [{
         "url": "http://localhost:4000/learning/NLP%20Pipeline/",
         "teaser": null
       },{
+        "title": "NLP Series - Glossary",
+        "excerpt":"Natural Language Processing Basics - Core Terminologies and techniques If there’s one form of media which we are exposed to every single day, it’s text. There is huge amounts of data created by people and devices, every single day. This data includes and is not limited to comments on social...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/learning/NLP_Glossary/",
+        "teaser": null
+      },{
         "title": "Loan Amortization",
         "excerpt":"Introduction This article is part of a series about financial modeling using python/vba/R where I cover some of the prominent financial models useful for analysts. In this article we will explore loan amortization using Excel and Python. If you follow along for both, you’ll understand the concept at a deeper...","categories": [],
         "tags": [],
