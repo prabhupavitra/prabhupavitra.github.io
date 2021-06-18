@@ -57,6 +57,34 @@ theme : "mint"
 <span style="font-family:Georgia; font-size:16px;">Frequency-Based Filtering</span>
 <span style="font-family:Georgia; font-size:16px;">Rare words</span>
 
+### NLP Tasks
+
+<span style="font-family:Georgia; font-size:16px;">Information Extraction</span>
+<span style="font-family:Georgia; font-size:16px;">Topic Modeling</span>
+<span style="font-family:Georgia; font-size:16px;">Word Embeddings</span>
+<span style="font-family:Georgia; font-size:16px;">Text Classification</span>
+<span style="font-family:Georgia; font-size:16px;">Sentiment Analysis</span>
+<span style="font-family:Georgia; font-size:16px;">Sequence Modeling</span>
+<span style="font-family:Georgia; font-size:16px;">Chatbots</span>
+<span style="font-family:Georgia; font-size:16px;">Text Summarization</span>
+<span style="font-family:Georgia; font-size:16px;">Document Classification</span>
+<span style="font-family:Georgia; font-size:16px;">Grammatical Error Correction/Autocorrect</span>
+<span style="font-family:Georgia; font-size:16px;">Text-to-Speech</span>
+<span style="font-family:Georgia; font-size:16px;">Speech-to-Text</span>
+<span style="font-family:Georgia; font-size:16px;">Dialogue Understanding</span>  
+<span style="font-family:Georgia; font-size:16px;">Fake News Detection/Hate Speech Detection</span>  
+<span style="font-family:Georgia; font-size:16px;">Image captioning</span>  
+<span style="font-family:Georgia; font-size:16px;">Question and answering</span>  
+<span style="font-family:Georgia; font-size:16px;">Semantic textual similarity</span>  
+<span style="font-family:Georgia; font-size:16px;">Word Sense Disambiguation</span>  
+<span style="font-family:Georgia; font-size:16px;">Keyword Extraction</span>  
+<span style="font-family:Georgia; font-size:16px;">Annotation</span>  
+<span style="font-family:Georgia; font-size:16px;">Document Ranking</span>  
+<span style="font-family:Georgia; font-size:16px;">Relation extraction</span>  
+<span style="font-family:Georgia; font-size:16px;">Named entity recognition</span>  
+
+
+
 ### References
 
 <span style="font-family:Georgia; font-size:16px;">1. Alice Zheng and Amanda Casari. 2018. Feature engineering for machine learning: principles and techniques for data scientists. O'Reilly Media, Inc.</span>   
