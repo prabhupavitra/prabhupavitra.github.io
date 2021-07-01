@@ -62,6 +62,6 @@ var store = [{
         "title": "Extracting the hidden messages in Earnings Call Transcripts",
         "excerpt":"Introduction An earnings call is a conference call between the management of a public company, analysts, investors, and the media to discuss the company’s financial results during a given reporting period, such as a quarter or a fiscal year. Most listed US companies host earnings calls every quarter. There are...","categories": [],
         "tags": [],
-        "url": "http://localhost:4000/projects/etl-pipeline-earningcall-mysql-pyspark/",
+        "url": "http://localhost:4000/projects/pyspark-abstractive-summarization/",
         "teaser": "http://localhost:4000/img/Project/ProjectTeaser/earningcall.png"
       }]

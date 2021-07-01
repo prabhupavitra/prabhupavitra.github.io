@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="The Realm of Data Science">
 <meta property="og:title" content="Extracting the hidden messages in Earnings Call Transcripts">
-<meta property="og:url" content="http://localhost:4000/projects/etl-pipeline-earningcall-mysql-pyspark/">
+<meta property="og:url" content="http://localhost:4000/projects/pyspark-abstractive-summarization/">
 
 
   <meta property="og:description" content="Using PySpark on Jupyter notebook with Docker for analyzing raw text and join them with MySQL database table ">
@@ -44,7 +44,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/projects/etl-pipeline-earningcall-mysql-pyspark/">
+<link rel="canonical" href="http://localhost:4000/projects/pyspark-abstractive-summarization/">
 
 
 
@@ -290,11 +290,14 @@ There are hundreds of earnings calls held each quarter, often with the release o
 Although mining these unstructured public company transcripts gives us an informational edge on company strategy and expectations for future performance, the sheer volume of those transcripts makes analyzing them a daunting task. Although earnings call transcripts by themselves are not informative enough to predict stock price changes, they can be leveraged to gauge volatility or stability of underlying revenue stream. There are various machine learning techniques that can be used to extract the information from these transcripts. Some of them include Sentiment analysis, topic modeling, text summarization and so on. </span></p>
 
 <p><span style="font-family:Georgia; font-size:18px;">
-Topic modeling is an area of natural language processing that analyses large volumes of text data and identifies the key topics or themes within the data. On the contrary, sentiment analysis, predicts sentiments about future outlooks by assigning sentiment scores on each topic of interest within the text and enables us to comprehend the sentiment conveyed by company management on earnings calls. Text summarization, enables us to automatically summarize single/ multiple documents to extract only the most relevant information. Although companies often include summaries with earning releases, they might be prone to content management. Therefore, opting for automatic summarization is beneficial because it extracts text without human intervention and may provide useful summary information with less bias. In this work, we dive deeper into abstractive summarization technique to automatically summarize earnings call transcripts stored as a text file in a local path.</span></p>
+Topic modeling is an area of natural language processing that analyses large volumes of text data and identifies the key topics or themes within the data. On the contrary, sentiment analysis, predicts sentiments about future outlooks by assigning sentiment scores on each topic of interest within the text and enables us to comprehend the sentiment conveyed by company management on earnings calls. Text summarization, enables us to automatically summarize single/ multiple documents to extract only the most relevant information. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Although companies often include summaries with earning releases, they might be prone to content management. Therefore, opting for automatic summarization is beneficial because it extracts text without human intervention and may provide useful summary information with less bias. In this work, we dive deeper into abstractive summarization technique to automatically summarize earnings call transcripts stored as a text file in a local path.</span></p>
 
 <h4 id="system-architecture">System Architecture</h4>
 
-<p><span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and stored them as text files in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in <a href="https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb">my github repository</a>.Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span></p>
+<p><span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and the text files were stored in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in [my github repository](https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb. Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span></p>
 
 <figure>
 <img src="/img/Project/p5/system-architecture.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
@@ -304,7 +307,7 @@ Topic modeling is an area of natural language processing that analyses large vol
 <h4 id="data-acquisition">Data Acquisition</h4>
 <p><span style="font-family:Georgia; font-size:18px;">
 There are various ways to locate the transcripts. Some of the popular sources include Seeking Alpha, Factiva, Factset, Pitchbook, Capital IQ, Bloomberg and Westlaw Campus Research. Thomson One Streetevents is a great resource for earnings call transcripts and some limited audio recordings. Dow Jones Factiva also has earnings call transcripts, although they often include just a summary of the company’s presentation, along with the analysts’ questions, instead of including the word-for-word transcripts that are usually included with the Thomson Reuters Streetevents transcripts. 
-Factset,  available for use in Lippincott Library, also has eaFactset 1 arnings call transcripts and some audio broadcasts. However, the earnings call transcripts for this project were obtained from the website Seeking Alpha. The transcripts are well labeled, including the name of the speaker(executive and analysts) and speech content. </span></p>
+Factset,  available for use in Lippincott Library, also has earnings call transcripts and some audio broadcasts. However, the earnings call transcripts for this project were obtained from the website Seeking Alpha. The transcripts are well labeled, including the name of the speaker(executive and analysts) and speech content. </span></p>
 
 <h4 id="methods--analysis">Methods &amp; Analysis</h4>
 
@@ -329,8 +332,7 @@ The algorithms designed for automatic text summarization can be partitioned into
 </figure>
 
 <p><span style="font-family:Georgia; font-size:18px;"> 
-Abstractive summarization
-They are so-called because they do not select sentences from the originally given text to create the summary, but generate  </span></p>
+Abstractive summarization is so-called because they do not select sentences from the originally given text to create the summary, but generate  entirely new phrases and sentences to capture the meaning of the source document. They offer the potential to generate human like summaries because of its ability to select words from a general vocabulary, rather than being limited to the input text like other automatic summarization methods.  </span></p>
 
 <figure>
   <img src="/img/Project/p5/abstractive.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" />
