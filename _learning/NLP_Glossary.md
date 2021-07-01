@@ -184,7 +184,7 @@ theme : "mint"
 <span style="font-family:Georgia; font-size:16px;">**Document Ranking**</span>     
 <span style="font-family:Georgia; font-size:16px;"></span>  
 
-<span style="font-family:Georgia; font-size:16px;">**Relation extraction**</span>     
+<span style="font-family:Georgia; font-size:16px;">**   Relation extraction**</span>     
 <span style="font-family:Georgia; font-size:16px;"></span>  
 
 <span style="font-family:Georgia; font-size:16px;">**Named entity recognition**</span>      

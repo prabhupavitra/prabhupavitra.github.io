@@ -1,0 +1,581 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Extracting the hidden messages in Earnings Call Transcripts - The Realm of Data Science</title>
+<meta name="description" content="Using PySpark on Jupyter notebook with Docker for analyzing raw text and join them with MySQL database table ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="Extracting the hidden messages in Earnings Call Transcripts">
+<meta property="og:url" content="http://localhost:4000/projects/etl-pipeline-earningcall-mysql-pyspark/">
+
+
+  <meta property="og:description" content="Using PySpark on Jupyter notebook with Docker for analyzing raw text and join them with MySQL database table ">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/Project/ProjectTeaser/earningcall.png">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-06-01T22:12:28-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/projects/etl-pipeline-earningcall-mysql-pyspark/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Extracting the hidden messages in Earnings Call Transcripts">
+    <meta itemprop="description" content="Using PySpark on Jupyter notebook with Docker for analyzing raw text and join them with MySQL database table">
+    <meta itemprop="datePublished" content="2021-06-01T22:12:28-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Extracting the hidden messages in Earnings Call Transcripts
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img src="/img/Project/ProjectTeaser/Earnings-Call_v6-01-1.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+
+<h4 id="introduction">Introduction</h4>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+An earnings call is a conference call between the management of a public company, analysts, investors, and the media to discuss the company’s financial results during a given reporting period, such as a quarter or a fiscal year. Most listed US companies host earnings calls every quarter. 
+There are hundreds of earnings calls held each quarter, often with the release of detailed transcripts. Earnings call transcripts delineate a compelling case for analysis because the transcript is relatively unstructured and potentially more informative than 10K and 10Q disclosures due to the question and answer session consisting of unprepared statements.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Although mining these unstructured public company transcripts gives us an informational edge on company strategy and expectations for future performance, the sheer volume of those transcripts makes analyzing them a daunting task. Although earnings call transcripts by themselves are not informative enough to predict stock price changes, they can be leveraged to gauge volatility or stability of underlying revenue stream. There are various machine learning techniques that can be used to extract the information from these transcripts. Some of them include Sentiment analysis, topic modeling, text summarization and so on. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Topic modeling is an area of natural language processing that analyses large volumes of text data and identifies the key topics or themes within the data. On the contrary, sentiment analysis, predicts sentiments about future outlooks by assigning sentiment scores on each topic of interest within the text and enables us to comprehend the sentiment conveyed by company management on earnings calls. Text summarization, enables us to automatically summarize single/ multiple documents to extract only the most relevant information. Although companies often include summaries with earning releases, they might be prone to content management. Therefore, opting for automatic summarization is beneficial because it extracts text without human intervention and may provide useful summary information with less bias. In this work, we dive deeper into abstractive summarization technique to automatically summarize earnings call transcripts stored as a text file in a local path.</span></p>
+
+<h4 id="system-architecture">System Architecture</h4>
+
+<p><span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and stored them as text files in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in <a href="https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb">my github repository</a>.Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span></p>
+
+<figure>
+<img src="/img/Project/p5/System-architecture.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 1 : System Architecure </figcaption>
+</figure>
+
+<h4 id="data-acquisition">Data Acquisition</h4>
+<p><span style="font-family:Georgia; font-size:18px;">
+There are various ways to locate the transcripts. Some of the popular sources include Seeking Alpha, Factiva, Factset, Pitchbook, Capital IQ, Bloomberg and Westlaw Campus Research. Thomson One Streetevents is a great resource for earnings call transcripts and some limited audio recordings. Dow Jones Factiva also has earnings call transcripts, although they often include just a summary of the company’s presentation, along with the analysts’ questions, instead of including the word-for-word transcripts that are usually included with the Thomson Reuters Streetevents transcripts. 
+Factset,  available for use in Lippincott Library, also has eaFactset 1 arnings call transcripts and some audio broadcasts. However, the earnings call transcripts for this project were obtained from the website Seeking Alpha. The transcripts are well labeled, including the name of the speaker(executive and analysts) and speech content. </span></p>
+
+<h4 id="methods--analysis">Methods &amp; Analysis</h4>
+
+<h5 id="text-summarization">Text Summarization</h5>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+Text summarization is the process of shortening a set of data computationally, to create a subset (a summary) that represents the most important or relevant information within the original content. Automatic text summarization refers to the use of machine learning and natural language processing 
+methods to address the ever-growing amount of text data available online to both better help discover relevant information and to consume relevant information faster.</span></p>
+
+<figure>
+<img src="/img/Project/p5/summary.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 2 : An online news article that has been summarized using a text summarization machine learning algorithm
+ </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+The algorithms designed for automatic text summarization can be partitioned into two main categories: Extractive Summarization and Abstractive Summarization. Extractive summarization approach aims at identifying the salient information that is then extracted and grouped together to form a concise summary. </span></p>
+
+<figure>
+  <img src="/img/Project/p5/extractive.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 3 : Extractive Summarization </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+Abstractive summarization
+They are so-called because they do not select sentences from the originally given text to create the summary, but generate  </span></p>
+
+<figure>
+  <img src="/img/Project/p5/abstractive.jpg" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 4 : Abstractive Summarization </figcaption>
+</figure>
+
+<h5 id="implementation">Implementation</h5>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Diving into the implementation section, we begin loading the data from the mysql database to retrieve the filenames of all the firms whose earnings call transcripts needs to be summarized.To get started you will need to include the JDBC driver for your particular database on the spark classpath. For example, to connect to mysql from the Spark Shell you would use the following config when intiating a spark session. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.driver.extraClassPath"</span><span class="p">,</span> <span class="s">"./mysql-connector-java-8.0.25.jar"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+With regards to implementing the text summarization model, we leverage spark nlp library to implement abstractive summarization using T5 Transformer model. Spark NLP is a Natural Language Processing (NLP) library built on top of Apache Spark ML. It provides simple, performant &amp; accurate NLP annotations for machine learning pipelines that can scale easily in a distributed environment. Spark NLP comes with 1100+ pretrained pipelines and models in more than 192+ languages. It supports nearly all the NLP tasks and modules that can be used seamlessly in a cluster. </span></p>
+
+<figure>
+  <img src="/img/Project/p5/libraries.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 5 : Most widely used ML Frameworks(Source : ”AI Adoption in the Enterprise”, O’Reilly Media, February 2019 – Most widely used ML frameworks and tools survey of 1,300 practitioners)  </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+On the other hand, T5: Text-to-Text-Transfer-Transformer model proposes reframing all NLP tasks into a unified text-to-text-format where the input and output are always text strings. This formatting makes one T5 model fit for multiple tasks with a uniform architecture. It was created by Google AI and the details can be found in this <a href="https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html">article</a>.The complete seminar paper is available by clicking this <a href="https://arxiv.org/pdf/1910.10683.pdf">link</a>.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> T5 is a transformer model trained on the “Colossal Clean Crawled Corpus” (C4) dataset. Google open-sourced a pre-trained T5 model that is capable of doing multiple tasks like translation, summarization, question answering, and classification.
+This T5-Small model has about 60 million parameters and using the smaller models can be helpful in settings where limited computational resources are available for fine-tuning or inference. In this project, we use T5-small pre-trained model to achieve abstractive text summarization of earnings call transcripts. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+Moving forward, let’s dive into the execution of the project in detail. Spark ML provides a set of Machine Learning applications that can be build using two main components: Estimators and Transformers. The Estimators have a method called fit() which secures and trains a piece of data to such application. The Transformer is generally the result of a fitting process and applies changes to the the target dataset.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> 
+In Spark NLP, DocumentAssembler is a key transformer that serves as the entry point to Spark NLP for any spark dataframe.  Another vital element of machine learning workflow in Spark NLP is a pipeline. Pipelines are a mechanism for combining multiple estimators and transformers in a single workflow. They allow multiple chained transformations along a Machine Learning task. For more information please refer to <a href="https://spark.apache.org/docs/latest/ml-guide.html">Spark ML</a> library.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> The complete code to achieve abstractive summarization is provided below:</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install sparknlp
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">sparknlp</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sparknlp</span>
+
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="c1"># os.getcwd()
+</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+
+<span class="c1"># Initiating a Spark NLP Session 
+</span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="p">.</span><span class="n">builder</span> \
+    <span class="p">.</span><span class="n">appName</span><span class="p">(</span><span class="s">"Spark NLP"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">master</span><span class="p">(</span><span class="s">"local[4]"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.python.worker.memory"</span><span class="p">,</span><span class="s">"6G"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.driver.memory"</span><span class="p">,</span><span class="s">"24G"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.driver.maxResultSize"</span><span class="p">,</span> <span class="s">"0"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.kryoserializer.buffer.max"</span><span class="p">,</span> <span class="s">"2000M"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.serializer"</span><span class="p">,</span><span class="s">"org.apache.spark.serializer.KryoSerializer"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.jars.packages"</span><span class="p">,</span> <span class="s">"com.johnsnowlabs.nlp:spark-nlp_2.12:3.1.1"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.driver.extraClassPath"</span><span class="p">,</span> <span class="s">"./mysql-connector-java-8.0.25.jar"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="s">"spark.worker.cleanup.enabled"</span><span class="p">,</span><span class="bp">True</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+<span class="c1"># // Loading data from a JDBC source
+</span><span class="n">jdbcDF</span> <span class="o">=</span> <span class="n">spark</span><span class="p">.</span><span class="n">read</span> \
+    <span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="s">"jdbc"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">"url"</span><span class="p">,</span> <span class="s">"jdbc:mysql://sem_mysql:3306/test_db"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">"dbtable"</span><span class="p">,</span> <span class="s">"earningscall"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">"user"</span><span class="p">,</span> <span class="s">"es_user"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">option</span><span class="p">(</span><span class="s">"password"</span><span class="p">,</span> <span class="s">"watchword"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">concat</span><span class="p">,</span><span class="n">lit</span>
+
+<span class="n">folder_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">folder_name</span> <span class="o">=</span>  <span class="s">"earnings_call_transcripts"</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder_path</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+
+<span class="n">jdbcDF</span> <span class="o">=</span> <span class="n">jdbcDF</span><span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="n">concat</span><span class="p">(</span><span class="n">lit</span><span class="p">(</span><span class="s">'file:'</span><span class="p">),</span><span class="n">lit</span><span class="p">(</span><span class="n">file_path</span><span class="p">),</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">filepath</span><span class="p">)</span> \
+               <span class="p">.</span><span class="n">alias</span><span class="p">(</span><span class="s">"local_filepath"</span><span class="p">),</span><span class="s">'companyid'</span><span class="p">,</span> <span class="s">'ticker'</span><span class="p">,</span> <span class="s">'company_name'</span><span class="p">,</span> <span class="s">'filepath'</span><span class="p">,</span> <span class="s">'transcript'</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="o">*</span>    
+<span class="c1"># from pyspark.sql.functions import monotonically_increasing_id 
+</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s">"./earnings_call_transcripts/"</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="n">spark</span><span class="p">.</span><span class="n">sparkContext</span><span class="p">.</span><span class="n">wholeTextFiles</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="n">use_unicode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">StructType</span><span class="p">([</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s">'path'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">()),</span>
+    <span class="n">StructField</span><span class="p">(</span><span class="s">'raw_text'</span><span class="p">,</span> <span class="n">StringType</span><span class="p">())</span>
+<span class="c1">#     StructField('text_len',IntegerType())
+</span><span class="p">])</span>
+
+<span class="c1"># Add index and Handle escape sequence of \x00 before tokenizing the document
+</span><span class="n">textdf</span> <span class="o">=</span> <span class="n">spark</span><span class="p">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">).</span><span class="n">persist</span><span class="p">()</span> \
+              <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"index"</span><span class="p">,</span> <span class="n">monotonically_increasing_id</span><span class="p">())</span> \
+              <span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">'text'</span><span class="p">,</span> <span class="n">regexp_replace</span><span class="p">(</span><span class="s">'raw_text'</span><span class="p">,</span> <span class="s">'</span><span class="se">\x00</span><span class="s">|</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="s">''</span><span class="p">))</span>
+
+<span class="c1"># Add text length to the table
+</span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="n">f</span>
+
+<span class="n">textdf</span> <span class="o">=</span> <span class="n">textdf</span><span class="p">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s">"original_text_length"</span><span class="p">,</span><span class="n">f</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s">"text"</span><span class="p">)))</span>
+
+<span class="c1"># Join tables from mysql with pyspark table
+</span><span class="n">jdbcJoinedTable</span> <span class="o">=</span> <span class="n">jdbcDF</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">textdf</span><span class="p">,</span> <span class="n">jdbcDF</span><span class="p">.</span><span class="n">local_filepath</span> <span class="o">==</span> <span class="n">textdf</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s">'left'</span><span class="p">).</span><span class="n">select</span><span class="p">(</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">local_filepath</span><span class="p">,</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">companyid</span><span class="p">,</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">ticker</span><span class="p">,</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">company_name</span><span class="p">,</span><span class="n">jdbcDF</span><span class="p">.</span><span class="n">filepath</span><span class="p">,</span> <span class="n">textdf</span><span class="p">.</span><span class="n">text</span><span class="p">,</span><span class="n">textdf</span><span class="p">.</span><span class="n">original_text_length</span><span class="p">)</span> 
+
+<span class="kn">from</span> <span class="nn">sparknlp.annotator</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sparknlp.common</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sparknlp.base</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pyspark.ml</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="n">assembler</span> <span class="o">=</span> <span class="n">DocumentAssembler</span><span class="p">()</span>\
+    <span class="p">.</span><span class="n">setInputCol</span><span class="p">(</span><span class="s">'text'</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">setOutputCol</span><span class="p">(</span><span class="s">'doc'</span><span class="p">)</span>
+<span class="n">t5</span> <span class="o">=</span> <span class="n">T5Transformer</span><span class="p">()</span> \
+    <span class="p">.</span><span class="n">pretrained</span><span class="p">(</span><span class="s">"t5_small"</span><span class="p">)</span> \
+    <span class="p">.</span><span class="n">setTask</span><span class="p">(</span><span class="s">"summarize:"</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">setMaxOutputLength</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>\
+    <span class="p">.</span><span class="n">setInputCols</span><span class="p">([</span><span class="s">"doc"</span><span class="p">])</span> \
+    <span class="p">.</span><span class="n">setOutputCol</span><span class="p">(</span><span class="s">"summaries"</span><span class="p">)</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">().</span><span class="n">setStages</span><span class="p">([</span><span class="n">assembler</span><span class="p">,</span> <span class="n">t5</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">jdbcJoinedTable</span><span class="p">).</span><span class="n">transform</span><span class="p">(</span><span class="n">jdbcJoinedTable</span><span class="p">)</span>
+<span class="c1"># results.printSchema()
+</span>
+<span class="c1"># Summary of Earnings call Transcripts for Broadcom Q
+</span><span class="n">results</span><span class="p">.</span><span class="nb">filter</span><span class="p">(</span><span class="n">col</span><span class="p">(</span><span class="s">"ticker"</span><span class="p">)</span> <span class="o">==</span> <span class="s">"AMAT"</span><span class="p">).</span><span class="n">select</span><span class="p">([</span><span class="s">'summaries.result'</span><span class="p">]).</span><span class="n">toPandas</span><span class="p">()[</span><span class="s">'result'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;">
+The corresponding summary of the ticker mentioned above is as follows:</span></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">'Applied Materials, Inc. is a company that has a diversified 
+portfolio of products . a lot of people are embracing the 
+technology, and the technology is a key driver . a lot of
+ people are embracing the technology, and the technology 
+ is a key driver .'</span>
+</code></pre></div></div>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Overall, there are some interesting takeaways from this NLP analysis of earnings calls, although they should be combined with other metrics to form a more holistic viewpoint on industry trends. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email. You can find the complete script in my <a href="https://github.com/prabhupavitra/Text-Summarization-PySpark">github repository</a>.</span></p>
+
+<h5 id="references">References</h5>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+(1) Sowmya Vajjala, Bodhisattwa Majumder, Anuj Gupta, Harshit Surana. Practical Natural Language Processing. O’Reilly Media, Inc. June 2020.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+(2) Alex Thomas. Natural Language Processing with Spark NLP.O’Reilly Media, Inc.June 2020.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+(3) Jeffrey Aven. Data Analytics with Spark Using Python, First edition.O’Reilly Media, Inc.June 2018</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+(4) Josh Wills, Sean Owen, Sandy Ryza and Uri Laserson.Advanced Analytics with Spark, 2nd Edition. O’Reilly Media, Inc.June 2017</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+(5) Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou,
+Wei Li, and Peter J. Liu.Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer .June 2020. https://arxiv.org/pdf/1910.10683.pdf</span></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-06-01T22:12:28-05:00">June 1, 2021</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/projects/collaborative-filtering-using-pyspark/" class="pagination--pager" title="Implicit Collaborative Filtering with PySpark
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
