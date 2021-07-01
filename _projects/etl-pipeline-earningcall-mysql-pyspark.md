@@ -28,7 +28,7 @@ Topic modeling is an area of natural language processing that analyses large vol
 <span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and stored them as text files in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in [my github repository](https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb).Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span>   
 
 <figure>
-<img src="/img/Project/p5/System-architecture.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
+<img src="/img/Project/p5/system-architecture.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
   <figcaption style="color: grey"> Figure 1 : System Architecure </figcaption>
 </figure>
 
@@ -200,7 +200,7 @@ The corresponding summary of the ticker mentioned above is as follows:</span>
 portfolio of products . a lot of people are embracing the 
 technology, and the technology is a key driver . a lot of
  people are embracing the technology, and the technology 
- is a key driver .'
+  is a key driver .'
 ```
 
 
