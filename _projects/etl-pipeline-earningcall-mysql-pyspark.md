@@ -28,7 +28,7 @@ Although companies often include summaries with earning releases, they might be 
 
 #### System Architecture    
 
-<span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and stored them as text files in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in [my github repository](https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb. Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span>   
+<span style="font-family:Georgia; font-size:18px;">The original system architecture stored the web link to the earnings call transcripts in a MySQL database. To avoid sharing information related to credentials, this step was modified and the transcripts  were downloaded and the text files were stored in local path. Subsequently, the filename was stored in the MYSQL database. The ETL(Extract, Transform and Load) pipeline for this project was implemented using a docker container with PySpark installed in Jupyter notebook and MySQL on the same network. The entire code files can be accessed in [my github repository](https://github.com/prabhupavitra/Text-Summarization-PySpark/blob/main/Abstractive%20Text%20Summarization%20using%20Pyspark.ipynb. Spark SQL also includes a data source that can read data from other databases using JDBC. Tables from the remote database can be loaded as a DataFrame or Spark SQL temporary view using the Data Sources API. Users can specify the JDBC connection properties in the data source options. user and password are normally provided as connection properties for logging into the data sources. The system architecture for this project is displayed below. </span>   
 
 <figure>
 <img src="/img/Project/p5/system-architecture.png" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
@@ -38,7 +38,7 @@ Although companies often include summaries with earning releases, they might be 
 ####  Data Acquisition    
 <span style="font-family:Georgia; font-size:18px;">
 There are various ways to locate the transcripts. Some of the popular sources include Seeking Alpha, Factiva, Factset, Pitchbook, Capital IQ, Bloomberg and Westlaw Campus Research. Thomson One Streetevents is a great resource for earnings call transcripts and some limited audio recordings. Dow Jones Factiva also has earnings call transcripts, although they often include just a summary of the company’s presentation, along with the analysts’ questions, instead of including the word-for-word transcripts that are usually included with the Thomson Reuters Streetevents transcripts. 
-Factset,  available for use in Lippincott Library, also has eaFactset 1 arnings call transcripts and some audio broadcasts. However, the earnings call transcripts for this project were obtained from the website Seeking Alpha. The transcripts are well labeled, including the name of the speaker(executive and analysts) and speech content. </span>    
+Factset,  available for use in Lippincott Library, also has earnings call transcripts and some audio broadcasts. However, the earnings call transcripts for this project were obtained from the website Seeking Alpha. The transcripts are well labeled, including the name of the speaker(executive and analysts) and speech content. </span>    
 
 #### Methods & Analysis 
 
@@ -64,8 +64,7 @@ The algorithms designed for automatic text summarization can be partitioned into
 </figure>
 
 <span style="font-family:Georgia; font-size:18px;"> 
-Abstractive summarization
-They are so-called because they do not select sentences from the originally given text to create the summary, but generate  </span>  
+Abstractive summarization is so-called because they do not select sentences from the originally given text to create the summary, but generate  entirely new phrases and sentences to capture the meaning of the source document. They offer the potential to generate human like summaries because of its ability to select words from a general vocabulary, rather than being limited to the input text like other automatic summarization methods.  </span>  
 
 <figure>
   <img src="/img/Project/p5/abstractive.jpg" alt="this is a placeholder image" width="100%" height = "50%" class="center" >
