@@ -1,8 +1,8 @@
 ---
-title: "Credit Card Fraud Detection "
+title: "Detecting Fraudulent Transactions in Credit Cards"
 layout: single
 author_profile: true    
-excerpt: "Detecting credit card fraud using R"
+excerpt: "Using R and machine learning for Credit Card Fraud detection"
 date:   2020-12-01 22:12:28 -0500
 header:
     teaser: /img/Project/ProjectTeaser/thumbnail_creditcardfraud.jpg
