@@ -64,4 +64,10 @@ var store = [{
         "tags": [],
         "url": "http://localhost:4000/projects/pyspark-abstractive-summarization/",
         "teaser": "http://localhost:4000/img/Project/ProjectTeaser/earningcall.png"
+      },{
+        "title": "Implementing Near Realtime Search with ElasticSearch",
+        "excerpt":"Introduction A majority of companies believe that leveraging customer-data is the key to gaining competitive edge. In other words, the more customers you have, more data you are able to gather and analyze, which then allows you to build a better product. For this reason, leading companies invest heavily in...","categories": [],
+        "tags": [],
+        "url": "http://localhost:4000/projects/mysql-elasticsearch-sync/",
+        "teaser": "http://localhost:4000/img/Project/ProjectTeaser/fulltextsearch.jpeg"
       }]

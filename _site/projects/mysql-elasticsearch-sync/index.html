@@ -1,0 +1,726 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Implementing Near Realtime Search with ElasticSearch - The Realm of Data Science</title>
+<meta name="description" content="Data Synchronization of MySQL database with Elastic Search on Docker ">
+
+
+  <meta name="author" content="Pavitra Prabhu">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Realm of Data Science">
+<meta property="og:title" content="Implementing Near Realtime Search with ElasticSearch">
+<meta property="og:url" content="http://localhost:4000/projects/mysql-elasticsearch-sync/">
+
+
+  <meta property="og:description" content="Data Synchronization of MySQL database with Elastic Search on Docker ">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/img/Project/ProjectTeaser/fulltextsearch.jpeg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-07-08T22:12:28-05:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/projects/mysql-elasticsearch-sync/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Pavitra Prabhu",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Realm of Data Science Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          The Realm of Data Science
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/learning/">Learning</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Pavitra Prabhu</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>My adventure in Data Science and Analytics</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Waukesha, WI</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:pavitrashivananda.prabhu@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Implementing Near Realtime Search with ElasticSearch">
+    <meta itemprop="description" content="Data Synchronization of MySQL database with Elastic Search on Docker">
+    <meta itemprop="datePublished" content="2021-07-08T22:12:28-05:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Implementing Near Realtime Search with ElasticSearch
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img src="/img/Project/ProjectTeaser/full-text-search.jpeg" alt="this is a placeholder image" width="100%" height="50%" class="center" /></p>
+
+<h4 id="introduction">Introduction</h4>
+
+<p><span style="font-family:Georgia; font-size:18px;"> A majority of companies believe that leveraging customer-data is the key to gaining competitive edge. In other words, the more customers you have, more data you are able to gather and analyze, which then allows you to build a better product. 
+For this reason, leading companies invest heavily in database development and building other data infrastructure. More often than not, companies build their essential functionalities around relational databases. This is due to the fact that, relational databases have strict data integrity procedures that keep the integrity of crucial data throughout all database procedures and operations. However, traditional databases are ineffective for the purposes of analytics and implementing full-text search capabilities. Therefore, there is a need for a search engine that allows us to store, search, and analyze huge volumes of data quickly and in near real-time and give back answers in milliseconds. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> A well established solution for this problem is to generate an index based on the data. An index can be built in different ways and one of the commonly used techniques is the inverted index. An inverted index is a database index storing a mapping from content, such as words or numbers to its location in a table, or in a document or in a set of documents. There are a lot of options available in terms of full text search engines. The snapshot below are some of the most popular ones as of June 2021. Some are open source, and others are commercial and licensed. The top 5 Open Source search engines include Elastic Search, Apache Solr, Lucene, Sphinx and Xapian. In this article, we will investigate one of the world’s leading solution, the ELK stack. </span></p>
+
+<figure>
+<img src="/img/Project/p6/es-alternatives.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 1 : Some of the popular Full Text Search Engines. June 2021. </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+<em>Elasticsearch</em> is the world’s leading free and open search and analytics solution at the heart of the Elastic Stack that provides a rapid full-text search over millions of documents in near real-time. It is built on Apache Lucene and developed in Java. Logstash and Beats facilitate collecting, aggregating, and enriching your data and storing it in Elasticsearch. Kibana enables you to interactively explore, visualize, and share insights into your data and manage and monitor the stack. Elasticsearch is where the indexing, search, and analysis magic happens.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+In order to take advantage of the robust search capabilities offered by Elasticsearch, many businesses will deploy Elasticsearch alongside existing relational databases. In this project, we explore the ELK stack and use Logstash to create a data pipe linking Elasticsearch to MySQL in order to build an index from scratch and keep Elasticsearch synchronized with MySQL database using Logstash and JDBC. The scenario is that, our legacy system uses MySQL database and we have a requirement where we need to have a heavy search and we have decided to move to Elasticsearch. We will still stick to our MySQL database as a primary database for application-db transactions and use ElasticSearch as a secondary data store for the requirements where we need to have the heavy search. </span></p>
+
+<h4 id="dataset">Dataset</h4>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+The entire code files including the data file can be accessed in <a href="https://github.com/prabhupavitra/sync-mysql-elasticsearch">my github repository</a>.  </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+The submissions data set contains summary information about an entire EDGAR submission. Some fields were sourced directly from EDGAR submission information, while other columns of data were sourced from the Interactive Data attachments of the submission. Note: EDGAR derived fields represent the most recent EDGAR assignment as of a given filing’s submission date and do not necessarily represent the most current assignments. 
+To access the complete submission files for a given filing, please see the <a href="https://www.sec.gov">SEC EDGAR website</a>. </span></p>
+
+<h4 id="system-architecture">System Architecture</h4>
+
+<figure>
+<img src="/img/Project/p6/system-architecture.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 2 : System Architecure </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Before proceeding with the system architecture, let’s inspect the versions of various necessary elements such as the ELK stack, MySQL and the jdbc connector.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mysql</span><span class="p">:</span><span class="mi">8</span>
+<span class="n">elasticsearch</span><span class="p">:</span> <span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">java</span> <span class="n">version</span> <span class="s">"1.8.0_291"</span>
+<span class="n">kibana</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">logstash</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+<span class="n">JDBC</span> <span class="n">connector</span><span class="p">:</span> <span class="n">Connector</span><span class="o">/</span><span class="n">J</span> <span class="mf">8.0</span><span class="p">.</span><span class="mi">25</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;"> Let’s now begin with a high-level overview of the system architecture to implement a proof of concept for data synchronization of MySQL database with Elasticsearch on Docker. A high-level system architecture is shown in the figure above. First and foremost, we shall configure the MySQL database. Since we are using Docker to implement this pipeline, we will begin by creating a directory for the project. The Docker Compose version used for this project is 3.3 and we shall examine each of the services in it. We shall create all the services and add them to a network. Since we do not have a database to work with, we shall build one from scratch. We will use the configuration mentioned below and start up the container.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">version</span><span class="p">:</span> <span class="s">'3.3'</span>
+<span class="n">services</span><span class="p">:</span>
+  <span class="n">mysql</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">mysql</span><span class="p">:</span><span class="mi">8</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">cont_mysql</span>
+    <span class="c1"># restart: on-failure
+</span>    <span class="n">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span>
+    <span class="n">expose</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">3306</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="c1"># MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+</span>      <span class="n">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="n">root</span>
+      <span class="n">MYSQL_DATABASE</span><span class="p">:</span> <span class="n">finstats</span>
+      <span class="n">MYSQL_USER</span><span class="p">:</span> <span class="n">es_user</span>
+      <span class="n">MYSQL_PASSWORD</span><span class="p">:</span> <span class="n">watchword</span>
+    <span class="n">volumes</span><span class="p">:</span>
+      <span class="c1"># Dump files for initiating tables
+</span>      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="p">:</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">entrypoint</span><span class="o">-</span><span class="n">initdb</span><span class="p">.</span><span class="n">d</span><span class="o">/</span>
+    <span class="n">logging</span><span class="p">:</span>
+        <span class="n">driver</span><span class="p">:</span> <span class="s">"json-file"</span>
+        <span class="n">options</span><span class="p">:</span>
+            <span class="nb">max</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="s">"10k"</span>
+            <span class="nb">max</span><span class="o">-</span><span class="nb">file</span><span class="p">:</span> <span class="s">"10"</span> 
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>   
+
+</code></pre></div></div>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Next, we will fire up the terminal and navigate to the project directory. We will then run our Docker Compose file to bring up the containers. The commands at terminal are shown below.</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> 
+<span class="c1"># Once container started, log into the MySQL container
+</span><span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">cont_mysql</span> <span class="n">bash</span>
+<span class="c1"># Start a MySQL prompt
+</span><span class="n">mysql</span> <span class="o">-</span><span class="n">u</span> <span class="n">es_user</span> <span class="o">-</span><span class="n">p</span> <span class="n">finstats</span>
+<span class="c1"># Enter password used in MYSQL_PASSWORD in docker compose
+# Check that tables have been loaded from dump files
+</span><span class="n">use</span> <span class="n">finstats</span><span class="p">;</span>
+<span class="n">show</span> <span class="n">tables</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Then, we shall configure our database which we will use for synchronization with Elasticsearch. The code for database configuration is mentioned below. </span></p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">finstats</span><span class="p">;</span>
+<span class="n">USE</span> <span class="n">finstats</span><span class="p">;</span>
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">fin_sub</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">fin_sub</span><span class="p">(</span>
+<span class="n">adsh</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">adsh</span><span class="p">),</span>
+<span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="n">unique_id</span> <span class="p">(</span><span class="n">adsh</span><span class="p">),</span>
+<span class="n">cik</span> <span class="nb">INT</span><span class="p">,</span>
+<span class="n">name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">),</span>
+<span class="n">sic</span> <span class="nb">INT</span><span class="p">,</span>
+<span class="n">countryba</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">stprba</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">cityba</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="n">zipba</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="n">bas1</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+<span class="n">bas2</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+<span class="n">baph</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+<span class="n">countryma</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">stprma</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">cityma</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
+<span class="n">zipma</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="n">mas1</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+<span class="n">mas2</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+<span class="n">countryinc</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="n">stprinc</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">ein</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="n">former</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">),</span>
+<span class="n">changed</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span>
+<span class="n">afs</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+<span class="n">wksi</span> <span class="nb">TINYINT</span><span class="p">,</span>
+<span class="n">fye</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+<span class="n">form</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="n">period</span> <span class="nb">DATE</span><span class="p">,</span>
+<span class="n">fy</span> <span class="nb">YEAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+<span class="n">fp</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+<span class="n">filed</span> <span class="nb">DATE</span><span class="p">,</span>
+<span class="n">accepted</span> <span class="nb">DATETIME</span><span class="p">,</span>
+<span class="n">prevrpt</span> <span class="nb">TINYINT</span><span class="p">,</span>
+<span class="n">detail</span> <span class="nb">TINYINT</span><span class="p">,</span>
+<span class="n">instance</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+<span class="n">nciks</span> <span class="nb">INT</span><span class="p">,</span>
+<span class="n">aciks</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">120</span><span class="p">),</span>
+<span class="n">modification_time</span> <span class="nb">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+<span class="n">insertion_time</span> <span class="nb">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;"> Let’s discuss the most important parameters needed to understand the dataset. </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> <em>fin_sub</em> : This is the name of the MySQL table that records will be read from and then synchronized to Elasticsearch.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> <em>adsh</em>: Accession Number is a 20-character string formed from the 18-digit number assigned by the SEC to each EDGAR submission and is a unique(primary) key for these records. Notice that “adsh” is defined as the PRIMARY KEY as well as a UNIQUE KEY. This guarantees each “adsh” only appears once in the current table. This will be translated to “_id” for updating or inserting the document into Elasticsearch.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> <em>modification_time</em>: This field is used to track the insertion or updation of a record. It allows us to pull out any records that have been modified since the last time Logstash requested documents from MySQL.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> <em>insertion_time</em>: This field is used to track when a record was originally inserted into MySQL(Only for demonstration purposes).</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Then, we will load the data from the fin_sub.sql file in the /data/ folder within our project directory. We will download a mysql java connector which will be used by logstash to read the MySQL database. Moving forward, let’s put down the synchronization code that will be used by logstash to fetch data from our MySQL database. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">input</span> <span class="p">{</span>
+  <span class="n">jdbc</span> <span class="p">{</span>
+    <span class="n">jdbc_driver_library</span> <span class="o">=&gt;</span> <span class="s">"/usr/share/logstash/mysql-connector-java-8.0.25.jar"</span>
+    <span class="n">jdbc_driver_class</span> <span class="o">=&gt;</span> <span class="s">"com.mysql.jdbc.Driver"</span>
+    <span class="n">jdbc_connection_string</span> <span class="o">=&gt;</span> <span class="s">"jdbc:mysql://mysql:3306/finstats"</span>
+    <span class="n">jdbc_user</span> <span class="o">=&gt;</span> <span class="s">"es_user"</span>
+    <span class="n">jdbc_password</span> <span class="o">=&gt;</span> <span class="s">"watchword"</span>
+    <span class="n">tracking_column</span> <span class="o">=&gt;</span> <span class="s">"unix_ts_in_secs"</span>
+    <span class="n">tracking_column_type</span> <span class="o">=&gt;</span> <span class="s">"numeric"</span>
+    <span class="n">use_column_value</span> <span class="o">=&gt;</span> <span class="n">true</span>
+    <span class="n">statement</span> <span class="o">=&gt;</span> <span class="s">"SELECT *, UNIX_TIMESTAMP(modification_time) AS unix_ts_in_secs FROM fin_sub WHERE (UNIX_TIMESTAMP(modification_time) &gt; :sql_last_value AND modification_time &lt; NOW()) ORDER BY modification_time ASC"</span>
+    <span class="n">schedule</span> <span class="o">=&gt;</span> <span class="s">"*/5 * * * * *"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nb">filter</span> <span class="p">{</span>
+  <span class="n">mutate</span> <span class="p">{</span>
+    <span class="n">copy</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="s">"adsh"</span> <span class="o">=&gt;</span> <span class="s">"[@metadata][_id]"</span><span class="p">}</span>
+    <span class="n">remove_field</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s">"adsh"</span><span class="p">,</span> <span class="s">"@version"</span><span class="p">,</span> <span class="s">"unix_ts_in_secs"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">output</span> <span class="p">{</span>
+  <span class="n">stdout</span> <span class="p">{</span> <span class="n">codec</span> <span class="o">=&gt;</span>  <span class="s">"rubydebug"</span><span class="p">}</span>
+  <span class="n">elasticsearch</span> <span class="p">{</span>
+      <span class="n">index</span> <span class="o">=&gt;</span> <span class="s">"finstats"</span>
+      <span class="n">action</span> <span class="o">=&gt;</span> <span class="s">"index"</span>
+      <span class="n">document_id</span> <span class="o">=&gt;</span> <span class="s">"%{[@metadata][_id]}"</span>
+      <span class="n">hosts</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s">"http://es01:9200"</span><span class="p">,</span><span class="s">"http://es02:9200"</span><span class="p">,</span><span class="s">"http://es03:9200"</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><span style="font-family:Georgia; font-size:18px;"> We will then bring up the containers for our ELK stack. We will add the below code to the Docker Compose for the ELK stack. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">version</span><span class="p">:</span> <span class="s">'3.3'</span>
+<span class="n">services</span><span class="p">:</span>
+  <span class="n">mysql</span><span class="p">:</span>
+    <span class="p">...</span>
+  <span class="n">es01</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="p">.</span><span class="n">elastic</span><span class="p">.</span><span class="n">co</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">es01</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">node</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es01</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">cluster</span>
+      <span class="o">-</span> <span class="n">discovery</span><span class="p">.</span><span class="n">seed_hosts</span><span class="o">=</span><span class="n">es02</span><span class="p">,</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">initial_master_nodes</span><span class="o">=</span><span class="n">es01</span><span class="p">,</span><span class="n">es02</span><span class="p">,</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">bootstrap</span><span class="p">.</span><span class="n">memory_lock</span><span class="o">=</span><span class="n">true</span>
+      <span class="o">-</span> <span class="s">"ES_JAVA_OPTS=-Xms512m -Xmx512m"</span>
+    <span class="n">ulimits</span><span class="p">:</span>
+      <span class="n">memlock</span><span class="p">:</span>
+        <span class="n">soft</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">hard</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">volumes</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">data01</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">data</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span>
+    <span class="n">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">9200</span><span class="p">:</span><span class="mi">9200</span>
+    <span class="n">logging</span><span class="p">:</span>
+      <span class="n">driver</span><span class="p">:</span> <span class="s">"json-file"</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="nb">max</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="s">"10k"</span>
+        <span class="nb">max</span><span class="o">-</span><span class="nb">file</span><span class="p">:</span> <span class="s">"10"</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>
+
+  <span class="n">es02</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="p">.</span><span class="n">elastic</span><span class="p">.</span><span class="n">co</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">es02</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">node</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es02</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">cluster</span>
+      <span class="o">-</span> <span class="n">discovery</span><span class="p">.</span><span class="n">seed_hosts</span><span class="o">=</span><span class="n">es01</span><span class="p">,</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">initial_master_nodes</span><span class="o">=</span><span class="n">es01</span><span class="p">,</span><span class="n">es02</span><span class="p">,</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">bootstrap</span><span class="p">.</span><span class="n">memory_lock</span><span class="o">=</span><span class="n">true</span>
+      <span class="o">-</span> <span class="s">"ES_JAVA_OPTS=-Xms512m -Xmx512m"</span>
+    <span class="n">ulimits</span><span class="p">:</span>
+      <span class="n">memlock</span><span class="p">:</span>
+        <span class="n">soft</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">hard</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">volumes</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">data02</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">data</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>
+
+  <span class="n">es03</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="p">.</span><span class="n">elastic</span><span class="p">.</span><span class="n">co</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">es03</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">node</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="n">es</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">cluster</span>
+      <span class="o">-</span> <span class="n">discovery</span><span class="p">.</span><span class="n">seed_hosts</span><span class="o">=</span><span class="n">es01</span><span class="p">,</span><span class="n">es02</span>
+      <span class="o">-</span> <span class="n">cluster</span><span class="p">.</span><span class="n">initial_master_nodes</span><span class="o">=</span><span class="n">es01</span><span class="p">,</span><span class="n">es02</span><span class="p">,</span><span class="n">es03</span>
+      <span class="o">-</span> <span class="n">bootstrap</span><span class="p">.</span><span class="n">memory_lock</span><span class="o">=</span><span class="n">true</span>
+      <span class="o">-</span> <span class="s">"ES_JAVA_OPTS=-Xms512m -Xmx512m"</span>
+    <span class="n">ulimits</span><span class="p">:</span>
+      <span class="n">memlock</span><span class="p">:</span>
+        <span class="n">soft</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">hard</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">volumes</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">data03</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">data</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">elasticsearch</span><span class="p">.</span><span class="n">yml</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>
+
+  <span class="n">kibana</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="p">.</span><span class="n">elastic</span><span class="p">.</span><span class="n">co</span><span class="o">/</span><span class="n">kibana</span><span class="o">/</span><span class="n">kibana</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">cont_kib</span>
+    <span class="n">ports</span><span class="p">:</span>
+      <span class="o">-</span> <span class="mi">5601</span><span class="p">:</span><span class="mi">5601</span>
+    <span class="n">environment</span><span class="p">:</span>
+      <span class="n">ELASTICSEARCH_URL</span><span class="p">:</span> <span class="s">"http://es01:9200"</span>
+      <span class="n">ELASTICSEARCH_HOSTS</span><span class="p">:</span> <span class="s">'["http://es01:9200","http://es02:9200","http://es03:9200"]'</span>
+    <span class="n">depends_on</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">es01</span>
+      <span class="o">-</span> <span class="n">es02</span>
+      <span class="o">-</span> <span class="n">es03</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>
+
+  <span class="n">logstash</span><span class="p">:</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="p">.</span><span class="n">elastic</span><span class="p">.</span><span class="n">co</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">logstash</span><span class="p">:</span><span class="mf">7.13</span><span class="p">.</span><span class="mi">2</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="n">cont_logstash</span>
+    <span class="c1"># restart: on-failure
+</span>    <span class="n">privileged</span><span class="p">:</span> <span class="n">true</span>
+    <span class="n">depends_on</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">mysql</span>
+      <span class="o">-</span> <span class="n">es01</span>
+      <span class="o">-</span> <span class="n">es02</span>
+      <span class="o">-</span> <span class="n">es03</span>
+    <span class="n">volumes</span><span class="p">:</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">logstash</span><span class="p">.</span><span class="n">yml</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">logstash</span><span class="p">.</span><span class="n">yml</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">pipeline</span><span class="o">/</span><span class="n">logstash</span><span class="o">-</span><span class="n">sample</span><span class="p">.</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">pipeline</span><span class="o">/</span><span class="n">logstash</span><span class="p">.</span><span class="n">conf</span>
+      <span class="o">-</span> <span class="p">.</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">mysql</span><span class="o">-</span><span class="n">connector</span><span class="o">-</span><span class="n">java</span><span class="o">-</span><span class="mf">8.0</span><span class="p">.</span><span class="mf">25.j</span><span class="n">ar</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">logstash</span><span class="o">/</span><span class="n">mysql</span><span class="o">-</span><span class="n">connector</span><span class="o">-</span><span class="n">java</span><span class="o">-</span><span class="mf">8.0</span><span class="p">.</span><span class="mf">25.j</span><span class="n">ar</span>
+    <span class="n">logging</span><span class="p">:</span>
+      <span class="n">driver</span><span class="p">:</span> <span class="s">"json-file"</span>
+      <span class="n">options</span><span class="p">:</span>
+        <span class="nb">max</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="s">"10k"</span>
+        <span class="nb">max</span><span class="o">-</span><span class="nb">file</span><span class="p">:</span> <span class="s">"10"</span>
+    <span class="n">networks</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">elastic</span>
+
+<span class="n">volumes</span><span class="p">:</span>
+  <span class="n">data01</span><span class="p">:</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">data02</span><span class="p">:</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="n">local</span>
+  <span class="n">data03</span><span class="p">:</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="n">local</span>
+
+<span class="n">networks</span><span class="p">:</span>
+  <span class="n">elastic</span><span class="p">:</span>
+    <span class="n">external</span><span class="p">:</span> <span class="n">true</span>
+</code></pre></div></div>
+
+<p><span style="font-family:Georgia; font-size:18px;"> Now that we have our docker-compose.yml file, we will fire up the terminal, and start it up!</span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> 
+</code></pre></div></div>
+<p><span style="font-family:Georgia; font-size:18px;"> It might take some time for Kibana to start up. But, once Elasticsearch and Kibana are up and running, we can see a list of indices in the Elasticsearch nodes. </span></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use the command docker exec -it &lt;container name&gt; /bin/bash to get a bash shell in the container.
+</span><span class="n">docker</span> <span class="k">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">es01</span> <span class="n">bash</span>
+<span class="c1"># Check the indices in elasticsearch nodes within the Elasticsearch container
+</span><span class="n">curl</span>  <span class="s">"es01:9200/_cat/indices?v=true&amp;pretty"</span>
+</code></pre></div></div>
+<figure>
+<img src="/img/Project/p6/result1.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 3 : Indices appear in the Elasticsearch nodes</figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;">We can see our index finstats in the list and hence we can proceed to fire up the browser and start <a href="http://0.0.0.0:5601/">Kibana</a> on the browser. We can navigate to Stack monitoring and find our indices as shown below. </span></p>
+
+<figure>
+<img src="/img/Project/p6/result2.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 4 : The finstats index has been successfully created and contains 16.1k documents — Image by Author
+ </figcaption>
+</figure>
+
+<p><span style="font-family:Georgia; font-size:18px;"> We shall then navigate to Dev Tools panel, where we can extract data from Elasticsearch. In the below example, we are searching for EDGAR filings for the first quarter of 2021. We see that it returns 794 documents.  </span></p>
+
+<figure>
+<img src="/img/Project/p6/result4.png" alt="this is a placeholder image" width="100%" height="50%" class="center" />
+  <figcaption style="color: grey"> Figure 5 : Extracting data from Elasticsearch using Dev Tools — Image by Author
+ </figcaption>
+</figure>
+
+<h4 id="conclusion">Conclusion</h4>
+
+<p><span style="font-family:Georgia; font-size:18px;"> In this article, I showed how Logstash can be used to synchronize Elasticsearch with a relational database. The code and methods presented here were tested with MySQL, but should theoretically work with any RDBMS.  </span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">
+Thanks for reading! If you want to get in touch with me or leave me any feedback, feel free to reach me on my email. You can find the complete script in my <a href="https://github.com/prabhupavitra/sync-mysql-elasticsearch">github repository</a>.</span></p>
+
+<h5 id="references">References</h5>
+
+<p><span style="font-family:Georgia; font-size:18px;">(1) Elasticsearch. Elastic stack home page, 2021. https://www.elastic.co/products.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(2) Nigel Poulton. Docker Deep Dive. Packt Publishing. October 2020.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(3) Rich Collier, Camilla Montonen, Bahaaldine Azarmi. Machine Learning with the Elastic Stack - Second Edition. Packt Publishing.May 2021</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(4) Doug Turnbull and John Berryman. Relevant Search: With applications for Solr and Elasticsearch. Manning Publications. June 2016</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(5) Yuvraj Gupta, Ravi Kumar Gupta. Mastering Elastic Stack. Packt Publishing. February 2017<span></span></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(6) Bharvi Dixit. Mastering Elasticsearch 5.x - Third Edition. Packt Publishing. February 2017.</span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;">(7) DB-Engines. Ranking of search engines, June 2021. https://db-engines.com/en/ranking/search+engine.<span></span></span></p>
+
+<p><span style="font-family:Georgia; font-size:18px;"></span></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-07-08T22:12:28-05:00">July 8, 2021</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/projects/pyspark-abstractive-summarization/" class="pagination--pager" title="Extracting the hidden messages in Earnings Call Transcripts
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/prabhupavitra?tab=repositories" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Pavitra Prabhu. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
