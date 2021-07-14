@@ -47,7 +47,7 @@ var store = [{
         "url": "http://localhost:4000/projects/movie-recommender-in-r/",
         "teaser": "http://localhost:4000/img/Project/ProjectTeaser/movierec.png"
       },{
-        "title": "Credit Card Fraud Detection ",
+        "title": "Detecting Fraudulent Transactions in Credit Cards",
         "excerpt":"Introduction Nowadays, artificial intelligence(AI) is being used in all realms of business. One such interesting application of machine learning is online fraud detection. With increased sophistication and scale of fraudulent transactions, fraud detection has become one of the indispensable tool for every organization. The conventional approaches to fighting online fraud...","categories": [],
         "tags": [],
         "url": "http://localhost:4000/projects/credit-card-fraud-detection-in-r/",
