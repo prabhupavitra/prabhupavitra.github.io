@@ -9,14 +9,14 @@
 # Site settings
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "mint" # "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
+minimal_mistakes_skin    : "air" # "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", #default
 
 locale                   : "en-US"
 title                    : "The Realm of Data Science"
 title_separator          : #"-"
-subtitle                 : #"Version 0.0" # site tagline that appears below site title in masthead
+subtitle                 : "Exploring Insights and Innovations in Data Science and Analytics" # site tagline that appears below site title in masthead
 name                     : "Pavitra Prabhu"
-description              : "A website featuring my side projects and views appertaining to the realm of data science. " # "My blog / portfolio of Data Science &  Analytics"
+description              : "A professional platform showcasing my projects, research, and perspectives on data science, machine learning, and analytics. Join me on my journey to discover and share innovative solutions." # "My blog / portfolio of Data Science &  Analytics"
 url                      : "https://prabhupavitra.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "prabhupavitra/prabhupavitra.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
