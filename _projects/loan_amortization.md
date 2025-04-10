@@ -129,7 +129,7 @@ class InputValidation:
     
         return tempvar
 
-    #Method for checking if the input variable is a positive value (Eg. Annual interest rate)
+    #Method for checking if the input variable is a positive value (Eg. Annual interest rate) --
     def check_positive_float(self):
         while True:
             try:
